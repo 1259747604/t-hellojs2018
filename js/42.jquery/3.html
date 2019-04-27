@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 声明当前页面编码集:utf-8国际编码 -->
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+    <title>please enter your title</title>
+    <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+    <meta name="Keywords" content="TT">
+    <!-- 简介描述 -->
+    <meta name="description" content="TT">
+    <style>
+        *{margin:0;padding:0;}
+        ul{list-style:none;}
+        body{
+            height: 2000px;
+        }
+        #box{
+            position: absolute;
+            top:200px;
+            width:500px;
+            height:500px;
+            background: #4fd4f3;
+            margin-top: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id="box" class="x o " style="width: 500px;">
+    <a href="">111</a>
+    <p>11</p>
+    <p class="xx">22</p>
+    <p>33</p>
+    <p>44</p>
+    <input type="text" value="222">
+    <div>
+        <p>666</p>
+    </div>
+</div>
+<div id="two">
+    <a href="">222</a>
+    <p>55</p>
+    <ul>
+        <li>l1</li>
+        <li>l2</li>
+        <li>l3</li>
+    </ul>
+</div>
+<!--<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>-->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+/*    $("#box").click(function () {
+        alert(1);
+    });
+    $("#box").click(function () {
+        alert(2);
+    });*///jq的事件默认都是事件绑定形式的;
+/*    $("#box").on("click",function (e) {
+        console.log(e);
+    });*///可以这么写
+
+/*    $("#box").on({
+        click:function (e) {
+            console.log(1);
+        },
+        mouseenter:function () {
+            console.log(2);
+        }
+    });*///可以绑定多个事件
+
+/*    $(document).on("click",function (e) {
+        $("#box").append("<p>22222</p>");
+    })
+    $("#box").on("click","p",function (e) {
+        alert($(this).html());
+        e.stopPropagation();
+    });*///实现事件委托
+
+/*    $("#box").on({
+        click:function (e) {
+            console.log(1);
+        },
+        mouseenter:function () {
+            console.log(2);
+        }
+    });
+    $("#box").off("mouseenter");//解绑该事件*/
+
+/*    $("#box").on("click.goudan" , function () {
+        alert( 1 );
+    });
+    $("#box").on("click.dachui" , function () {
+        alert( 2 );
+    });
+    $("#box").off("click.goudan");//解绑指定事件*/
+
+    // ready Dom加载完成后执行
+    //原本写法
+/*    $(document).ready(function () {
+
+    })
+    //简写形式
+    $(function () {
+
+    })*/
+
+/*    $("#box").hover(function () {
+        console.log(1);
+    },function () {
+        console.log(2);
+    })*///是移入和移出的联合
+
+/*    $("#box").1.基本模块("click",function () {
+        alert("只执行1次的函数");
+    });*///只执行一次的函数
+
+
+/*    var off = false;
+    $(document).click(function () {
+        if(off){
+            $("#box").show(500,"linear",function () {
+                alert("显示了");
+            });
+        }
+        else{
+            $("#box").hide();
+        }
+        off = !off;
+    });//显示和隐藏 参数速度，运动曲线(长宽高和透明度的变化).执行回调函数*/
+/*    $(document).click(function () {
+        $("#box").toggle(500,"linear");
+    });*///有则隐藏，没有则显示
+
+/*    var off = false;
+    $(document).click(function () {
+        if(off){
+            $("#box").fadeIn(500,"linear",function () {
+                alert("显示了");
+            });
+        }
+        else{
+            $("#box").fadeOut();
+        }
+        off = !off;
+    });//淡入淡出 参数速度，运动曲线(透明度的变化).执行回调函数*/
+/*    $(document).click(function () {
+        $("#box").fadeToggle(500,"linear");
+    });//有则淡出，没有则淡入*/
+
+/*    $(document).click(function () {
+        $("#box").fadeTo(500,.5,"linear");
+    });//改变透明度*/
+
+/*    var off = false;
+    $(document).click(function () {
+        if(off){
+            $("#box").slideDown(500,"linear",function () {
+                alert("显示了");
+            });
+        }
+        else{
+            $("#box").slideUp();
+        }
+        off = !off;
+    });//淡入淡出 参数速度，运动曲线(高度的变化).执行回调函数*/
+/*    $(document).click(function () {
+        $("#box").slideToggle(500,"linear");
+    });//有则...，没有则...*/
+
+/*    $(document.getElementById("box")).animate({
+        width:1000,
+        height:1000,
+    },2000,"swing",function () {
+        alert("执行完成了"+index);
+    });//动画 参数json 执行时间 运动曲线 回调函数
+
+    $(document).click(function () {
+        // $("#box").stop();//停止动画
+        $("#box").stop(true,true);//停止动画 第一个没啥用清空队列 停止动画 第二个如果为true则立刻到达动画终点
+    });*/
+
+/*    $("#box").hover(function () {
+        $(this).stop(true,false).animate({width : 800} , 500);
+    },function () {
+        $(this).stop(true,false).animate({width : 500} , 500);
+    });*/
+
+/*    $(document).click(function () {
+        // $("#box").delay(1000).fadeOut(500);
+        $("#box").delay(1000).queue(function () {
+            $(this).css("background" , "pink");
+        });
+    });//延迟只对动画(队列)有用延迟的是队列 此处将瞬间变化添加到队列中就可以延迟执行*/
+
+/*    $.fn.extend({
+        aa:function () {
+            alert("这是aa方法");
+        }
+    });
+    $(document).click(function () {
+        $("#box").aa();
+    });*///扩展方法
+
+/*    $.extend({
+        aa:function () {
+            alert("这是$新扩展的aa方法");
+        }
+    })
+    $(document).click(function () {
+        $.aa();
+    });//扩展方法*/
+</script>
+</body>
+</html>

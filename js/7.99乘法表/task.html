@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 声明当前页面编码集:utf-8国际编码 -->
+<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+<title>please enter your title</title>
+<!-- 关键词字数限制在31字，用英文逗号隔开 -->
+<meta name="Keywords" content="TT模板">
+<!-- 简介描述 -->
+<meta name="description" content="TT模板">
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        .wrap{
+             font-size:0;
+        }
+        p{
+            display: inline-block;
+            width:70px;
+            line-height: 40px;
+            border: 1px solid #6CBCF0;
+            color:#ED64C2;
+            font-size: 16px;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div class='wrap'></div>
+    <div class='wrap'></div>
+    <div class='wrap'></div>
+    <div class='wrap'></div>
+    <div class='wrap'></div>
+    <script type="text/javascript">
+        var odiv = document.querySelectorAll(".wrap");
+        for (var i = 0; i <= 9; i++) {
+            for (var j = 0; j <i; j++) {
+                odiv[0].innerHTML += "<p>"+i+"×"+(j+1)+"="+(i*(j+1))+"</p>";
+            }
+            odiv[0].innerHTML += "<br>";
+        }
+        for (var i = 9; i >0; i--) {
+            for (var j = i; j>0; j-- ) {
+                odiv[1].innerHTML += "<p>"+i+"×"+(j)+"="+(i*(j))+"</p>";
+            }
+            odiv[1].innerHTML += "<br>";
+        }
+        for (var i = 9; i >0; i--) {
+            for (var j = i; j<=9; j++ ) {
+                odiv[2].innerHTML += "<p>"+i+"×"+(j)+"="+(i*(j))+"</p>";
+            }
+            odiv[2].innerHTML += "<br>";
+        }
+        for (var i = 9; i >0; i--) {
+            for (var j = 1; j<=i; j++ ) {
+                odiv[3].innerHTML += "<p>"+i+"×"+(j)+"="+(i*(j))+"</p>";
+            }
+            odiv[3].innerHTML += "<br>";
+        }
+        for (var i = 1; i <=9; i++) {
+            for (var j = i; j<=9; j++ ) {
+                odiv[4].innerHTML += "<p>"+i+"×"+(j)+"="+(i*(j))+"</p>";
+            }
+            odiv[4].innerHTML += "<br>";
+        }
+        odiv[0].style.borderBottom = "1px solid red";
+        odiv[1].style.borderBottom = "1px solid red";
+        odiv[2].style.borderBottom = "1px solid red";
+        odiv[3].style.borderBottom = "1px solid red";
+        odiv[4].style.borderBottom = "1px solid red";
+    </script>
+</body>
+</html>

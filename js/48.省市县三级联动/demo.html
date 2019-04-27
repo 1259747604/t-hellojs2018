@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            select{width:150px;}
+        </style>
+        <script src="areaData.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <form action="">
+                <select name="Province" id="Province">
+                    <option value="none">省</option>
+                </select>
+                <select name="city" id="city" value="none">
+                    <option value="none">市</option>
+                </select>
+                <select name="county" id="county">
+                    <option value="none">县</option>
+                </select>
+            </form>
+        </div>
+        <script src="areaData.js"></script>
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+            {
+                let $select = $("select");
+
+                creatP();
+
+                $select.eq(0).change(function () {
+                    clearC();
+                    creatC($(this).val());
+                });
+                $select.eq(1).change(function () {
+                    clearCoun();
+                    creatCoun($(this).val());
+                });
+
+                //省
+                function creatP() {
+                    areaData.sheng.forEach(function (value,i) {
+                        $select.eq(0).append(`<option value= ${i}>${value}</option>`);
+                    })
+                }
+                //市
+                function creatC(x) {
+                    let data = areaData.shi["a_"+x];
+                    $.each(data,function (i,value) {
+                        $select.eq(1).append(`<option value= ${i}>${value}</option>`);
+                    })
+                }
+                //县
+                function creatCoun(x) {
+                    let index = $select.eq(0).val();
+                    let data = areaData.xian[`a_${index}_${x}`];
+                    $.each(data,function (i,value) {
+                        $select.eq(2).append(`<option value= ${i}>${value}</option>`);
+                    })
+
+                }
+                //清除市
+                function clearC() {
+                    $select.eq(1).html("<option value= none>市</option>");
+                    clearCoun();
+                }
+                //清除县
+                function clearCoun() {
+                    $select.eq(2).html("<option value= none>县</option>");
+                }
+            }
+        </script>
+    </body>
+</html>

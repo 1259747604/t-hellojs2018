@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			.clearfix:after{content: '';display: block;clear: both;}
+			.head{position:relative;width:1000px;margin:50px auto;background:-webkit-linear-gradient(top,#6890b4,#719cb4);border-radius:5px;transition:2s;cursor:pointer;}
+			.head > span{display:inline-block;margin-left:20px;width:100px;height:40px;line-height: 40px;text-align:center;border: 1px solid;border-top:none;border-bottom:none;}
+			.head ul{position: absolute;}
+			.head ul li{position: absolute;width:100px;left:21px;background: #e3a266;text-align: center;}
+			.head ul li:nth-of-type(2){top:26px;}
+			.zhuti{width:1000px;margin: 0 auto;}
+			.zhuti ul li{position:relative;float:left;margin: 0 0 15px 39px;width:200px;height: 270px;border:1px solid #394e5d;text-align: left;border-radius: 10px;}
+			.zhuti ul li img{width:200px;height:200px;margin:0 auto;transform-origin:center;transition: 2s linear;animation:tt 3s linear infinite}
+			.zhuti ul li div span:nth-of-type(1){margin-left: 132px;}
+			.zhuti ul li span.price{float: right;}
+			.zhuti ul li span.price:after{content:'';position:absolute;margin-top:-1px;margin-left:-63px;width:70px; height: 30px; background:#e3165b;border-radius:50%;transform: rotateZ(161deg);z-index: -1;}
+			@keyframes tt {
+				to{
+					transform:rotateY(360deg);
+				}
+			}
+		</style>
+<body>
+	<div class="wrap">
+		<div class="head">
+			<span>价格</span>
+			<ul class="sul">
+				<li>从低到高</li>
+				<li>从高到低</li>
+			</ul>
+		</div>
+		<div class="zhuti">
+			<ul class="clearfix">
+				<li>
+					<img src="2.jpg">
+					<p>多好看的妹子啊</p>
+					<div><span>$</span><span class="price">1000</span></div>
+				</li>
+				<li>
+					<img src="3.jpg">
+					<p>多好看的妹子啊</p>
+					<div><span>$</span><span class="price">10</span></div>
+				</li>
+				<li>
+					<img src="2.jpg">
+					<p>多好看的妹子啊</p>
+					<div><span>$</span><span class="price">100</span></div>
+				</li>
+				<li>
+					<img src="1.jpg">
+					<p>多好看的妹子啊</p>
+					<div><span>$</span><span class="price">230</span></div>
+				</li>
+				<li>
+					<img src="3.jpg">
+					<p>多好看的妹子啊</p>
+					<div><span>$</span><span class="price">700</span></div>
+				</li>
+				<li>
+					<img src="3.jpg">
+					<p>多好看的妹子啊</p>
+					<div><span>$</span><span class="price">800</span></div>
+				</li>
+				<li>
+					<img src="2.jpg">
+					<p>多好看的妹子啊</p>
+					<div><span>$</span><span class="price">21000</span></div>
+				</li>
+				<li>
+					<img src="3.jpg">
+					<p>多好看的妹子啊</p>
+					<div><span>$</span><span class="price">120</span></div>
+				</li>
+				<li>
+					<img src="2.jpg">
+					<p>多好看的妹子啊</p>
+					<div><span>$</span><span class="price">3200</span></div>
+				</li>
+				<li>
+					<img src="2.jpg">
+					<p>多好看的妹子啊</p>
+					<div><span>$</span><span class="price">1100</span></div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script>
+	var spanp = document.querySelectorAll('.price');
+	var cli = document.querySelectorAll('.head ul li');
+	var spli = document.querySelectorAll('.zhuti ul li');
+	var simg = document.querySelectorAll('.zhuti ul li img');
+    var sp = document.querySelectorAll('.zhuti ul li p');
+    var ull = document.querySelector('.zhuti ul');
+	var parr = [];
+	for(var i = 0;i<spanp.length;i++){			//获取长度
+		parr[i] = [];							//每个为一个数组
+	    parr[i][0] = simg[i].src;				//每个的第0个为图片路径
+	    parr[i][1] = sp[i].innerHTML;     		//第二个为文本内容
+	    parr[i][2] =Number(spanp[i].innerHTML); //第三个为价格
+	}
+	//console.log(parr);
+
+	cli[0].onclick = function () {  			//点击从小到大
+        parr.sort(function (a,b) {
+            return a[2] - b[2];
+        });									   //排序
+        ull.innerHTML = "";					   //清空ul
+        for(var i = 0;i<parr.length;i++){     //获取数组长度
+            ull.innerHTML +='<li><img src="'+parr[i][0]+'"><p>'+parr[i][1]+'</p><div><span>$</span><span class=price>'+parr[i][2]+'</span></div></li>';
+		} 									   //向ul里添加排序后的内容
+    };
+    cli[1].onclick = function () {
+        parr.sort(function (a,b) {
+            return b[2] - a[2];
+        });
+        ull.innerHTML = "";
+        for(var i = 0;i<parr.length;i++){
+            ull.innerHTML +='<li><img src="'+parr[i][0]+'"><p>'+parr[i][1]+'</p><div><span>$</span><span class=price>'+parr[i][2]+'</span></div></li>';
+        }
+    };
+</script>
+</html>

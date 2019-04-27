@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            .clearfix:after{content:'';display:block;clear:both;}
+            #box{margin:50px auto;width:500px;height:500px;}
+            li{float:left;}
+            span{display:inline-block;margin-left:5px;width:40px;height:120px;background:url("img/0.png") no-repeat }
+            b{display:inline-block;width:30px;height:60px;font-size:25px;text-align:center;line-height:60px;}
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul class="clearfix">
+                <li>
+                    <span></span>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+                <li>
+                    <b>:</b>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+                <li>
+                    <b>:</b>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+            </ul>
+        </div>
+        <script>
+            // var tSpan = document.getElementsByTagName("span");
+            var tSpan = document.querySelectorAll("li span");
+            var arr = ["img/0.png","img/1.png","img/2.png","img/3.png","img/4.png","img/5.png","img/6.png","img/7.png","img/8.png","img/9.png"];
+
+            var time = setInterval(function () {
+                var x = new Date();
+
+                var hh = judgepluszero(x.getHours());
+                var mm = judgepluszero(x.getMinutes());
+                var ss = judgepluszero(x.getSeconds());
+
+                var str = hh+mm+ss;
+                
+                var c = str.split("");
+                
+                for(var i = 0; i < tSpan.length; i++){
+                    tSpan[i].style.backgroundImage = "url("+arr[c[i]]+")";
+                }
+
+            },13);
+
+            function judgepluszero(x) {//判断是否加0
+/*                if(x <10){
+                    return 0+""+x;
+                }
+                else{
+                    return ""+x;
+                }*/
+                return x<10?"0"+x:""+x;//如果小于10前面加0,如果大于10不加0，最后都变为字符串
+            }
+        </script>
+    </body>
+</html>

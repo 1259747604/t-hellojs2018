@@ -1,0 +1,75 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<!-- 声明当前页面编码集:utf-8国际编码 -->
+<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+<title>please enter your title</title>
+<!-- 关键词字数限制在31字，用英文逗号隔开 -->
+<meta name="Keywords" content="TT模板">
+<!-- 简介描述 -->
+<meta name="description" content="TT模板">
+    <style>
+        *{
+            margin:0px;
+            padding: 0px;
+        }
+        ul{list-style:none;}
+        .clearfix:after{content:'';display: block;clear: both;}
+        #wrap{
+            margin:50px auto;
+            width:300px;
+            height:300px;
+            border:1px solid #999；
+        }
+        ul{
+
+        }
+        li{
+            float: left;
+            width:100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+        }
+        li:hover{
+            background-color:#6BE198 !important;
+        }
+    </style>
+</head>
+<body>
+    <div id='wrap' class='clearfix'>
+        <ul>
+            <li>这</li>
+            <li>是</li>
+            <li>J</li>
+            <li>S</li>
+            <li>的</li>
+            <li>颜</li>
+            <li>色</li>
+            <li>排</li>
+            <li>列</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var oDiv = document.getElementById("wrap"),
+            oul = document.getElementsByTagName("ul"),
+            oli = document.getElementsByTagName("li"),
+            arry = ["#82D0EA","#D79B6E","#F695E7","#D6DA61"],
+            length = oli.length;
+
+//感觉添加类名的写法就不用写移入移出事件了 直接hover就行了 不过这样的话又要添4个类名 / 好像加权重也行
+            for (var i = 0; i < length; i++) {
+            oli[i].style.backgroundColor = arry[i%4];
+
+            oli[i].bg = arry[i%4];
+ /*           oli[i].onmouseenter = function(){
+                this.style.backgroundColor = "#6BE198";
+            };
+            oli[i].onmouseleave = function(){
+                this.style.backgroundColor = this.bg;
+            };*/
+        }
+
+    </script>
+</body>
+</html>

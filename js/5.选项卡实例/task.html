@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 声明当前页面编码集:utf-8国际编码 -->
+<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+<title>please enter your title</title>
+<!-- 关键词字数限制在31字，用英文逗号隔开 -->
+<meta name="Keywords" content="TT模板">
+<!-- 简介描述 -->
+<meta name="description" content="TT模板">
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        .wrap{
+            position:relative;
+            margin: 50px auto;
+            width:360px;
+            height:580px;
+        }
+        ul.pic{
+            position: relative;
+            width:326px;
+            height: 100%;
+        }
+        ul.pic li{
+            display: none;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        ul.pic li.on{
+            display: block;
+        }
+        img{
+            display: block;
+        }
+        ul.num{
+            position: absolute;
+            top:0;
+            right:-6px;
+        }
+        ul.num li{
+            margin-bottom:15px;
+            background-color: rgba(0,0,0,.5);
+            color:#fff;
+            width:40px;
+            height:40px;
+            text-align: center;
+            line-height: 40px;
+            cursor:pointer;
+        }
+        ul.num li.on{
+            background-color: pink;
+        }
+        .wrap > p{
+            position: absolute;
+            bottom: 0;
+            width:326px;
+            height: 35px;
+            background-color: rgba(0,0,0,.5);
+            text-align: center;
+            line-height:35px;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div class='wrap'>
+		<ul class='pic'>
+            <li class='on'>
+                <img src="img/g1.jpg">
+            </li>
+            <li>
+                <img src="img/g2.jpg">
+            </li>
+            <li>
+                <img src="img/g3.jpg">
+            </li>
+            <li>
+                <img src="img/g4.jpg">
+            </li>
+        </ul>
+        <ul class='num'>
+            <li class="on">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <p><span>1</span>/4<p>
+    </div>
+    <script type="text/javascript">
+        var pli = document.querySelectorAll(".wrap .pic li"),
+            nli = document.querySelectorAll(".wrap .num li"),
+            pspan = document.getElementsByTagName("span"),
+            length = pli.length,
+            aa = 0;
+
+            for (var i = 0; i <length; i++) {
+
+                nli[i].wawa = i;
+                nli[i].onclick = function(){
+
+                    pli[aa].style.display = "none";
+                    nli[aa].style.backgroundColor = "rgba(0,0,0,.5)";
+
+                    aa = this.wawa;
+
+                    pli[aa].style.display = "block";
+                    nli[aa].style.backgroundColor = "pink";
+                    pspan[0].innerHTML = aa+1;
+                };
+            }
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			#box{
+				margin:50px auto;
+				width:400px;
+			}
+			ul{
+
+			}
+			li{
+				width:100%;
+				height:40px;
+				text-align: left;
+				line-height:40px;
+				background-color:#72eea6;
+				color:#000;
+				border-bottom: 1px solid #2ddbee;
+			}
+			span{
+				display:inline-block;
+				width:100%;
+				height: 40px;
+				background-image: url("img/ck.png");
+				background-repeat: no-repeat;
+				background-position:0 10px;
+				background-position:0 10px;
+				text-indent:3em;
+				cursor:pointer;
+			}
+			.allcheck{
+				margin-top:15px;
+			}
+			.allcheck span{
+				background-position: 0 0;
+			}
+			.spbg{
+				background-image: url("img/cked.jpg");
+			}
+			.spbg1{
+				background-image: url("img/cked.jpg");
+			}
+			.bgli1{background-color: #ed75ee;}
+			.bgli2{background-color: #e5ee98;}
+		</style>
+<body>
+    <div id="box">
+		<ul>
+			<li><span>初代奥特曼</span></li>
+			<li><span>赛文</span></li>
+			<li><span>杰克</span></li>
+			<li><span>艾斯</span></li>
+			<li><span>泰罗</span></li>
+			<li><span>雷欧</span></li>
+			<li><span>爱迪</span></li>
+		</ul>
+		<div class="allcheck">
+			<span>全选</span>
+		</div>
+	</div>
+    <script>
+		var obox = document.getElementById("box"),
+			oli = obox.getElementsByTagName("li"),
+			lspan = document.querySelectorAll("#box ul li span"),
+            dspan = document.querySelector(".allcheck span"),
+        	length = lspan.length;
+
+		//单选
+		for(i=0;i<length;i++){
+
+		    lspan[i].pd = false;
+		    lspan[i].num = i;
+            lspan[i].onclick = function(){
+                this.className = this.pd?"":"spbg";
+                this.pd = !this.pd;
+/*		        if(this.pd){
+		            this.className = "";
+				}
+                else {
+					this.className = "spbg";
+                }*///可以这样写
+				var bool = true;
+				for(var k =0; k<length;k++){
+				    if(!lspan[k].pd){
+                        bool = false;
+                        break;
+					}
+				}
+				dspan.pd = bool;
+				dspan.className = bool?"spbg1":"";
+			};
+		}
+		//全选
+		dspan.pd=false;
+		dspan.onclick = function () {
+		    var bool = this.pd;
+/*		    if(this.pd){
+                for(var j=0;j<length;j++) {
+                    lspan[j].className = "";
+                    lspan[j].pd = false;
+                }
+			}
+		    else{
+                for( var j=0;j<length;j++) {
+
+                    lspan[j].className = "spbg";
+                    lspan[j].pd = true;
+                }
+			}*///可以这样写
+            for(var j=0;j<length;j++) {
+				lspan[j].className = bool?"":"spbg";
+				lspan[j].pd = !bool;
+            }
+            this.pd = !bool;
+		    dspan.className = bool?"":"spbg1";
+        };
+
+		//背景颜色
+		for(var i=0,len = oli.length;i<len;i++){
+		    oli[i].className = i%2?"bgli2":"bgli1";
+/*		    if(i%2 == 0){
+		        oli[i].className = "bgli1";
+			}
+			else{
+                oli[i].className = "bgli2";
+			}*/
+		}
+	</script>
+</body>
+</html>

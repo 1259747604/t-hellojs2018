@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <input type="text" name="user"><br>
+            <input type="text" name="pwd">
+            <input type="button" name="sub"value="提交">
+        </div>
+        <script>
+            var a = document.querySelectorAll("[type=text]");
+            var obtn = document.querySelector("[type=button]")
+            var trans = "";
+
+            obtn.onclick = function () {
+                for(var i = 0; i < a.length; i++){
+                    trans += a[i].name+"="+a[i].value+"&";
+                }
+                console.log(trans);
+                var xhr = new XMLHttpRequest();
+                xhr.open("get","1.php?"+trans+"",true);
+                xhr.send();
+                xhr.onreadystatechange = function () {
+                    if(xhr.readyState === 4){
+                        alert(xhr.responseText);
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

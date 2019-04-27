@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			.clearfix:after{content: '';display: block;clear:both;}
+			#box{
+				width:700px;
+				margin:50px auto;
+			}
+			span{
+				color:red;
+			}
+			ul{
+				width:100px;
+				display: inline-block;
+				vertical-align: middle;
+			}
+			li{
+				float:left;
+				width:20px;
+				height:20px;
+				background:url("images/star.png") no-repeat;
+				cursor:pointer;
+			}
+			p{
+				display:inline-block;
+				width:200px;
+				height:100px;
+				border: 1px solid #999;
+			}
+			.on{
+				background-position: 0 -27px;
+			}
+		</style>
+<body>
+    <div id="box">
+		<span>评分</span>
+		<ul class="clearfix">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<p>
+			请评分
+		</p>
+	</div>
+    <script>
+		var oLi = document.querySelectorAll("li"),
+			op = document.querySelector("p"),
+			oul = document.querySelector("ul"),
+			length = oLi.length,
+			b = -1;
+			arry = ["请评分","1","2","3","4","5"];
+
+		for(var i=0;i<length;i++){
+		    oLi[i].index = i;
+		    oLi[i].onmouseenter = function(){
+                var index =this.index;
+                change(index);
+			};
+            oLi[i].onclick= function(){
+                b =this.index;
+                change(b);
+            };
+		}
+		oul.onmouseleave = function(){
+			change(b);
+		};
+		function  change(t) {
+            op.innerHTML=arry[t+1];
+            for(var i=0;i<length;i++ ){
+                oLi[i].className = "";
+            }
+            for(var j=0;j<=t;j++ ){
+                oLi[j].className = "on";
+            }
+        }
+	</script>
+</body>
+</html>

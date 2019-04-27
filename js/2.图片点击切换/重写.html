@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>大晚上没事干啊</title>
+	<style type="text/css">
+		*{
+			margin: 0px;
+			padding: 0px;
+			font-family: '微软雅黑';
+		}
+		.wrap{
+			margin:100px auto;
+			padding:50px 100px;
+			width: 400px;
+			height:1000px;
+		}
+		.wrap > p{
+			display:inline-block;
+			width:70px;
+			line-height:30px;
+			color:white;
+			font-size: 15px;
+			text-align: center;
+			background-color:rgba(0,0,0,.3);
+			border-radius: 30%;
+			cursor:pointer;
+		}
+		#wrap .navchange{
+			background-color:rgba(255,168,0,.5);
+		}
+		.pic{
+			position:relative;
+			width:400px;
+			height:300px;
+		}
+		 img{
+			display: none;
+			position:absolute;
+			width:400px;
+			height:300px;
+			border-radius: 30% 0 ;
+			box-shadow: 10px 7px 11px 1px rgba(0,0,0,.4);
+			z-index:1;
+		}
+		.pimg{
+			display: block;
+		}
+		.intro p{
+			position: absolute;
+			width:400px;
+			line-height: 30px;
+			color: white;
+			background: rgba(0,0,0,.5);
+			text-align: center;
+			z-index:2;
+			transition:2s;
+			transform-origin:center;
+		}
+		.intro p + p{
+			transform-origin: center;
+			bottom: 0;
+		}
+		.p1{
+			border-radius: 90% 0 0 0;
+		}
+		.p2{
+			border-radius: 0 0 90%  0;
+		}
+		.pnclick p{
+			position: absolute;
+			margin-top:-15px;
+			width:70px;
+			line-height: 30px;
+			color: white;
+			background: rgba(0,0,0,.5);
+			text-align: center;
+			z-index:2;
+			cursor: pointer;
+		}
+		.pnclick p:active{
+			background:rgba(255,168,0,.5); 
+		}
+		.pnclick .pre{
+			top:50%;
+			left:0;
+		}
+		.pnclick .next{
+			top:50%;
+			right:0;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div class='wrap' id='wrap'>
+		<p class="pp">循环切换</p>
+		<p class="pp">单边切换</p>
+		<div class='pic'>
+			<img src="images/1.jpg" alt="" title=""  class="pimg" />
+			<img src="images/2.jpg" alt="" title="" />
+			<img src="images/3.jpg" alt="" title="" />
+			<img src="images/4.jpg" alt="" title="" />
+			<img src="images/5.jpg" alt="" title="" />
+			<img src="images/6.jpg" alt="" title="" />
+			<div class="intro">
+				<p class='p1'><span>1</span>/6</p>
+				<p class='p2'>第<span>一</span>张图片</p>
+			</div>
+			<div class="pnclick">
+				<p class="pre">上一张</p>
+				<p class="next">下一张</p>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var pnav = document.querySelectorAll(".wrap .pp"),
+			hh = document.getElementById("hh"),
+			pic = document.querySelector(".wrap .pic"),
+			pimg = pic.querySelectorAll(".wrap .pic img"),
+			pintrop = document.querySelectorAll(".intro p"),
+			pintro = document.querySelectorAll(".intro p span"),
+			pnclick =document.querySelectorAll(".pnclick p"),//取出对应的元素
+			arry = ["一","二","三","四","五","六"],          //建立一个数组
+			pd = true;                                       //建立一个boolean型进行判断
+			length = pimg.length,                            //取出img集合长度
+			aa=0;                                            //建立一个值表示img下标
+		pnav[0].onclick = function(){                        //点击循环切换事件
+
+			this.className = "navchange";                    //将类名给到循环切换
+			pnav[1].className = "";                          //将单边切换的类名清空 防止样式高亮冲突
+			pd = true; 										 //将true给pd
+		};
+		pnav[1].onclick = function(){						
+
+			this.className = "navchange";
+			pnav[0].className = "";
+			pd = false; 
+		};													//此函数操作与上一个函数相同，将false给到pd用于判断
+
+		pnclick[0].onclick = function(){					//点击上一张事件
+
+			pimg[aa].className =""; 						//将上一个img的类名清空
+			aa--;											//将上一个img的下标-1得到现在的img
+			if(aa < 0){										//if语句 如果 下标 < 0 下一步
+				if(pd){										//如果 pd=true 下一步 如果pd=false 进入else
+					aa = length-1;							//pd=true 所以代表的是循环切换 因为第一个判断可知img处在第一张的时候执行，所以 
+				}											//将下标给值到最后一个 即img的长度-1
+				else{										//pd=flase 所以代表的是单边切换 即在第一张的时候提示不能再点击了
+					aa = 0;									//所以将0给到下标
+					pimg[aa].className ="pimg";				//将类名给到第一张img 来让它显示(将这 一行放在这是发 现点击上一张时图片会消失一 									    //下为了解决这个问题放在了这)
+					alert("瞎点什么呢没啦");				//输出一个弹框来提示
+				}
+			}
+			pimg[aa].className ="pimg";						//点击一次下标值会改变一次 所以此处将得到的下标给到img
+			pintro[0].innerHTML = aa+1;						//此处向span标签中添加数字 即下标+1 来展示此时是第几张img
+			pintro[1].innerHTML = arry[aa];					//取出数组中与下标对应的中文数字，将其添加到span标签中 显示中文数字的第几张
+		}
+		pnclick[1].onclick = function(){					//此处函数为点击下一张 ，基本同上
+
+			pimg[aa].className =""; 
+			aa++;
+			if(aa > length-1){								//当下标大于img长度-1的时候，即超过总张数
+				if(pd){
+					aa = 0;									//循环切换将下标给到0 用来代表第一张
+				}
+				else{
+					aa = length-1;							//单边切换 保持在最后一张并或得提示
+					pimg[aa].className ="pimg";
+					alert("瞎点什么呢没啦");
+				}
+			}
+			pimg[aa].className ="pimg";
+			pintro[0].innerHTML = aa+1;
+			pintro[1].innerHTML = arry[aa];
+		}
+		pnclick[1].onmouseenter = function(){												//鼠标移入移出事件
+			pintrop[0].style.transform="rotate(90deg) translateX(-120px)";					//旋转这些我的天懒得写了注释了
+			pintrop[1].style.transform="rotate(90deg) translateX(120px)";
+		};
+		pnclick[1].onmouseleave = function(){
+			pintrop[0].style.transform="translateX(0px)";
+			pintrop[1].style.transform="translateX(0px)";
+		};
+		pnclick[0].onmouseenter = function(){
+			pintrop[0].style.transform="rotate(90deg) translateX(-120px)";
+			pintrop[1].style.transform="rotate(90deg) translateX(120px)";
+		};
+		pnclick[0].onmouseleave = function(){
+			pintrop[0].style.transform="translateX(0px)";
+			pintrop[1].style.transform="translateX(0px)";
+		};
+	</script>
+</body>
+</html>

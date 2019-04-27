@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+        *{margin:0;padding:0;}
+        ul{list-style:none;}
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <p>别堆砌怀念让剧情变得狗血深爱了多年又何必毁该体面谁都不要说抱了歉何来亏欠我敢给就敢心碎镜头前面是从前的掉了昨天我爱过你利落干脆再见不负遇见</p>
+        </div>
+        <script>
+            var op = document.querySelector("p").innerHTML;
+            // var a = op.charAt(0);
+            // var a = op.indexOf('砌',10);
+/*            for(var i = 0; op.indexOf('了',i)!=-1; ){
+                console.log(op.indexOf('了',i));
+                i = op.indexOf('了',i) + 1;
+            }*/
+/*            var a = '汤曼是头猪';
+            var c = '';
+            for(var i = 0; i < a.length; i++){
+                c += a.charCodeAt(i)+" ";
+            }*/
+            // var c = op.substring(1,10);
+            // var c = op.slice(1,-10);
+            var a = op.split('');
+            var c = a.reverse();//数组倒序
+            // c.push('啊');
+            // c.unshift('啊');
+            // c.pop();
+            // c.shift();
+            // c.splice(1,1,'aa');
+            var arr1 = [1,2];
+            var arr2 = [3,4];
+            var arr3 = [5,6];
+
+            arr4 = arr1.concat(arr2,arr3);
+            console.log(arr4);
+        </script>
+    </body>
+</html>

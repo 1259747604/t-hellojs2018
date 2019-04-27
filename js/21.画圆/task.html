@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			body{background:#9ddbd5;}
+			div#box{position:relative;margin:30px auto;width: 500px;height: 500px;background: #9fdbaa;}
+			div#wrap{position:relative;top:-530px;margin:30px auto;width: 500px;height: 500px;}
+			span{position: absolute;left:50%;margin-left:-10px;margin-top:-10px;width: 20px;height: 20px;border-radius: 50%;background: #db774a}
+			#wrap i{
+				position: absolute;
+				width: 2px;
+				height: 2px;
+				background: #f60;
+			}
+		</style>
+<body>
+    <div id="box">
+		<span id="ss"></span>
+	</div>
+	<div id="wrap">
+
+	</div>
+    <script>
+		var sspan = document.getElementById('ss');
+		var owrap = document.getElementById('wrap');
+		var deg = 0,
+			r= 250;
+
+        setInterval(function () {
+			deg += 1;
+			var rad = (deg*Math.PI)/180;
+			var x = Math.cos(rad)*r;
+			var y = Math.sin(rad)*r;
+			var left = r+x;
+			var top = r-y;
+/*			if(deg == 360){
+			    deg = 0;
+			}*/
+//			console.log(deg);
+			sspan.style="left:"+left+"px;top:"+top+"px;";
+            if ( deg <= 360 ){
+                owrap.innerHTML += "<i style='left:"+left+"px;top:"+top+"px'></i>"
+            }
+        },13);
+	</script>
+</body>
+</html>

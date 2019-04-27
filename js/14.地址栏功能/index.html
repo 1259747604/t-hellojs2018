@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TZ-追梦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #box{
+            line-height: 50px;
+            padding-left: 50px;
+            font-size: 12px;
+
+        }
+        #box li{
+            border-bottom: 1px solid blue;
+            overflow: hidden;
+        }
+        #box li span{
+            float: left;
+        }
+        #box li input{
+            float: left;
+            color: #ddd;
+            margin-top: 15px;
+            display: none;
+        }
+        #box li p{
+            float: left;
+            width: 50px;
+            line-height: 25px;
+            text-align: center;
+            background: #000;
+            color: #fff;
+            margin-top: 12px;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+        <div id="box">
+            <ul>
+                <li>
+                    <span>点击修改</span>
+                    <input type="text" value="点击修改">
+                    <p>修改</p>
+                </li>
+                <li>
+                    <span>点击修改</span>
+                    <input type="text" value="点击修改">
+                    <p>修改</p>
+                </li>
+                <li>
+                    <span>点击修改</span>
+                    <input type="text" value="点击修改">
+                    <p>修改</p>
+                </li>
+                <li>
+                    <span>点击修改</span>
+                    <input type="text" value="点击修改">
+                    <p>修改</p>
+                </li>
+            </ul>
+            
+        </div>
+
+        <script>
+            var oBox = document.querySelector('#box');
+            var aP = oBox.querySelectorAll('p');
+            var aIpt = oBox.querySelectorAll('input');
+            var aSpan = oBox.querySelectorAll('span');
+            //alert( aP.length )
+
+            for( var i=0;i<aP.length;i++ ){
+                aP[i].index = i;
+                aP[i].onclick = function () {
+                    /*
+                        if( this.innerHTML === '修改' ){
+                            aP[this.index].innerHTML = '确认';
+                            aIpt[this.index].style.display = 'block';
+                            aSpan[this.index].style.display = 'none';
+                            aIpt[this.index].value = aSpan[this.index].innerHTML;
+                        }else{
+                            aSpan[this.index].innerHTML = aIpt[this.index].value;
+                            aP[this.index].innerHTML = '修改';
+                            aIpt[this.index].style.display = 'none';
+                            aSpan[this.index].style.display = 'block';
+                        }
+                    */
+                    var b = this.innerHTML === '修改';
+                    b ? aIpt[this.index].value = aSpan[this.index].innerHTML : aSpan[this.index].innerHTML = aIpt[this.index].value;
+                    aSpan[this.index].style.display = b ? 'none' : 'block';
+                    aIpt[this.index].style.display = b ? 'block' : 'none';
+                    this.innerHTML = b ? '确认' : '修改';
+                }
+            }
+        </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			#box{width:500px;height: 300px;margin: 30px auto;}
+			ul li{float:left;}
+			.num{width:41px;height:61px;background: url("img/0.png")}
+			.dot{width:18px;height:50px;background: url("img/d.png")}
+			li.l1{background:url("img/1.png")}
+			li.l2{background:url("img/2.png")}
+			li.l3{background:url("img/3.png")}
+			li.l4{background:url("img/4.png")}
+			li.l5{background:url("img/5.png")}
+			li.l6{background:url("img/6.png")}
+			li.l7{background:url("img/7.png")}
+			li.l8{background:url("img/8.png")}
+			li.l9{background:url("img/9.png")}
+		</style>
+<body>
+    <div id="box">
+		<ul>
+			<li class="m num"></li>
+			<li class="m num"></li>
+			<li class="dot"></li>
+			<li class="m num"></li>
+			<li class="m num"></li>
+			<li class="dot"></li>
+			<li class="m num"></li>
+			<li class="m num"></li>
+		</ul>
+	</div>
+    <script>
+		var oNum = document.querySelectorAll('.m');
+
+		setInterval(function () {
+		    var x = new Date();
+		    HH = x.getHours();
+		    MM = x.getMinutes();
+		    SS = x.getSeconds();
+
+		    HH = totwo(HH);
+		    MM = totwo(MM);
+		    SS = totwo(SS);
+
+		    var str = HH + MM + SS;
+		    for(var i = 0;i<str.length;i++){
+		        oNum[i].className = "m num l"+str.charAt(i);
+			}
+
+        },1000);
+		function totwo(n) {
+/*			if(n<10){
+			 n = "0"+n;
+			 }
+			 else{
+			 n = n + "";
+			 }
+			 return n;*/
+			return n < 10 ? "0" + n:n + "";
+        }
+	</script>
+</body>
+</html>

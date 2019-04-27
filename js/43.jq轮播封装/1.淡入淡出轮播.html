@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #banner{
+                position: relative;
+                margin: 100px auto;
+                width:590px;
+                height:470px;
+            }
+            #banner #pic{
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+            #pic ul{
+                width:100%;
+                height: 100%;
+            }
+            #pic ul li{
+                position: absolute;
+                width:100%;
+                height:100%;
+            }
+            #pic ul li.on{
+            }
+            #tab{
+                position: absolute;
+                left:47px;
+                bottom: 24px;
+            }
+            #tab ul{
+
+            }
+            #tab ul li{
+                float: left;
+                margin-left: 10px;
+                width:8px;
+                height:8px;
+                border: 2px solid rgba(255,255,255,.5);
+                border-radius: 50%;
+                z-index: 999;
+                cursor:pointer;
+            }
+            #tab ul li.on{
+                background: #fff;
+            }
+            #btn{
+
+            }
+            #btn span{
+                position: absolute;
+                top:50%;
+                margin-top: -20px;
+                width:24px;
+                height:40px;
+                line-height: 40px;
+                text-align: center;
+                background: rgba(0,0,0,.3);
+                color: #ffffff;
+                cursor: pointer;
+            }
+            #btn span:nth-child(1){
+                left:0;
+            }
+            #btn span:nth-child(2){
+                right:0;
+            }
+            #btn span:hover{
+                background: rgba(0,0,0,.5);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="banner">
+            <div id="pic">
+                <ul>
+                    <li><img src="img/1.jpg" alt=""></li>
+                    <li><img src="img/2.jpg" alt=""></li>
+                    <li><img src="img/3.jpg" alt=""></li>
+                    <li><img src="img/4.jpg" alt=""></li>
+                    <li><img src="img/5.jpg" alt=""></li>
+                    <li><img src="img/6.jpg" alt=""></li>
+                    <li><img src="img/7.jpg" alt=""></li>
+                    <li><img src="img/8.jpg" alt=""></li>
+                </ul>
+            </div>
+            <div id="tab">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div id="btn"><span><</span><span>></span></div>
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+            (function () {
+                var $banner = $("#banner"),//最高父级
+                    $picLi = $banner.find("#pic ul li"),
+                    $tabLi = $banner.find("#tab ul li"),
+                    $btn = $banner.find("#btn span"),
+                    length = $picLi.length,
+                    lastIndex = 0,
+                    clicktime = 0,//点击时间
+                    time1 = null,
+                    time2 = null;
+
+                //初始化设置
+                $banner[0].onselectstart = function () {
+                    return false;
+                };
+                $picLi.hide().eq(0).show();//除了第一个全部隐藏
+                $tabLi.eq(0).addClass("on");//tab按钮默认选中
+
+
+                //鼠标移入按钮
+                $tabLi.mouseenter(function () {
+                    var x = $(this).index();
+                    if(x !== lastIndex){
+                        clearTimeout(time1);
+                        time1 = setTimeout(change,200,x);//延迟执行
+                    }
+                });
+
+
+                //点击
+                $btn.click(function () {
+                    var x = lastIndex;
+                    if(new Date - clicktime > 100){
+                        if($(this).index()){
+                            x++;
+                            x %= length;
+
+                        } else{
+                            x--;
+                            if(x<0)x = length -1;
+                        }
+                        change(x);
+                    }
+                    clicktime = new Date();
+                });
+
+
+                //定时器
+                $banner.hover(function () {
+                    clearInterval(time2);
+                },auto());
+                function auto(){
+                    time2 = setInterval(function () {
+                        var x = lastIndex;
+                        x++;
+                        x%=length;
+                        change(x);
+                    },1000);
+                    return auto;
+                }
+
+                //改变函数
+                function change(i) {
+                    $picLi.eq(lastIndex).stop().fadeOut();
+                    $tabLi.eq(lastIndex).removeClass("on");
+                    lastIndex = i;
+                    $picLi.eq(lastIndex).stop().fadeIn();
+                    $tabLi.eq(lastIndex).addClass("on");
+                }
+            })();
+        </script>
+    </body>
+</html>

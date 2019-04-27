@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 声明当前页面编码集:utf-8国际编码 -->
+<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+<title>please enter your title</title>
+<!-- 关键词字数限制在31字，用英文逗号隔开 -->
+<meta name="Keywords" content="TT模板">
+<!-- 简介描述 -->
+<meta name="description" content="TT模板">
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{list-style:none;}
+        .wrap{
+            width:1000px;
+            margin:50px auto;
+        }
+        .wrap div{
+            width:100%;
+            border-top:1px dashed #999999;
+        }
+        .lili{
+            display:inline-block;
+            width:58px;
+            background-image: url('img/ckbg1.jpg');
+            background-repeat: no-repeat;
+            margin-top:10px;
+            margin-right: 30px;
+            text-align: right;
+            cursor:pointer;
+        }
+        .wrap div li.gougou{
+            background-image: url('img/ckbg2.jpg');
+        }
+        .wawa{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div class='wrap'>
+        <h4>下面好多东西</h4>
+        <div>
+            <ul>
+                <li class="lili">初代</li>
+                <li class="lili">赛文</li>
+                <li class="lili">杰克</li>
+                <li class="lili">艾斯</li>
+                <li class="lili wawa">泰罗</li>
+                <li class="lili wawa">雷欧</li>
+                <li class="lili">爱迪</li>
+                <li class="lili">佐菲</li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var allli = document.getElementsByTagName("li"),
+            length = allli.length;
+            for (var i = 0; i < length; i++) {
+                allli[i].pd = false;
+                allli[i].startname = allli[i].className;
+                allli[i].onclick = function(){
+                    if(this.pd){
+                        this.className = this.startname;
+                        this.pd = false;
+                    }
+                    else{
+                        this.className += " gougou";
+                        this.pd = true;
+                    }
+                };
+            }
+    </script>
+</body>
+</html>

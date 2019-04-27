@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #box{width:50px;height:50px;border:1px solid #50a1cd;}
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            var obox = document.getElementById("box");
+
+            obox.onclick = function () {
+                // change.call(this);
+                // change.apply(this,[2,3]);
+            };
+            obox.onclick = change.bind(obox);
+
+/*            function change() {
+                this.style.background = "red";
+            }*/
+
+/*            function change(x,y) {
+                this.style.background = "red";
+                alert(x+y);
+            }*/
+            function change() {
+                this.style.background = "red";
+            }
+        </script>
+    </body>
+</html>

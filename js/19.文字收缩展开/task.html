@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;user-select: none;}
+			body{background: #6890b4}
+		    ul{list-style:none;}
+			/*p{margin:20px auto;width:700px;border:1px solid;-webkit-box-orient: vertical;-webkit-line-clamp:3;display:-webkit-box;overflow: hidden;}*/
+			p{margin:20px auto;width:700px;border:1px dashed;color:#e3c7a6;}
+			a{display:inline-block;margin-left:600px;width:70px;height:30px;border:1px solid #b48561;border-radius:20px;text-align:center;line-height:30px;cursor:pointer;transition:1s;}
+			a:hover{box-shadow: 0 0 20px 2px #394e5d inset;}
+		</style>
+<body>
+    <div id="box">
+		<p>
+			우리는 꿈을 꾸는 소녀들我们是怀抱着梦想的少女们너와 나 꿈을 나눌 이 순간你和我分享梦想的这一瞬间달콤한 너를 향한 shining light向着甜蜜的你 光照너만의 날只有你的日子hey babyhey 宝贝show you my paradise向你展示我的天堂너 땜에 내가 정말 이상해因为你我变得很奇怪가슴이 두근두근 뛰잖아心脏扑通扑通跳不停터질 것 같아 심쿵심쿵像要爆炸一样激动不已너를 보는 날看着你的日子hey feel mehey 感觉我show you my secret boy告诉你我的秘密男孩can you feel me你能感觉到我吗나를 느껴 봐요请感受我can you touch me你能碰我나를 붙잡아 줘请抓住我can you hold me你能碰我나를 꼭 안아 줘请抱紧我I want you pick me up我要你来接我pick me pick me pick me up选我选我选我pick me pick me pick me up选我选我选我pick me pick me选我选我pick me pick me选我选我pick me pick me pick me up选我选我选我pick me pick me pick me up选我选我选我pick me pick me pick me up选我选我选我pick me pick me选我选我pick me pick me选我选我I want you pick me up我要你来接我up up up up向上I want you pick me我要你选我I want you pick me我要你选我I want you pick me up我要你选我오늘을 놓치지 마不要错过今天tell me now现在告诉我너와 나 비밀을 나눌 시간你和我分享秘密的时间지금이 아니면 나如果不是现在어디로 갈지 몰라我将不知道何去何从hey babyhey 宝贝show you my paradise向你展示我的天堂널 보면 내 마음이 두근대看到你 我的心脏就跳个不停너에게 난 눈빛을 찡긋해望着你 我朝你挤了挤眼솜사탕처럼 부푼请知晓我내 마음을 알아 줘如同被棉花糖填满的心hey feel mehey 感觉我show you my secret boy告诉你我的秘密男孩can you feel me你能感觉到我吗나를 느껴 봐요请感受我can you touch me你能碰我나를 붙잡아 줘请抓住我can you hold me你能碰我나를 꼭 안아 줘请抱紧我I want you pick me up我要你来接我pick me pick me pick me up选我选我选我pick me pick me pick me up选我选我选我pick me pick me选我选我pick me pick me选我选我pick me pick me pick me up选我选我选我pick me pick me pick me up选我选我选我pick me pick me pick me up选我选我选我pick me pick me选我选我pick me pick me选我选我I want you pick me up我要你来接我up up up up向上I want you pick me我要你选我I want you pick me我要你选我I want you pick me up我要你选我
+		</p>
+		<a>收缩</a>
+	</div>
+    <script>
+		var pp = document.getElementsByTagName('p')[0];
+		var aa = document.getElementsByTagName('a')[0];
+		var str = pp.innerHTML;
+		//console.log(str.substring(0,10));
+		var pd = 0;
+		aa.onclick = function(){
+		    if(pd){												//如果为真则为展开操作
+				pp.innerHTML = str;								//文本内容为全部内容
+                this.innerHTML = "收缩";						//按钮变为收缩
+                pd = 0;											//值为假
+			}
+			else{												//为假则为收缩操作
+                var a= str.split('',300);						//以空字符为切割符，只获取前300个字符
+                pp.innerHTML = a.join('')+'...';				//以空字符为连接符，后面加上...以示省略
+                this.innerHTML = "展开";						//按钮变为展开
+                pd = 1;  										//值为真
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            html{
+                height: 100%;
+                width: 100%;
+            }
+            body{
+                height: 100%;
+                width: 100%;
+                perspective: 800px;
+
+            }
+            #wrap{
+                position: absolute;
+                left:0;
+                right:0;
+                top:0;
+                bottom:0;
+                margin: auto;
+                width:500px;
+                height:500px;
+                transform-style:preserve-3d;/*修改为3d环境*/
+            }
+            #wrap div{
+                position: absolute;
+                width:500px;
+                height:500px;
+                border:1px solid;
+            }
+            #two{
+                transform-origin: top;
+                transform: rotateX(-90deg);
+            }
+            #three{
+                transform-origin: bottom;
+                transform: rotateX(90deg);
+            }
+            #four{
+                transform-origin: left;
+                transform: rotateY(90deg);
+            }
+            #five{
+                transform-origin: right;
+                transform: rotateY(-90deg);
+            }
+            #six{
+                transform: translateZ(-500px);
+            }
+            #wrap{
+                transition: 2s;
+                transform-origin:50% 50% -250px;;
+            }
+            #wrap:hover{
+                transform: rotateY(360deg);
+            }
+        </style>
+    </head>
+    <body>
+    <div id="wrap">
+        <div id="one"></div>
+        <div id="two"></div>
+        <div id="three"></div>
+        <div id="four"></div>
+        <div id="five"></div>
+        <div id="six"></div>
+    </div>
+        <script></script>
+    </body>
+</html>

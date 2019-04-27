@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			#box{
+				width:450px;
+				margin:50px auto;
+			}
+			.left {
+				float:left;
+			}
+			.left ul li{
+				margin-bottom:1px;
+				width:100px;
+				height:50px;
+				line-height:50px;
+				background: rgba(0,0,0,.5);
+				color:#fff;
+				text-align: center;
+				cursor:pointer;
+			}
+			#box .hover{
+				background-color: #fe0b00;
+			}
+			.right{
+				float:left;
+				width:326px;
+				height: 203px;
+			}
+			.right ul{
+				height:100%;
+			}
+			.right ul li{
+				display:none;
+				position:relative;
+				height:100%;
+			}
+			.right ul li img{
+				/*display: none;*/
+				position: absolute;
+				width:100%;
+				height: 100%;
+				z-index: -1;
+			}
+			.right ul li div{
+				position: absolute;
+				bottom:0;
+				right:-5px;
+				z-index: 999;
+			}
+			.right ul li div span{
+				/*position:absolute;*/
+				/*bottom:0;*/
+				/*right:0;*/
+				display: inline-block;
+				margin-right: 5px;
+				width:40px;
+				height:40px;
+				background:rgba(0,0,0,.5);
+				color:#fff;
+				text-align: center;
+				line-height: 40px;
+				cursor:pointer;
+
+			}
+			.right ul li.on{display:block}
+			.right ul li img.on{display:block}
+		</style>
+<body>
+    <div id="box">
+		<div class="left">
+			<ul>
+				<li class="hover">奥特曼</li>
+				<li>赛文</li>
+				<li>杰克</li>
+				<li>艾斯</li>
+			</ul>
+		</div>
+		<div class="right" id="right">
+			<ul>
+				<li class="on">
+					<img src="images/s1.jpg">
+					<div></div>
+				</li>
+				<li>
+					<img src="images/1.jpg">
+					<div></div>
+				</li>
+				<li>
+					<img src="images/m1.jpg">
+					<div></div>
+				</li>
+				<li>
+					<img src="images/1.jpg">
+					<div></div>
+				</li>
+			</ul>
+		</div>
+	</div>
+    <script>
+		var olli = document.querySelectorAll(".left ul li"),
+			orli = document.getElementById('right').getElementsByTagName('li'),
+			oimg = document.getElementsByTagName("img"),
+			length = olli.length,
+			odiv = document.querySelectorAll(".right li div"),
+			aa = 0;
+        	arrImg = [
+            ['images/1.jpg','images/2.jpg','images/3.jpg','images/4.jpg'],
+            ['images/m1.jpg','images/m2.jpg','images/m3.jpg'],
+            ['images/s1.jpg','images/s2.jpg','images/s3.jpg','images/s4.jpg','images/s5.jpg'],
+            ['images/m1.jpg','images/m2.jpg']
+        ];
+
+		for(var i =0;i<length;i++){
+		    olli[i].index = i;
+		    olli[i].onmouseenter = function () {
+		        olli[aa].className = "";
+                orli[aa].className = "";
+				this.className = "hover";
+                orli[this.index].className = "on";
+                aa = this.index;
+		    };
+		}
+
+        for(var i =0;i<arrImg.length;i++){
+            for(var j =0;j<arrImg[i].length;j++){
+				if(j==0){
+					odiv[i].innerHTML = "<span class='hover'>"+(j+1)+"</span>";
+				}
+				else{
+                    odiv[i].innerHTML += "<span>"+(j+1)+"</span>";
+				}
+            }
+		}
+		/*for(var i =0;i<orli.length;i++)
+		{
+            var div = orli[i].getElementsByTagName('div')[0];
+			var ospan = div.getElementsByTagName('span');
+//            var ospan = document.getElementsByTagName('span');
+		    var bb=0;
+            var oldSpan = ospan[0];
+            var img = orli[i].getElementsByTagName('img')[0];
+            for( var j=0;j<ospan.length;j++ ){
+                ospan[j].index = j;
+                ospan[j].a = i;
+                ospan[j].onmouseenter = function () {
+//                    ospan[bb].className = "";
+//                    this.className = 'hover';
+//                    bb = this.index;
+                    oldSpan.className = '';
+                    this.className = 'hover';
+                    oldSpan = this;
+//                    img.src = arrImg[this.a][this.index];
+//                    console.log( arrImg[this.a][this.index] );
+                }
+            }
+		}*/
+        for( var i=0;i<orli.length;i++ ){ // for循环 4次 就调用4次showImg方法
+            showImg( orli[i] ,arrImg[i]);
+        }
+
+        function showImg( obj ,arrImg) {
+            var div = obj.getElementsByTagName('div')[0];
+            var span = div.getElementsByTagName('span');
+            var img = obj.getElementsByTagName('img')[0];
+            var oldSpan = span[0];
+            for( var j=0;j<span.length;j++ ){
+                span[j].a= j;
+                span[j].onmouseenter = function () {
+                    oldSpan.className = '';
+                    this.className = 'hover';
+                    oldSpan = this;
+
+                    img.src = arrImg[this.a];
+                    //console.log( arrImg[this.a] );
+                }
+            }
+        }
+
+	</script>
+</body>
+</html>

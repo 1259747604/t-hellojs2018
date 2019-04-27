@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            ul>li>div:nth-child(1){
+                width:300px;
+                height:300px;
+                background: #88bee7;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li>
+                    <div></div>
+                    <div><img data-src="img/1.jpg" alt=""></div>
+                </li>
+                <li>
+                    <div></div>
+                    <div><img data-src="img/2.jpg" alt=""></div>
+                </li>
+                <li>
+                    <div></div>
+                    <div><img data-src="img/3.jpg" alt=""></div>
+                </li>
+                <li>
+                    <div></div>
+                    <div><img data-src="img/4.jpg" alt=""></div>
+                </li>
+                <li>
+                    <div></div>
+                    <div><img data-src="img/5.png" alt=""></div>
+                </li>
+                <li>
+                    <div></div>
+                    <div><img data-src="img/6.jpg" alt=""></div>
+                </li>
+                <li>
+                    <div></div>
+                    <div><img data-src="img/7.png" alt=""></div>
+                </li>
+                <li>
+                    <div></div>
+                    <div><img data-src="img/8.jpg" alt=""></div>
+                </li>
+                <li>
+                    <div></div>
+                    <div><img data-src="img/9.jpg" alt=""></div>
+                </li>
+                <li>
+                    <div></div>
+                    <div><img data-src="img/10.jpg" alt=""></div>
+                </li>
+            </ul>
+        </div>
+        <script>
+            let oImg = document.getElementsByTagName("img"),
+                length = oImg.length;
+                oImg = [].slice.call(oImg);
+
+            for(let i = 0;i < length; i++){
+                oImg[i].src="img/loading.gif";
+            }
+
+            if(document.addEventListener){
+                window.addEventListener("scroll",scrollF,false);
+            }
+            else{
+                window.attachEvent("onscroll",scrollF);
+            }
+            scrollF();
+            function scrollF() {
+                let sTop = document.documentElement.scrollTop || document.body.scrollTop;
+                let maxTop = sTop + document.documentElement.clientHeight;
+
+                for(let i = oImg.length-1 ; i >= 0; i--){
+                    if(maxTop >= offsetT(oImg[i])){
+                        oImg[i].src = oImg[i].getAttribute("data-src");
+                        oImg.splice(i,1);
+                    }
+                }
+            }
+
+            function offsetT(obj) {
+                let x = 0;
+                while(obj !== document.body){
+                    x += obj.offsetTop;
+                    obj = obj.offsetParent;
+                }
+                return x;
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+        </style>
+    </head>
+    <body>
+        <div id="box" class="aa oo"></div>
+        <script>
+            var obox = document.getElementById("box");
+
+            addClass(obox,"aa cc");
+
+            function addClass(obj,str) {
+                var arr1 = obj.className.split(' ');//将原class以空格为切割符存到数组中
+                var arr2 = str.split(' ');//将传入的字符串以空格为切割符存入到数组中
+                var arr3 = arr1.concat(arr2);//将两个数组进行连接
+
+                for(var i = 0; i < arr3.length; i++){//循环数组
+                    for(var b = i+1; b < arr3.length; b++){
+                        if(arr3[i] === arr3[b]){//将每个与后面每一个进行比较如果相同
+                            arr3.splice(b,1);//删除相同元素
+                            b--;//自减1
+                        }
+                    }
+                }
+                obj .className = arr3.join(' ');//以空字符对数组进行连接
+            }
+        </script>
+    </body>
+</html>

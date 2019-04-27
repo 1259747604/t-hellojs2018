@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 声明当前页面编码集:utf-8国际编码 -->
+<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+<title>please enter your title</title>
+<!-- 关键词字数限制在31字，用英文逗号隔开 -->
+<meta name="Keywords" content="TT模板">
+<!-- 简介描述 -->
+<meta name="description" content="TT模板">
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul{
+            list-style:none;
+        }
+        .btn {
+            position: absolute;
+            left:0px;
+            bottom:50px;
+            width: 50px;
+            height: 50px;
+            background-image: url('img/icon.png');
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            cursor: pointer;
+            z-index: 2;
+        }
+        .wrap{
+            position: fixed;
+            left:0px;
+            width:50px;
+            height: 100%;
+            background: rgba(0,0,0,.5);
+        }
+        .wrap ul{
+            margin-top:200px;
+        }
+        .wrap ul li{
+            text-align: center;
+            margin-bottom:30px;
+        }
+    </style>
+</head>
+<body>
+    <div class='btn' id="btn"></div>
+    <div class='wrap'>
+        <ul>
+            <li>
+                <img src="img/bq1.png" alt="">
+            </li>
+            <li>
+                <img src="img/bq2.png" alt="">
+            </li>
+            <li>
+                <img src="img/bq3.png" alt="">
+            </li>
+            <li>
+                <img src="img/bq4.png" alt="">
+            </li>
+            <li>
+                <img src="img/bq5.png" alt="">
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var btn = document.getElementById("btn"),
+            //wrap = document.querySelector(".wrap"),
+            wrap = document.getElementsByTagName("div");
+            aul = document.getElementsByTagName("ul");
+            ali = document.querySelectorAll("ul li");
+
+        //wrap[1].flag = false;
+        btn.flag =false;
+        btn.onclick = function(){
+
+            if(this.flag){
+                wrap[1].style.display = "block";
+                btn.style.backgroundPosition = "0 0px";
+                this.flag = false;
+            }
+            else{
+                wrap[1].style.display = "none";
+                btn.style.backgroundPosition = "0 -61px";
+                this.flag = true;
+            }
+        };
+    </script>
+</body>
+</html>

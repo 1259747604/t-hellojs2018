@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 声明当前页面编码集:utf-8国际编码 -->
+<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+<title>please enter your title</title>
+<!-- 关键词字数限制在31字，用英文逗号隔开 -->
+<meta name="Keywords" content="TT模板">
+<!-- 简介描述 -->
+<meta name="description" content="TT模板">
+    <style type="text/css">
+        *{
+            margin:0;
+            padding: 0;
+        }
+        #wrap ul{
+            width:150px;
+            height:60px;
+            overflow:hidden;
+            border: 1px solid #999999;
+        }
+        ul li{
+            width:100%;
+            height:60px;
+            border:1px solid #88EEDC;
+            border-top: none;
+            line-height:60px;
+            text-align:center;
+        }
+        li.title{
+            background-color: #1EA6EA;
+            color:#fff;
+            cursor:pointer;
+        }
+        #wrap ul.dis{
+            height:auto;
+        }
+    </style>
+</head>
+<body>
+    <div id='wrap'>
+        <ul class='dis'>
+            <li class='title'>这是啥</li>
+            <li>哈哈</li>
+            <li>呵呵</li>
+            <li>嘻嘻</li>
+        </ul>
+        <ul>
+            <li class='title'>公司</li>
+            <li>公司</li>
+            <li>微软</li>
+            <li>三星</li>
+            <li>苹果</li>
+        </ul>
+        <ul>
+            <li class='title'>国产手机</li>
+            <li>华为</li>
+            <li>魅族</li>
+            <li>小米</li>
+        </ul>
+    </div>
+    <script>
+        /*var atitle = document.querySelectorAll(".title"),
+            aul = document.getElementsByTagName("ul"),
+            val = 0;
+       atitle[1].onclick = function(){
+            aul[0].classname = "";
+            aul[1].classname = "dis";//className写错了没效果但是没报错
+       };*/
+       var  wrap = document.getElementById("wrap"),
+            atitle = document.querySelectorAll("#wrap .title"),
+            aul = document.getElementsByTagName("ul"),
+            length = atitle.length,
+            current = 0;
+
+            for (var i =0; i < length; i++) {
+                atitle[i].TT = i;
+                atitle[i].onclick = function(){
+                    aul[current].className = "";
+                    current = this.TT;
+                    aul[current].className = "dis";
+                };
+                //console.log(atitle[i].TT);
+
+            }
+            // alert(length);
+
+/*            atitle[1].onclick = function(){
+                aul[0].className = "";
+                aul[1].className = "dis";
+            };*/
+
+    </script>
+</body>
+</html>

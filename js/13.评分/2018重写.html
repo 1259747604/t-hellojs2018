@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="TT">
+		 <!-- 简介描述 -->
+		<meta name="description" content="TT">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			.clearfix:after{content:'';display:block;clear:both;}
+			#box{margin:50px auto;width:500px; height:500px;}
+			li{float:left;width:25px;height:25px;background:url("images/star.png") no-repeat;}
+			textarea{resize:none;}
+            .on{background-position-y:-27px;}
+		</style>
+	</head>
+    <body>
+        <div id="box">
+			<ul class="clearfix">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<textarea cols="30" rows="10">请评价</textarea>
+		</div>
+        <script>
+			var oLi = document.getElementsByTagName('li');
+			var otext = document.getElementsByTagName('textarea');
+			var oUl = document.getElementsByTagName('ul');
+			var len = oLi.length;
+            var t = -1;
+
+			for(var i = 0; i < oLi.length; i++){
+			    oLi[i].index = i;
+			    oLi[i].onmouseenter = function () {
+                    var a = this.index;
+			        star(a);
+			    };
+			    oLi[i].onclick = function () {
+                    t = this.index;
+                    star(t);
+                }
+            }
+            oUl[0].onmouseleave = function () {
+			    star(t);
+            };
+
+            function star(x) {
+                for(var b = 0; b < len; b++){
+                    oLi[b].className = "";
+                }
+			    for(var i = 0; i <= x; i++){
+                    oLi[i].className = 'on';
+                }
+            }
+		</script>
+    </body>
+</html>

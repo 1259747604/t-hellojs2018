@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style type="text/css">
+			*{ margin: 0; padding: 0; font-family:Microsoft yahei,serif;}
+			li{ list-style:none;}
+			#box{
+				width: 1000px;
+				margin:50px auto;
+			}
+			#box .title{
+				position: relative;
+				z-index:2;
+				width: 100%;
+				height: 40px;
+				background: #f8f8f8;
+				border: 1px solid #ddd;
+			}
+			#box .title ul li{
+				float: left;
+				position: relative;
+				width: 75px;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				font-size: 12px;
+				cursor: pointer;
+			}
+			#box .title ul li span.red{
+				color: red;
+			}
+			#box .title ul li .hide{
+				display: none;
+				position: absolute;
+				top: -1px;
+				left: 0;
+				width: 100px;
+				height: 80px;
+				background: #fff;
+				border: 1px solid #ddd;
+			}
+			#box .title ul li .hide a{
+				display: block;
+				width: 100%;
+				height: 40px;
+			}
+			#box .content ul{
+				overflow: hidden;
+			}
+			#box .content ul li{
+				position: relative;
+				float: left;
+				width: 200px;
+				height: 230px;
+				padding: 10px;
+				margin: 10px 14px;
+				border: 1px solid #ddd;
+			}
+			#box .content ul li img{
+				width: 200px;
+				height: 200px;
+			}
+			#box .content ul li p{
+				overflow: hidden;
+				font-size: 12px;
+				line-height: 20px;
+				margin-top: 5px;
+			}
+			#box .content ul li div.txt{
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				width: 50px;
+				height: 50px;
+				background: url("images/price.png");
+				color: #ffe218;
+				font-weight: bold;
+				line-height: 50px;
+				text-align: center;
+				font-size: 14px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div class="title">
+				<ul>
+					<li>综合排序</li>
+					<li>人气</li>
+					<li>销量</li>
+					<li id="price">
+						<span>价格</span>
+						<div class="hide">
+							<a>价格从高到低</a>
+							<a>价格从低到高</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<ul>
+					<li>
+						<img src="images/xh_img1.jpg" alt="">
+						<p>粉色浪漫系列玫瑰</p>
+						<div class="txt">￥<span>500</span></div>
+					</li>
+					<li>
+						<img src="images/xh_img2.jpg" alt="">
+						<p>深红色经典玫瑰</p>
+						<div class="txt">￥<span>100</span></div>
+					</li>
+					<li>
+						<img src="images/xh_img3.jpg" alt="">
+						<p>清淡优雅百年百合</p>
+						<div class="txt">￥<span>300</span></div>
+					</li>
+					<li>
+						<img src="images/xh_img4.jpg" alt="">
+						<p>紫色冷艳系列</p>
+						<div class="txt">￥<span>700</span></div>
+					</li>
+					<li>
+						<img src="images/xh_img5.jpg" alt="">
+						<p>经典红色我的最爱</p>
+						<div class="txt">￥<span>130</span></div>
+					</li>
+					<li>
+						<img src="images/xh_img6.jpg" alt="">
+						<p>甜美七分袖荷叶边条纹设</p>
+						<div class="txt">￥<span>215</span></div>
+					</li>
+					<li>
+						<img src="images/xh_img7.jpg" alt="">
+						<p>甜美七分袖荷叶边条纹设</p>
+						<div class="txt">￥<span>97</span></div>
+					</li>
+					<li>
+						<img src="images/xh_img8.jpg" alt="">
+						<p>甜美七分袖荷叶边条纹设</p>
+						<div class="txt">￥<span>99.5</span></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var oPrice = document.getElementById('price');
+			var oHide = oPrice.querySelector('.hide');
+			var aHideA = oHide.querySelectorAll('a');
+			var oSpan = oPrice.querySelector('span');
+			
+			var oContent = document.querySelector('.content');
+			var oUl = oContent.querySelector('ul');
+			var aContentLi = oContent.querySelectorAll('li');
+			
+			
+			var arrLi = [];
+			
+			for( var i=0;i<aContentLi.length;i++ ){
+				arrLi[i] = [];
+				arrLi[i][0] = aContentLi[i].querySelector('img').src;
+				arrLi[i][1] = aContentLi[i].querySelector('p').innerHTML;
+				arrLi[i][2] = (aContentLi[i].querySelector('div span').innerHTML)*1;
+			}
+			
+		//console.log( arrLi );  // [ [li里内容],[li里内容],[],[]... ]
+
+			oPrice.onmouseenter = function(){
+				oHide.style.display = 'block';
+			}
+			oPrice.onmouseleave = function(){
+				oHide.style.display = 'none';
+			}
+			
+			for( var i=0;i<aHideA.length;i++ ){
+				aHideA[i].index = i;
+				aHideA[i].onclick = function(){
+					oHide.style.display = 'none';
+					oSpan.innerHTML = this.innerHTML;
+					shopSort( this.index );
+				};
+			}
+			
+			
+			function shopSort( num ){
+				arrLi.sort(function(x,y){
+					//return (x[2] - y[2]);  //点击第1个a 从小到大
+					//return (y[2] - x[2]);  // 点击第0个a 从大到小
+
+					return num? (x[2] - y[2]): (y[2] - x[2])
+				});
+				oUl.innerHTML = '';
+				for( var i=0;i<arrLi.length;i++ ){
+					oUl.innerHTML += '<li><img src="'+arrLi[i][0]+'"><p>'+arrLi[i][1]+'</p><div class="txt">￥<span>'+arrLi[i][2]+'</span></div></li>';
+				}
+				//console.log( arrLi );
+			}
+		</script>
+	</body>
+</html>
+

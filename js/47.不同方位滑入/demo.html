@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            .clearfix:after{content: "";display: block;clear: both;}
+            #nav{display: none;position: fixed;width: 100%;height: 42px;background: #b8bdc5;z-index: 2;}
+            #nav i{display: block;width: 300px;height:100%;background: url("img/TTlogo.png") no-repeat center/contain;font-size: 0;}
+            #wrap{
+                margin:50px auto;
+                width: 1300px;
+            }
+            #wrap ul li{
+                position: relative;
+                float: left;
+                margin: 10px;
+                cursor: pointer;
+                overflow: hidden;
+            }
+            #wrap ul li img{
+                display: block;
+            }
+            #wrap ul li span{
+                position: absolute;
+                top:0;
+                left: -100%;
+                width: 100%;
+                height:100%;
+                background: rgba(0,0,0,.3);
+                color: #ffffff;
+                line-height: 364px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <!--TT logo-->
+        <div id="nav"><i>TT Logo</i></div>
+        <div id="wrap">
+            <ul class="clearfix">
+                <li>
+                    <img src="img/1.jpg" alt="">
+                    <span>这是第一个内容</span>
+                </li>
+                <li>
+                    <img src="img/2.jpg" alt="">
+                    <span>这是第二个内容</span>
+                </li>
+                <li>
+                    <img src="img/3.jpg" alt="">
+                    <span>这是第三个内容</span>
+                </li>
+                <li>
+                    <img src="img/4.jpg" alt="">
+                    <span>这是第四个内容</span>
+                </li>
+                <li>
+                    <img src="img/5.jpg" alt="">
+                    <span>这是第五个内容</span>
+                </li>
+            </ul>
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            let $wrap = $("#wrap"),
+                $oLi = $wrap.find("ul li");
+
+            $oLi.hover(function (e) {cover.call(this,e,true)},function (e) {cover.call(this,e,false)});
+
+            function cover(e,bool) {
+                //获取鼠标进入位置
+                let [x,y] = [e.pageX,e.pageY];
+                //获取li标签处于文档位置
+                let[left,top] = [$(this).offset().left,$(this).offset().top];
+                //得出此时鼠标处在li的位置
+                let[nLeft,nTop] = [x-left,y-top];
+                //求出此处到四边的距离
+                let[disLeft,disTop,disRight,disBottom] = [Math.abs(nLeft),Math.abs(nTop),Math.abs(nLeft-$(this).outerWidth()),Math.abs(nTop-$(this).outerHeight())];
+                let minp = Math.min(disLeft,disTop,disRight,disBottom);
+
+                let $span = $(this).find("span");
+                let json = {};
+                switch (minp){
+                    case disLeft:
+                        json.left = "-100%";
+                        json.top = 0;
+                        break;
+                    case disRight:
+                        json.left = "100%";
+                        json.top = 0;
+                        break;
+                    case disTop:
+                        json.top = "-100%";
+                        json.left = 0;
+                        break;
+                    case disBottom:
+                        json.top = "100%";
+                        json.left = 0;
+                        break;
+                }
+                if(bool){
+                    $span.css(json).stop().animate({top:0,left:0,},300);
+                }else{
+                    $span.stop().animate(json,300);
+                }
+            }
+        </script>
+    </body>
+</html>

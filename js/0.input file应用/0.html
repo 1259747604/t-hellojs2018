@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>无标题文档</title>
+
+	<script type="text/javascript" src="../../致青春同学录/js/jquery-3.2.1.min.js"></script>
+
+
+</head>
+
+<body>
+	<!--<div class="mark"></div>-->
+	<img src="../2.图片点击切换/images/1.jpg" width="100" height="100" style="border-radius: 50%">
+<br>
+<input type="file" value="上传文件" onchange="getImgURL(this)">
+<script type="text/javascript">
+	var aimg =document.querySelector("img");
+    function getImgURL(node) {
+        var imgURL = "";
+        try{
+            var file = null;
+            if(node.files && node.files[0] ){
+                file = node.files[0];
+            }else if(node.files && node.files.item(0)) {
+                file = node.files.item(0);
+            }
+            //Firefox 因安全性问题已无法直接通过input[file].value 获取完整的文件路径
+            try{
+                //Firefox7.0
+                imgURL =  file.getAsDataURL();
+                //alert("//Firefox7.0"+imgRUL);
+            }catch(e){
+                //Firefox8.0以上
+                imgRUL = window.URL.createObjectURL(file);
+                //alert("//Firefox8.0以上"+imgRUL);
+            }
+        }catch(e){
+            if (node.files && node.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    imgURL = e.target.result;
+                };
+                reader.readAsDataURL(node.files[0]);
+            }
+        }
+        getImg(imgRUL);
+        return imgURL;
+    }
+
+    function getImg(imgRUL){
+		aimg.src=imgRUL;
+    }
+
+</script>
+</body>
+</html>

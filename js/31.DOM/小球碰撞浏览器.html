@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            i{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100px;
+                height: 100px;
+                background: #7999cd;
+                border-radius: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <i></i>
+        </div>
+        <script>
+            var obox = document.getElementById("box");
+            var i1 = obox.children[0];
+
+            //创建7个球
+            for(var i = 0; i < 7; i++){
+                var obj = i1.cloneNode(true);
+                // obj.style.background = "-webkit-radial-gradient(#ffffff,"+color()+")";
+                obj.style.background = color();
+                obox.appendChild(obj);
+            }
+
+
+
+            //各个小球运动 可循环随机 不想写了
+            f(i1,30,30);
+/*            f(obox.children[1],10,20);
+            f(obox.children[2],20,30);
+            f(obox.children[3],14,20);
+            f(obox.children[4],19,10);
+            f(obox.children[5],15,25);
+            f(obox.children[6],17,25);
+            f(obox.children[threed],8,27);*/
+
+            for(var c = 0; c < 7; c++){
+                f(obox.children[c+1],parseInt(Math.random()*30+20),parseInt(Math.random()*30+20));
+            }
+
+
+            //随机颜色
+            function color() {
+                var str ="#";
+                for(var b = 0; b < 6 ;b++){
+                    str += parseInt(Math.random()*16).toString(16)+"";
+                }
+                return str;
+            }
+
+
+            //最大边界处理
+            var maxwidth,maxheight;
+            window.onresize = docha();//可视窗口改变时执行函数
+
+            function docha() {
+                //获取球的可到达最大宽高
+                maxwidth = document.documentElement.clientWidth - 100;
+                maxheight = document.documentElement.clientHeight -100;
+                return docha;
+            }
+            /*
+               1.obj  碰撞对象
+               2.x   向左的速度 默认10 可省略
+               3.y   向右的速度 默认10  可省略
+            * */
+
+            function f(obj,ox,oy) {
+                var x = ox || 10;
+                var y = oy || 10;
+
+
+                //获取球宽高
+/*                var awidth = obj.offsetWidth;
+                var aheight = obj.offsetHeight;*/
+
+                //随机定位
+                obj.style.left = parseInt(Math.random()*100) + "px";
+                obj.style.top = parseInt(Math.random()*100) + "px";
+
+
+
+                //移动函数
+                ~function move() {
+                    window.requestAnimationFrame = window.requestAnimationFrame || function (a) {return setTimeout(a,1000/60)  };
+                    window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
+
+
+                    //球的位置
+                    var left = obj.offsetLeft + x;
+                    var top = obj.offsetTop + y;
+
+                    //到达最大或最小边界时取反
+                    if(left >= maxwidth){
+                        left = maxwidth;
+                        x = -x;
+                    }
+                    if(left <= 0){
+                        x = -x;
+                    }
+                    if(top >= maxheight){
+                        top = maxheight;
+                        y = -y;
+                    }
+                    if(top <= 0){
+                        y = -y;
+                    }
+
+                    //碰撞边界后变色
+                    if(left === 0 || top === 0 || left === maxwidth || top === maxheight ){
+                        // obj.style.background = "-webkit-radial-gradient(#ffffff,"+color()+")";
+                        obj.style.background = color();
+                    }
+
+                    //执行动画
+                    requestAnimationFrame(move);
+
+                    //赋值
+                    obj.style.left = left + "px";
+                    obj.style.top = top + "px";
+                }();
+            }
+
+        </script>
+    </body>
+</html>

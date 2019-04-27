@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 声明当前页面编码集:utf-8国际编码 -->
+<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+<title>please enter your title</title>
+<!-- 关键词字数限制在31字，用英文逗号隔开 -->
+<meta name="Keywords" content="TT模板">
+<!-- 简介描述 -->
+<meta name="description" content="TT模板">
+    <style>
+        *{
+            margin:0px;
+            padding: 0px;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration:none;
+        }
+        .wrap{
+            width:260px;
+            margin: 50px auto;
+        }
+        ul{
+            width: 100%;
+            height:30px;
+            overflow:hidden;
+        }
+        ul li{
+            font-size:18px;
+            line-height:30px;
+            text-align:center;
+            border:1px solid #999;
+            cursor:pointer;
+        }
+        .wrap ul li.title{
+            background:#9089C6;
+            color:#fff;
+        }
+        ul li.change{
+            background: #9CE0B5;
+        }
+        ul.on{
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class='wrap'>
+        <ul class = 'on'>
+            <li class='title'>好老的</li>
+            <li class='haha'>奥特曼</li>
+            <li class='haha'>赛文</li>
+            <li class='haha'>杰克</li>
+            <li class='haha'>艾斯</li>
+        </ul>
+        <ul>
+            <li class='title'>也有些老</li>
+            <li class='haha'>迪迦</li>
+            <li class='haha'>戴拿</li>
+            <li class='haha'>盖亚</li>
+            <li class='haha'>高斯</li>
+        </ul>
+        <ul>
+            <li class='title'>不算太老</li>
+            <li class='haha'>梦比优斯</li>
+            <li class='haha'>银河</li>
+            <li class='haha'>欧布</li>
+            <li class='haha'>捷德</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var oDiv = document.getElementsByTagName("div"),
+            oul = document.getElementsByTagName("ul"),
+            oli = document.querySelectorAll(".haha"),
+            tli = document.querySelectorAll(".title"),
+            aa = 0;
+
+
+            for (var i = 0,length = tli.length ; i < length; i++) {
+
+                tli[i].num = i;
+                tli[i].pd =false;
+                tli[0].pd =true;
+                tli[i].onclick = function(){
+                    //oul[this.num].className = "on";
+                    if(this.pd)
+                    {
+                        oul[this.num].className = "";
+                        this.pd = false;
+                    }
+                    else
+                    {
+                         oul[this.num].className = "on";
+                         this.pd = true;
+                    }
+                };
+            }
+            for(var i = 0, length = oli.length;i<length;i++){
+
+                oli[i].startname =oli[i].className;
+                oli[i].num = i;
+                oli[i].pd = false;
+                oli[i].onclick = function(){
+
+                    if(this.pd)
+                    {
+                        this.className =this.startname;
+                        this.pd = false;
+                    }
+                    else{
+
+                        oli[aa].className = oli[aa].startname;
+                        aa = this.num;
+                        oli[aa].className += " change";
+                        this.pd =true;  //此处判断有问题
+                    }
+                };
+            }
+
+    </script>
+</body>
+</html>

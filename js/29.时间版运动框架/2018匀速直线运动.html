@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!-- 声明当前页面编码集:utf-8国际编码 -->
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+    <title>please enter your title</title>
+    <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+    <meta name="Keywords" content="TT">
+    <!-- 简介描述 -->
+    <meta name="description" content="TT">
+    <style>
+        *{margin:0;padding:0;}
+        ul{list-style:none;}
+        #box{position:absolute;left:0;top:0;width:50px;height:50px;background:#74cccd;opacity:1;}
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    var oBox = document.getElementById("box");
+
+    uniformspeed(oBox,{left:1000,top:500,width:500,height:300,opacity:0.1},3000);
+
+    function uniformspeed(obj,json,endTime) {
+        window.requestAnimationFrame = window.requestAnimationFrame || function (a) { return setTimeout(a,1000/60) };//兼容低版本IE动画
+        window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;//兼容低版本IE
+        var cssjson = obj.currentStyle || window.getComputedStyle(obj) ;//兼容低版本IE的样式获取
+        var startPosition = {};//对象初始数值
+        var endPosition = {};//对象结束数值
+        for(var key in json){//遍历
+            startPosition[key] = parseFloat(cssjson[key]);//原数值强制取余后存入json中
+            endPosition[key] = json[key] - startPosition[key];//需要改变的数值存入json中
+            if(!endPosition){//如果数值不改变即为0为假
+                delete startPosition[key];//删除该键值
+                delete endPosition[key];//删除该键值
+            }
+        }
+        var starttime = new Date(); //获取起始时间
+
+        (function change() {
+            //匀速运动 s = v*t
+            var timeprop = (new Date() - starttime)/endTime;//时间比 由s/t = s1/t1得来
+
+            timeprop >= 1? timeprop = 1:requestAnimationFrame(change);//当比等于或大于1时将timeprop赋值为1否则执行函数
+            for(var key in startPosition){
+                if(key === "opacity"){//兼容低版本ie透明度
+                    var value = endPosition[key]*timeprop+startPosition[key];//获取值
+                    obj.style[key] = value;//属性可用时
+                    obj.style.filter = "alpha(opacity = "+value*100+")";//低版本ie
+                }
+                else{
+                    var s1 = endPosition[key]*timeprop;//得到这段时间里增加的数值 由s1 = s*(t1/t)得来
+                    obj.style[key] = s1+startPosition[key]+"px";//得到总距离
+                }
+            }
+        })();//先自执行一次函数使得函数可运行
+    }
+</script>
+</body>
+</html>

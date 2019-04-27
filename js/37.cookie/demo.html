@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+/*            var time = new Date(new Date().getTime()+356*24*60*60*1000).toGMTString();
+            document.cookie = "TT = 11; expires = "+time+"";
+            var x = document.cookie;
+            alert(time);*/
+
+            var json = {
+              tt : "大帅哥",
+              age : 18,
+              love : "every"
+            };
+
+            setcookie(json,2);
+
+            var x = getcookie("tt");
+            // alert(document.cookie);
+            console.log(x);
+
+            removecookie("love");
+
+            //设置cookie
+            /*
+            json 存入内容
+            time 过期时间 天
+            * */
+            function setcookie(json,time) {
+                for(var key in json){
+                    document.cookie = ""+key+"="+json[key]+"; expires = "+new Date(new Date().getTime()+time*24*60*60*1000).toGMTString()+"";
+                }
+            }
+
+
+            //取出对应值
+            /*
+            * val 需要取出的key
+            * */
+            function  getcookie(val) {
+                var arr = document.cookie.match(new RegExp("(\\s|^)"+val+"=([^;]*)(;|$)"));
+                return arr?arr[2]:"";
+            }
+
+
+            //删除cookie
+            function removecookie(val) {
+                var json = {};
+                json[val] = "";
+                setcookie(json,-1);
+            }
+        </script>
+    </body>
+</html>

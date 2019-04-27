@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 声明当前页面编码集:utf-8国际编码 -->
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+    <title>please enter your title</title>
+    <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+    <meta name="Keywords" content="TT">
+    <!-- 简介描述 -->
+    <meta name="description" content="TT">
+    <link rel="stylesheet" type="text/css" href="css/bannercss.css">
+</head>
+<body>
+<div id="banner">
+    <div id="pic">
+        <ul>
+            <li><img src="img/1.jpg" alt=""></li>
+            <li><img src="img/2.jpg" alt=""></li>
+            <li><img src="img/3.jpg" alt=""></li>
+            <li><img src="img/4.jpg" alt=""></li>
+            <li><img src="img/5.jpg" alt=""></li>
+            <li><img src="img/6.jpg" alt=""></li>
+            <li><img src="img/7.jpg" alt=""></li>
+            <li><img src="img/8.jpg" alt=""></li>
+        </ul>
+    </div>
+    <div id="tab">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div id="btn"><span><</span><span>></span></div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/Banner.js"></script>
+<script>
+    /*
+    * jq对象为轮播的最高父级
+    * 轮播类型(可缺省) type :fade,slide,seamless;默认fade 前面允许有空格
+    * 图片位置(不可缺)pic
+    * tab位置(可缺省)tab
+    * tab切换方式tabType(可缺省) 默认click 可选mouseenter 前面允许有空格
+    * 左右按钮位置(可缺省)lrbtn
+    * 是否自动轮播 ifAuto 默认true
+    * 轮播速度 speed 默认3000ms
+    *
+    * 注意：使用此插件需将tab定义一个选中样式on 用于改变选中每个tab时的背景颜色
+    * */
+    $("#banner").banner({
+        type:"seamless",
+        pic: "#pic ul li",
+        tab:"#tab ul li",
+        tabType: "click",
+        lrBtn:"#btn span",
+        ifAuto:true,
+        speed:1000
+    });
+</script>
+</body>
+</html>

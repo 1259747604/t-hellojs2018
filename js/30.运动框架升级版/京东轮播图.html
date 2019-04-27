@@ -1,0 +1,428 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #box{
+                position: relative;
+                margin:50px auto;
+                width: 790px;
+                height: 340px;
+            }
+            .banner ul li{
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width:100%;
+                height:100%;
+            }
+            .tab ul {
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                width: 160px;
+                height: 20px;
+                margin-left: -80px;
+                background: rgba(255,255,255,.3);
+                border-radius: 10px;
+            }
+            .tab ul li{
+                float:left;
+                margin:3px;
+                width:14px;
+                height:14px;
+                border-radius:50%;
+                background:#fff;
+                cursor:pointer;
+            }
+            .tab ul li.on{background:#cd2027;}
+            .btn{
+                display: none;
+            }
+            #box:hover .btn{
+                display:block;
+            }
+            .btn span{
+                position:absolute;
+                top:50%;
+                margin-top:-30px;
+                width:30px;
+                height:60px;
+                background:rgba(0,0,0,.2);
+                text-align:center;
+                line-height:60px;
+                font-size:20px;
+                color:#fff;
+                cursor:pointer;
+            }
+            .btn span.rightbtn{
+                right:0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <div class="banner">
+                <ul>
+                    <li style="display:block"><a href=""></a><img src="img/1.jpg" alt=""></li>
+                    <li><a href=""></a><img src="img/2.jpg" alt=""></li>
+                    <li><a href=""></a><img src="img/3.jpg" alt=""></li>
+                    <li><a href=""></a><img src="img/4.jpg" alt=""></li>
+                    <li><a href=""></a><img src="img/5.jpg" alt=""></li>
+                    <li><a href=""></a><img src="img/6.jpg" alt=""></li>
+                    <li><a href=""></a><img src="img/7.jpg" alt=""></li>
+                    <li><a href=""></a><img src="img/8.jpg" alt=""></li>
+                </ul>
+            </div>
+            <div class="tab">
+                <ul>
+                    <li class="on"></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="btn">
+                <span class="leftbtn"><</span>
+                <span class="rightbtn">></span>
+            </div>
+        </div>
+        <script>
+            /*使用方法
+                可传参数
+                @obj  变化的元素
+                @json json形式的预期改变样式
+                @endtime 总共花费时间 number
+                @type 运动曲线1-15  可省略 number
+                @callback  回调函数 可省略
+            */
+            (function () {
+                var Tween = {
+                    linear: function (t, b, c, d){  //匀速
+                        return c*t/d + b;
+                    },
+                    easeIn: function(t, b, c, d){  //加速曲线
+                        return c*(t/=d)*t + b;
+                    },
+                    easeOut: function(t, b, c, d){  //减速曲线
+                        return -c *(t/=d)*(t-2) + b;
+                    },
+                    easeBoth: function(t, b, c, d){  //加速减速曲线
+                        if ((t/=d/2) < 1) {
+                            return c/2*t*t + b;
+                        }
+                        return -c/2 * ((--t)*(t-2) - 1) + b;
+                    },
+                    easeInStrong: function(t, b, c, d){  //加加速曲线
+                        return c*(t/=d)*t*t*t + b;
+                    },
+                    easeOutStrong: function(t, b, c, d){  //减减速曲线
+                        return -c * ((t=t/d-1)*t*t*t - 1) + b;
+                    },
+                    easeBothStrong: function(t, b, c, d){  //加加速减减速曲线
+                        if ((t/=d/2) < 1) {
+                            return c/2*t*t*t*t + b;
+                        }
+                        return -c/2 * ((t-=2)*t*t*t - 2) + b;
+                    },
+                    elasticIn: function(t, b, c, d, a, p){  //正弦衰减曲线（弹动渐入）
+                        if (t === 0) {
+                            return b;
+                        }
+                        if ( (t /= d) == 1 ) {
+                            return b+c;
+                        }
+                        if (!p) {
+                            p=d*0.3;
+                        }
+                        if (!a || a < Math.abs(c)) {
+                            a = c;
+                            var s = p/4;
+                        } else {
+                            var s = p/(2*Math.PI) * Math.asin (c/a);
+                        }
+                        return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+                    },
+                    elasticOut: function(t, b, c, d, a, p){    //正弦增强曲线（弹动渐出）
+                        if (t === 0) {
+                            return b;
+                        }
+                        if ( (t /= d) == 1 ) {
+                            return b+c;
+                        }
+                        if (!p) {
+                            p=d*0.3;
+                        }
+                        if (!a || a < Math.abs(c)) {
+                            a = c;
+                            var s = p / 4;
+                        } else {
+                            var s = p/(2*Math.PI) * Math.asin (c/a);
+                        }
+                        return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+                    },
+                    elasticBoth: function(t, b, c, d, a, p){
+                        if (t === 0) {
+                            return b;
+                        }
+                        if ( (t /= d/2) == 2 ) {
+                            return b+c;
+                        }
+                        if (!p) {
+                            p = d*(0.3*1.5);
+                        }
+                        if ( !a || a < Math.abs(c) ) {
+                            a = c;
+                            var s = p/4;
+                        }
+                        else {
+                            var s = p/(2*Math.PI) * Math.asin (c/a);
+                        }
+                        if (t < 1) {
+                            return - 0.5*(a*Math.pow(2,10*(t-=1)) *
+                                Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+                        }
+                        return a*Math.pow(2,-10*(t-=1)) *
+                            Math.sin( (t*d-s)*(2*Math.PI)/p )*0.5 + c + b;
+                    },
+                    backIn: function(t, b, c, d, s){     //回退加速（回退渐入）
+                        if (typeof s == 'undefined') {
+                            s = 1.70158;
+                        }
+                        return c*(t/=d)*t*((s+1)*t - s) + b;
+                    },
+                    backOut: function(t, b, c, d, s){
+                        if (typeof s == 'undefined') {
+                            s = 3.70158;
+                        }
+                        return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+                    },
+                    backBoth: function(t, b, c, d, s){
+                        if (typeof s == 'undefined') {
+                            s = 1.70158;
+                        }
+                        if ((t /= d/2 ) < 1) {
+                            return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
+                        }
+                        return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
+                    },
+                    bounceIn: function(t, b, c, d){    //弹球减振（弹球渐出）
+                        return c - Tween['bounceOut'](d-t, 0, c, d) + b;
+                    },
+                    bounceOut: function(t, b, c, d){
+                        if ((t/=d) < (1/2.75)) {
+                            return c*(7.5625*t*t) + b;
+                        } else if (t < (2/2.75)) {
+                            return c*(7.5625*(t-=(1.5/2.75))*t + 0.75) + b;
+                        } else if (t < (2.5/2.75)) {
+                            return c*(7.5625*(t-=(2.25/2.75))*t + 0.9375) + b;
+                        }
+                        return c*(7.5625*(t-=(2.625/2.75))*t + 0.984375) + b;
+                    },
+                    bounceBoth: function(t, b, c, d){
+                        if (t < d/2) {
+                            return Tween['bounceIn'](t*2, 0, c, d) * 0.5 + b;
+                        }
+                        return Tween['bounceOut'](t*2-d, 0, c, d) * 0.5 + c*0.5 + b;
+                    }
+                };
+                function uniformspeed(obj,json,endTime,type,callback) {
+                    window.requestAnimationFrame = window.requestAnimationFrame || function (a) { return setTimeout(a,1000/60) };//兼容低版本IE动画
+                    window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;//兼容低版本IE
+                    var cleartimer = {} ;//创建json新对象 用于外部清除对应定时器
+                    var typename;//运动曲线名称;
+
+                    if(typeof type === "function"){//如果type类型为函数，即type没有传，传入了callback
+                        callback = type; //赋值给callback
+                        typename = "linear";//默认匀速
+                    }
+                    else{
+                        /*type = type||"linear";    //如果为空默认为匀速*/
+                        switch (type){//数字对应运动曲线
+                            case 1: typename = "linear";
+                                break;
+                            case 2: typename = "easeIn";//加速曲线
+                                break;
+                            case 3: typename = "easeOut";//减速曲线
+                                break;
+                            case 4: typename = "easeBoth";//加速减速曲线
+                                break;
+                            case 5: typename = "easeInStrong";//减减速曲线
+                                break;
+                            case 6: typename = "easeBothStrong";//加加速减减速曲线
+                                break;
+                            case 7: typename = "elasticIn";//正弦衰减曲线（弹动渐入）
+                                break;
+                            case 8: typename = "elasticOut";//正弦增强曲线（弹动渐出）
+                                break;
+                            case 9: typename = "elasticBoth";//正弦衰减增强曲线
+                                break;
+                            case 10: typename = "backIn";//回退加速（回退渐入）
+                                break;
+                            case 11: typename = "backOut";//回退减速
+                                break;
+                            case 12: typename = "backBoth";//回退加速减速
+                                break;
+                            case 13: typename = "bounceIn";//弹球减振（弹球渐出）
+                                break;
+                            case 14: typename = "bounceOut";
+                                break;
+                            case 15: typename = "bounceBoth";
+                                break;
+                            default : typename = "linear";
+                        }
+                    }
+
+                    var cssjson = obj.currentStyle || window.getComputedStyle(obj) ;//兼容低版本IE的样式获取
+
+                    var startPosition = {};//对象初始数值
+                    var endPosition = {};//对象结束数值
+
+                    for(var key in json){//遍历
+                        startPosition[key] = parseFloat(cssjson[key]);//原数值强制取余后存入json中
+                        endPosition[key] = json[key] - startPosition[key];//需要改变的数值存入json中
+                        if(!endPosition){//如果数值不改变即为0为假
+                            delete startPosition[key];//删除该键值
+                            delete endPosition[key];//删除该键值
+                        }
+                    }
+
+                    var starttime = new Date(); //获取起始时间
+
+
+                    (function change() {
+                        var aftertime = new Date() - starttime;//经过了多长时间
+                        aftertime >= endTime?aftertime = endTime:cleartimer.timer=requestAnimationFrame(change);
+
+                        for(var key in endPosition){
+                            var s = Tween[typename](aftertime,startPosition[key],endPosition[key],endTime);//经过的距离
+                            if(key === "opacity"){//兼容低版本ie透明度
+                                obj.style[key] = s;
+                                obj.style.filter = "alpha(opacity="+s*100+")";
+                            }
+                            else{
+                                obj.style[key] = s+"px";
+                            }
+                        }
+                        if(aftertime === endTime) callback && callback.call(obj);//回调函数
+                    })();//先自执行一次函数使得函数可运行
+                    return cleartimer;//返回用于外部清除定时器
+                }
+                window.uniformspeed = uniformspeed;//使得函数可以全局使用
+                return uniformspeed;//如果函数名已经被其他函数占用 可使用此方法返回函数使用
+            })();//运动框架封装
+
+
+            (function () {
+                var oBanner = document.getElementById("box");
+                var imgLi = document.querySelectorAll(".banner ul li");
+                var tabLi = document.querySelectorAll(".tab ul li");
+                var btn = document.getElementsByTagName("span");
+                var length = imgLi.length;
+                var index = 0;
+                var timer;
+                var timer2;
+                var clickTime = 0;
+
+
+                //tab移入
+                for(var i = 0; i < length; i++){
+                    tabLi[i].index = i;
+                    tabLi[i].onmouseenter = function () {
+                        if(index === this.index){
+                            return //如果相等直接跳出不做操作
+                        }
+
+                        var x = this.index;
+
+                        clearTimeout(timer);//上一个动画清除
+                        timer = setTimeout(function () {
+                            fn(function () {
+                                index = x;
+                            })
+                        },200);//200ms之后再执行动画
+
+                    };
+                }
+
+                //左右点击
+                for(var i = 0; i < 2; i++){
+                    (function (i) {
+                        btn[i].onclick = function () {
+                            if ( new Date() - clickTime >= 500 ){//如果点击间隔大于0.5s做下面行为
+                                clickTime = new Date();
+                                fn(function () {
+                                    if ( i ){
+                                        index ++;
+                                        index %= length;//被除数"a"比除数"b"小的之类的,余数为a.
+/*                                        if(index === length -1){index=0}
+                                        else{index ++}*/
+                                    }else{
+                                        index --;
+                                        if(index<0)index=length-1;
+                                    }
+                                });
+                            }
+                        }
+                    })(i);//闭包方式判断
+                }
+
+
+                //鼠标移入轮播图
+                oBanner.onmouseenter = function () {
+                    clearInterval(timer2);
+                };
+
+                //鼠标移出轮播图
+                oBanner.onmouseleave = function () {
+                    auto();
+                };
+                auto();
+
+                //自动函数
+                function auto() {
+                    timer2 = setInterval(function () {
+                        fn(function () {
+                            index ++;
+                            index %= length;
+                        });
+                    },2000);
+                }
+
+                //改变
+                function fn(cha){
+                    //前一个隐藏
+                    imgLi[index].stop && cancelAnimationFrame(imgLi[index].stop.timer);//如果存在返回cancelAnimationFrame 清除前一个动画
+                    imgLi[index].stop = uniformspeed(imgLi[index],{opacity:0},300,4,function () {
+                        this.style.display = "none";
+                    });//前一个透明度变为0，并且隐藏掉
+                    tabLi[index].className ="";//圆形按钮颜色
+
+                    //index的变化
+                    cha();
+
+                    //后一个出现
+                    imgLi[index].style.display = "block";
+                    imgLi[index].style.opacity = 0;//先赋给初始值
+                    imgLi[index].style.filter = "alpha(opacity = 0)";
+                    imgLi[index].stop && cancelAnimationFrame(imgLi[index].stop.timer);
+                    imgLi[index].stop = uniformspeed(imgLi[index],{opacity:1},300,4);//后一个透明度变为1
+                    tabLi[index].className = "on";//圆形按钮颜色
+                }
+            })();
+        </script>
+    </body>
+</html>

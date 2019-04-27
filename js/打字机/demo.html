@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            html{height: 100%;}
+            body{
+                height:100%;
+                background: #cd2027;
+                background: -webkit-linear-gradient(top,#1cbff3,#f3b0d7);
+            }
+            ul{list-style:none;}
+            p{
+                float:left;
+                margin-left: 800px;
+                margin-top: 50px;
+                font-size: 40px;
+                height:100px;
+                line-height: 100px;
+                color: #ffffff;
+                font-family: 华文楷体;
+            }
+            span{display: none}
+            i{
+                float: left;
+                margin-top: 50px;
+                margin-left: 5px;
+                width:5px;
+                height:100px;
+                background: #ffffff;
+                border-radius: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <p></p>
+            <i id="line"></i>
+            <span id="ss">我怕我没有机会，跟你说一声再见,因为也许 就再也见不到你,明天我 要离开,熟悉的地方和你,要分离 我眼泪就掉下去</span>
+        </div>
+        <script>
+            var ospan = document.getElementById("ss");
+            var op = document.getElementsByTagName("p")[0];
+            var line = document.getElementById("line");
+
+            f(op,ospan,200,200);
+            /*
+            * obj1 :对象 在哪显示
+            * obj2 :对象
+            * speed1: 打字速度 默认100ms
+            * speed2: 删除速度 默认100ms
+            * */
+            function f(obj1,obj2,speed1,speed2) {
+                var arr = obj2.innerHTML.split(/,|，/);//切割段落
+
+                speed1 = speed1 || 100;
+                speed2 = speed2 || 100;
+                var json = {};//每段保存到json
+                var time = {};
+
+                for(var i = 0; i < arr.length; i++){
+                    var index = i;
+                    json[index] =  arr[i].split("");
+                }
+
+                var st = 0;//一个初始值
+                var o;//用于传递参数
+                fn(st);//执行函数
+
+                //打字函数
+                function fn(ind){
+                    var x = 0;
+                    if(ind >= arr.length){
+                        ind = 0;
+                    }
+                    time.stop = setInterval(function () {
+                        if(x >= json[ind].length){//达到最大长度
+                            clearInterval(time.stop);//停止定时器
+                            ind++;//index+1
+                            o = ind;
+                            ti();
+                            setTimeout(del,2000);//2s后删除函数
+                        }
+                        else{
+                            obj1.innerHTML += json[ind][x];//添加文本
+                            x++;
+                        }
+                    },speed1);
+
+                }
+                //删除函数
+                function del() {
+                    var time1 = setInterval(function () {
+                        if(obj1.innerHTML === ""){//如果文本为空
+                            clearInterval(time1);//清除定时器
+                            fn(o);//启动打字函数x即为当前需要打的字符数组
+
+                        }
+                        else{
+                            clearInterval(time2);
+                            line.style.display = "block";
+                            var st = obj1.innerHTML.split('');//文字存入数组
+                            st.pop();//删除后一位
+                            obj1.innerHTML = st.join('');//拼接文字
+                        }
+                    },speed2);
+                }
+            }
+            //焦点
+            var time2;
+            function ti(){
+                time2 = setInterval(function () {
+                    if(line.style.display === "block" || line.style.display === null){
+                        line.style.display = "none";
+                    }
+                    else{
+                        line.style.display = "block";
+                    }
+                },300)
+            }
+        </script>
+    </body>
+</html>

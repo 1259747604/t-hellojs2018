@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #box{
+                width:500px;
+                height:500px;
+                background: #f34269;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <a href=""></a>
+            <p>11</p>
+            <p id="x" class="x">22</p>
+            <p class="y">33</p>
+            <p>44</p>
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+        <script>
+            var obox = document.getElementById("box");
+
+            // $(obox).style.color = "green";//报错
+            // $(obox).css({backgroundColor:"green"});//正确
+            // $("div").css({backgroundColor:"green"});//正确
+            // $("div")[0].style.background = "yellow";//jq对象转换为js对象
+            // $("div").get[0].style.background = "yellow";//jq对象转换为js对象
+/*            $(function () {
+                alert(1);
+            })*/ //dom加载完成后执行该函数
+
+            // $('p').eq(1).css("color","yellow");//选择第几个
+
+/*            $('p').each(function (x) {
+                $(this).html(x);
+                // console.log($(this))
+                // this.innerHTML += x;
+            });*/    //遍历
+
+/*            var ox = document.getElementsByClassName("y")[0];
+            var $a = $("p");
+            console.log($("p").index(ox));//这个dom节点在p集合中的位置
+            console.log($("p").index($('.x')));//这个jq对象在p集合的位置
+            console.log($('.x').index("p"));//.x在p集合中的位置
+            console.log($('.x').index());//.x在同辈中的位置*/
+
+            // console.log($("p").length);//长度
+        </script>
+    </body>
+</html>

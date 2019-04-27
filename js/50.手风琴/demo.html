@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #box{
+                margin:200px auto;
+                width:1200px;
+                height:500px;
+            }
+            #box ul{
+                height:100%;
+            }
+            #box ul li{
+                float: left;
+                width:100px;
+                height:100%;
+            }
+            #box ul li p {
+                width:100px;
+                height: 100%;
+            }
+            #box ul li span{
+                display: block;
+                margin: 20px auto;
+                width:15px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li style="background: rgba(0,0,0,.5)">
+                    <p><span>这是第一个内容你知道吗</span></p>
+                </li>
+                <li style="background: rgba(120,0,0,.5)">
+                    <p><span>这是第二个内容你知道吗</span></p>
+                </li>
+                <li style="background: rgba(0,222,0,.5)">
+                    <p><span>这是第三个内容你知道吗</span></p>
+                </li>
+                <li style="background: rgba(155,20,111,.5)">
+                    <p><span>这是第四个内容你知道吗</span></p>
+                </li>
+            </ul>
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            let $ul = $("ul"),
+                $li = $ul.find("li");
+
+            $li.eq($li.length-1).width(800);
+            $li.mouseenter(function () {
+                $(this).siblings().stop().animate({
+                    width:100
+                });
+                $(this).stop().animate({
+                    width:800
+                });
+            });
+        </script>
+    </body>
+</html>

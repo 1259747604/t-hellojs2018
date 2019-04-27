@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="TT">
+		 <!-- 简介描述 -->
+		<meta name="description" content="TT">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			li{float:left;margin-left:50px; }
+			.btn span{display:inline-block;width:50px;height:30px;line-height:30px;text-align:center;background:lightblue;font-size:15px;}
+		</style>
+<body>
+    <div id="box">
+		<ul>
+			<li><input type="checkbox">1</li>
+			<li><input type="checkbox">2</li>
+			<li><input type="checkbox">3</li>
+			<li><input type="checkbox">4</li>
+			<li><input type="checkbox">5</li>
+			<li><input type="checkbox">6</li>
+			<li><input type="checkbox">7</li>
+			<li><input type="checkbox">8</li>
+		</ul>
+	</div><br>
+	<div class="btn">
+		<span>全选</span>
+		<span>反选</span>
+		<span>清除</span>
+	</div>
+    <script>
+		var oLi = document.getElementsByTagName("li");
+		var oInput = document.getElementsByTagName("input");
+		var oSpan = document.querySelectorAll(".btn span");
+
+		oSpan[0].onclick = function () {
+            for(var i = 0; i < oLi.length; i++){
+				oInput[i].checked = true;
+
+            }
+        };
+        oSpan[1].onclick = function () {
+            for(var i = 0; i < oLi.length; i++){
+                oInput[i].checked = !oInput[i].checked;
+
+            }
+        };
+        oSpan[2].onclick = function () {
+            for(var i = 0; i < oLi.length; i++){
+                oInput[i].checked = false;
+            }
+        };
+	</script>
+</body>
+</html>

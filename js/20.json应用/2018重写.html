@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            li{display:flex;}
+            li:nth-child(odd){background:#3ca4d8;}
+            span{-webkit-flex:1;height:35px;line-height:35px;border:1px solid #ddd;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript" src="data.js"></script>
+        <script>
+            document.body.innerHTML = "<div id = box><ul id = ul></ul></div>";
+
+           var str = "";
+            for(var i = 0; i < data.length; i++){
+                str += "<li>";
+                for(var key in data[i]){
+                    str += "<span>"+data[i][key]+"</span>";
+                }
+                str += "</li>"
+            }
+            ul.innerHTML = str;
+        </script>
+    </body>
+</html>

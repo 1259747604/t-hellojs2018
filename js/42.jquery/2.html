@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            body{
+                height: 2000px;
+            }
+            #box{
+                position: absolute;
+                top:200px;
+                width:500px;
+                height:500px;
+                background: #4fd4f3;
+                margin-top: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box" class="x o " style="width: 500px;">
+            <a href="">111</a>
+            <p>11</p>
+            <p class="xx">22</p>
+            <p>33</p>
+            <p>44</p>
+            <input type="text" value="222">
+            <div>
+                <p>666</p>
+            </div>
+        </div>
+        <div id="two">
+            <a href="">222</a>
+            <p>55</p>
+            <ul>
+                <li>l1</li>
+                <li>l2</li>
+                <li>l3</li>
+            </ul>
+        </div>
+        <!--<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>-->
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+            // attr();操作不合法标签属性
+/*            $("#box").attr({
+                x : 1,
+                b : 2
+            });//设置不合法标签属性*/
+            // var a = "xxx";
+            // $("#box").attr("class",a);//传变量
+/*            $("#box").attr("class",function () {
+                return "aaa";
+            });*///传函数
+            // console.log($("#box").attr("x"));//获取标签属性
+
+            // prop操作合法标签属性
+            // $("#box").prop("class","aaaaa");
+
+            // $("#box").removeAttr("class");//移除属性
+            // $("#box").removeProp("class");//用来删除用prop设置的属性值 没看懂
+
+            // $("#box").addClass("ppp aa");//添加class名
+/*            $("#box").addClass(function () {
+                    return "ss";
+            });//可以是函数*/
+
+            // $("#box").removeClass("o");//移除class名
+
+            // $("#box").toggleClass("o");//如果有就删除没有就添加
+
+/*            $("p").html(function (x) {
+                return "这是第"+x+"个p";
+            })//html内容 可传val或者函数  不传值可获取*/
+
+            // $("p").text("222");//文本内容 传值同上 可获取
+
+            // $("input").val("111");//设定值 可传val|fn|arr
+            // console.log($("input").val());//可获取
+
+/*            var a = $("#box").css("backgroundColor");//不设置可获取(此处获取的是rgb)
+            console.log(a);*/
+            // $("#box").css("backgroundColor","yellow");
+/*            $("#box").css({
+                background: "red",
+                width:1000,
+                height:800
+            });*///接收json
+/*            $("#box").click(function () {
+                $("#box").css({
+                    width:function (index,value) {
+                        return parseFloat(value) * 1.2;
+                    }
+                }
+            );
+            });//可传函数 第一个参数为索引位置 第二个为初始值带单位的*/
+
+
+/*            $("#box").offset({
+                left:100,
+                height: 200
+            });//到文档的距离 传json 还可传函数具体需参见api*/
+
+            // alert($("#box").position().top);//到定位父级 不会加上margin
+
+            // scrollTop,screenLeft 设置获取滚动宽高
+/*            $(document).click(function () {
+                // $(this).scrollTop();
+                alert($(this).scrollTop());
+            })*///获取
+/*            $(document).click(function () {
+                $(document).scrollTop(100);
+            })//设置*/
+
+/*            width,height 样式宽高
+            innerWidth,innerHeight padding+样式宽高
+            outerWidth outerHeight border+padding+样式宽高*/
+            // alert($("#box").width());//都可获取或设置宽高
+
+            // $("#box").append("<i>这是新增的i</i>");//在后面新增标签
+            // $("#box").append("这是新增的i");//在后面新增文本
+/*
+            $("p").append(function (index) {
+                return "<i>这是第"+index+"个i</i>";
+            });
+*/
+
+/*            var $a = $("<i>aaa</i>");
+            $a.appendTo($('p'));*///主谓颠倒
+
+            // $("#box").prepend("<i>aaaaaa</i>");//向前面添加文本
+            // $("<i>像前面添加文本</i>").prependTo("p");//主谓颠倒
+
+            // $("input").after("<i>向input后添加元素i</i>");//向后面添加元素
+
+            // $("input").before("<i>向input前面添加元素i</i>");//像前面添加元素
+
+            // $("<i>向input后面添加元素i</i>").insertAfter($("input"));//主谓颠倒
+
+            // $("<i>向input前面添加元素</i>").insertBefore($("input"));//主谓颠倒
+
+            // $("#box").wrap("<div class='wrap'></div>");//加爸爸
+            // $("#box").wrap(document.getElementById("two"));//添加到父级
+
+            // $("p").unwrap();//移除父级元素
+
+            // $("p").wrapAll("<div></div>");//让所有有一个共同的父级
+
+            // $("#box").empty();//移除子节点
+
+            // $("p").eq(4).remove();//移除自己 不保留数据和事件
+            // $("p").remove(".xx");//移除自己 不保留数据和事件
+            // $("p").detach();//移除自己 保留数据和事件 append之后会显示
+
+            // $('ul').clone(true,true).appendTo("div");
+
+            //筛选
+            // console.log($("p").hasClass("xx"));//筛选是否有 返回bool
+            // console.log($("div").is("#two"));//筛选是否有 返回bool
+            // $("p").filter(".xx").append("rrr");//过滤出对应元素
+            // $("p").not(".xx").append("rrr");//除了。。。
+            // console.log($("#box").children());//找儿子
+            // console.log($("#box").children(".xx"));//找指定儿子
+            // console.log($("#box").find("p"));//找子孙后代
+            // console.log($("p").parent());//找爸爸
+            // console.log($("p").parents("body"));//找祖先
+            // console.log($("input").siblings());//找兄弟 传参找指定兄弟
+            // console.log($("input").siblings("p"));//找兄弟 传参找指定兄弟
+        </script>
+    </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #box{
+                position: absolute;
+                width: 70px;
+                height:70px;
+                background: red;
+                background: -webkit-linear-gradient(top,#1cbff3,#f351ee);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            var obox = document.getElementById("box");
+
+
+            document.onkeydown = function (ev) {
+                ev = ev || window.event;
+                var x = ev.keyCode;
+                f(x,obox);
+            };
+            var timearr = [];
+            //解除按下两个键方法
+            function f(x,obj) {
+                window.requestAnimationFrame = window.requestAnimationFrame || function (a) { return setTimeout(a,1000/60) };//兼容低版本IE动画
+                window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;//兼容低版本IE
+
+
+                var speed = 10;
+
+                switch (x){
+                    case 37:
+                        if(timearr[37] === undefined){
+                            ~function m() {
+                                var left = obj.offsetLeft - speed;
+                                obj.style.left = left + "px";
+                                timearr[37] = requestAnimationFrame(m);
+                            }();
+                        }
+                        break;
+                    case 38:
+                        if(timearr[38] === undefined) {
+                            ~function m() {
+                                var top = obj.offsetTop - speed;
+                                obj.style.top = top + "px";
+                                timearr[38] = requestAnimationFrame(m);
+                            }();
+                        }
+                        break;
+                    case 39:
+                        if(timearr[39] === undefined) {
+                            ~function m() {
+                                var left = obj.offsetLeft + speed;
+                                obj.style.left = left + "px";
+                                timearr[39] = requestAnimationFrame(m);
+                            }();
+                        }
+                        break;
+                    case 40:
+                        if(timearr[40] === undefined) {
+                            ~function m() {
+                                var top = obj.offsetTop + speed;
+                                obj.style.top = top + "px";
+                                timearr[40] = requestAnimationFrame(m);
+                            }();
+                        }
+                        break;
+                }
+
+            }
+
+
+            document.onkeyup = function (ev) {
+                ev = ev || window.event;
+                var x= ev.keyCode;
+                cancelAnimationFrame(timearr[x]);
+                timearr[x] = undefined;
+            }
+        </script>
+    </body>
+</html>

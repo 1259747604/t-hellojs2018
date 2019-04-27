@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            html,body{height:100%;}
+            .clearfix:after{
+                content:'';
+                display: block;
+                clear: both;
+            }
+            body{
+                background:-webkit-linear-gradient(top,rgb(167,223,226) 50%,rgb(205,105,133));
+            }
+            #box{
+                position: absolute;
+                top:60px;
+                left:350px;
+                padding: 30px;
+                width:540px;
+                height:540px;
+                background: rgba(55,103,133,.3);
+            }
+            #show{
+                position: absolute;
+                top:60px;
+                left:953px;
+                padding: 30px;
+                width:540px;
+                height:540px;
+                background: rgba(255,255,255,.3);
+            }
+            #box > span{
+                color:red;
+            }
+            #box ul.tab li{
+                float: left;
+                margin-right: 10px;
+                cursor: pointer;
+            }
+            #box ul.select{
+                margin-top: 10px;
+            }
+            #box ul.select li{
+                float: left;
+                padding: 6px;
+                margin-right: 5px;
+                /*width:100%;*/
+                height: 15px;
+                line-height: 15px;
+                border: 1px solid;
+                cursor:pointer;
+            }
+            #box ul.select li span:nth-child(3):hover{
+                color: #cd293f;
+            }
+            #show .look li{
+                float: left;
+                padding: 6px;
+                margin-right: 5px;
+                height: 15px;
+                line-height: 15px;
+                border: 1px solid;
+                cursor:pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <span>热点标签:</span>
+            <ul class="tab clearfix">
+                <li><span>连云港</span></li>
+                <li><span>常州</span></li>
+                <li><span>南京</span></li>
+                <li><span>苏州</span></li>
+                <li><span>淮安</span></li>
+            </ul>
+            <ul class="select clearfix">
+                <!--<li><span>连云港</span><span>&nbsp|&nbsp</span><span>x</span></li>-->
+                <!--<li><span>乌鲁木齐</span><span>&nbsp|&nbsp</span><span>x</span></li>-->
+                <!--<li><span>阿诗丹顿多多多多多多多多</span><span>&nbsp|&nbsp</span><span>x</span></li>-->
+            </ul>
+        </div>
+        <div id="show">
+            <ul class="look clearfix">
+                <!--<li><span>连云港</span></li>-->
+                <!--<li><span>乌鲁木齐</span></li>-->
+                <!--<li><span>阿诗丹顿多多多多多多多多</span></li>-->
+            </ul>
+        </div>
+        <script>
+            var otab = document.querySelectorAll('.tab li span'),
+                oselect = document.querySelector(".select"),
+                olook = document.querySelector(".look");
+
+            for(var i = 0, length = otab.length; i < length; i++){
+                //点击热点标签
+                otab[i].flag = false;
+                otab[i].onclick = function () {
+                    if(this.flag){
+                        return;
+                    }
+                    else{
+                        var val = this.innerHTML;//获取热点值
+                        var newli = document.createElement('li');//创建新元素
+                        var newx = document.createElement('span');//创建新元素
+                        newli.innerHTML = "<span>"+val+"</span>";//赋值
+
+                        var rightlook = newli.cloneNode(true);
+                        newli.innerHTML += "<span>&nbsp|&nbsp</span>";
+                        newx.innerHTML = "x";
+
+                        var This = this;
+                        newx.onclick= function () {
+                            oselect.removeChild(newli);//点击x时删除该元素
+                            olook.removeChild(rightlook);//删除右侧元素
+                            This.flag = !This.flag;
+                        };
+
+                        newli.appendChild(newx);//添加元素至指定位置
+                        oselect.appendChild(newli);
+                        olook.appendChild(rightlook);
+                        this.flag = !this.flag;
+                    }
+                }
+            }
+
+        </script>
+    </body>
+</html>

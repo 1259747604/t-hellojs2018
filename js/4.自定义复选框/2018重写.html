@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="TT">
+		 <!-- 简介描述 -->
+		<meta name="description" content="TT">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			#box{margin:50px auto;width:900px;}
+			.clearfix:after{content:'';display:block;clear:both;}
+			ul > li{float:left;margin-left:30px;width:100px;background:url("img/ckbg1.jpg") no-repeat left;}
+			ul li span{margin-left:50px;}
+			.checkit{background:url("img/ckbg2.jpg") no-repeat;}
+		</style>
+<body>
+    <div id="box">
+		<ul class="clearfix">
+			<li>
+				<span>one</span>
+			</li>
+			<li>
+				<span>two</span>
+			</li>
+			<li>
+				<span>three</span>
+			</li>
+			<li>
+				<span>four</span>
+			</li>
+			<li>
+				<span>five</span>
+			</li>
+			<li>
+				<span>six</span>
+			</li>
+		</ul>
+	</div>
+    <script>
+		var oLi = document.getElementsByTagName('li');
+
+		for(var i = 0; i < oLi.length; i++){
+		    oLi[i].flag = 0;
+		    oLi[i].onclick = function () {
+				if(this.flag){
+                    this.className = "";
+                }
+                else {
+                    this.className = "checkit";
+                }
+                this.flag = !this.flag;
+            };
+		}
+	</script>
+</body>
+</html>

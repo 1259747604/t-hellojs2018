@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            span{color:red;}
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <form>
+                <input type="text" >
+                <input type="text">
+                <input type="button" value="查询">
+                <input type="button" value="替换">
+            </form>
+            <p>别堆砌怀念让剧情变得狗血深爱了多年又何必毁了经典都已成年不拖不欠浪费时间是我情愿像谢幕的演员眼看着灯光熄灭来不及再轰轰烈烈就保留告别的尊严我爱你不后悔也尊重故事结尾分手应该体面谁都不要说抱歉何来亏欠我敢给就敢心碎镜头前面是从前的我们在喝彩流着泪声嘶力竭离开也很体面才没辜负这些年爱得热烈认真付出的画面别让执念毁掉了昨天我爱过你利落干脆最熟悉的街主角却换了人演我哭到哽咽心再痛就当破茧来不及再轰轰烈烈就保留告别的尊严我爱你不后悔也尊重故事结尾分手应该体面谁都不要说抱歉何来亏欠我敢给就敢心碎镜头前面是从前的我们在喝彩流着泪声嘶力竭离开也很体面才没辜负这些年爱得热烈认真付出的画面别让执念毁掉了昨天我爱过你利落干脆再见不负遇见</p>
+        </div>
+        <script>
+            var op = document.querySelector("p");
+            var oinp = document.querySelectorAll("[type=text]");
+            var obtn = document.querySelectorAll("[type=button]");
+
+
+            obtn[0].onclick = function () {
+                var a = 0;
+                change(a);
+            };
+
+            obtn[1].onclick = function () {
+                var b = 1;
+                change(b);
+            };
+
+            function change(x) {
+                var text = oinp[0].value;
+                var text1 = oinp[1].value;
+                var str = op.innerHTML;
+                var arr = str.split(text);
+                var t;
+                x?t=text1:t=text;
+                str = arr.join("<span>"+t+"</span>");
+                op.innerHTML = str;
+            }
+        </script>
+    </body>
+</html>

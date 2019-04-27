@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		#wrap{
+			margin:50px auto;
+			width:500px;
+			height:1000px;
+			border:1px solid #999999;
+		}
+		#text1{
+			display:block;
+			margin:20px auto;
+			width:300px;
+			height:200px;
+			border:1px solid #999999;
+		}
+		img{width:50px;height:50px;}
+		form img
+		{
+			border:1px solid #666;
+		}
+		form{
+			position:relative;
+		}
+		.img{
+			display:none;
+			position:absolute;
+			top:0;
+			left:0;
+			margin-left:0px;
+
+		}
+		.btn{
+			margin-left:130px;
+			line-height:50px;
+			text-align:center;
+			width:150px;
+			height:50px;
+			background:rgba(255,0,0,.3);
+			border:none;
+			outline:none;
+		}
+   #list{
+                width: 500px;
+                margin: 50px auto;
+            }
+            #list ul li {
+                overflow: hidden;
+                border-bottom: 1px solid #eee;
+                padding: 5px 0;
+            }
+            #list ul li img{
+                float: left;
+                width: 40px;
+                height: 40px;
+            }
+            #list ul li p{
+                float: right;
+                width: 440px;
+                font-size: 12px;
+                text-indent: 2em;
+            }
+		</style>
+	</head>
+<body>
+		<div id='wrap'>
+			<p>发表内容</p>
+			<form>
+				<textarea id='text1'></textarea>
+				<img src='1.jpg' width='50px' height='50px' style="display: block" class='img'/>
+				<img src='2.jpg' width='50px' height='50px'class='img'/>
+				<div class="btn">发表</div>
+			</form>
+	        <div id="list">
+	            <ul>
+
+	            </ul>
+	        </div>
+		</div>
+	        <!-- <div id="box">
+	                    <textarea id="txt"></textarea>
+	                    <div class="img">
+	                        <img src=images/tx1.jpg style="display: block" alt="">
+	                        <img src="images/tx3.jpg" alt="">
+	                    </div>
+	                    <div class="btn">发表</div>
+	                </div>
+	                
+	                <div id="list">
+	                    <ul>
+	        
+	                    </ul>
+	                </div> -->
+	<script>
+		var a = document.getElementById("text1"),
+			b = document.querySelectorAll(".img"),
+			c = document.getElementById("btn"),
+			oBtn = document.querySelector(".btn"),
+			s = document.getElementById("wrap"),
+			oUl = document.querySelector("#list ul"),
+			src = "1.jpg";
+		
+			b[0].onclick=function(){
+				this.style.display="none";
+				b[1].style.display="block";
+				src = b[1].src;
+			};
+			b[1].onclick=function(){
+				this.style.display="none";
+				b[0].style.display="block";
+				src = b[0].src;
+			};
+		            oBtn.onclick = function () {
+		                var val = a.value; //获取textarea的内容
+		                if ( val ){
+		                    oUl.innerHTML += "<li><img src='"+src+"'><p>"+val+"</p></li>";
+		                    a.value = "";//清空textarea的内容
+		                }
+		            };
+			/*var oBox = document.getElementById("box"),
+                aImg = oBox.querySelectorAll(".img img"),
+                oBtn = oBox.querySelector(".btn"),
+                oUl = document.querySelector("#list ul"),
+                oTxt = document.getElementById("txt"),
+                src = "images/tx1.jpg";
+
+            //点击第 1 个img的时候，让第 2 个显示，自己隐藏
+            aImg[0].onclick = function () {
+                aImg[1].style.display = "block";
+                this.style.display = "none";
+                src = aImg[1].src;
+            };
+
+            //点击第 2 个img的时候，让第 1 个显示，自己隐藏
+            aImg[1].onclick = function () {
+                aImg[0].style.display = "block";
+                this.style.display = "none";
+                src = aImg[0].src;
+            };
+
+            //点击发表，往ul里面加内容
+            oBtn.onclick = function () {
+                var val = oTxt.value; //获取textarea的内容
+                //if ( val ){
+                    oUl.innerHTML += "<li><img src='"+src+"'><p>"+val+"</p></li>";
+                    oTxt.value = "";//清空textarea的内容
+                //}
+            };*/
+	</script>
+</body>
+</html>

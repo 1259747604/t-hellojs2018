@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="TT">
+		 <!-- 简介描述 -->
+		<meta name="description" content="TT">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			#box{position:relative;margin:50px auto;width:500px;height:500px;}
+			.pic{position:absolute;width:500px;height:500px;background: #fe753b;z-index:-1;}
+			span{float:left;width:10px;height:10px;background:#dbfefe;}
+		</style>
+    </head>
+    <body>
+        <div id="box">
+            <div class="pic"></div>
+
+        </div>
+        <script>
+            var obox = document.getElementById('box');
+            var wid = parseInt(getComputedStyle(obox).width);
+            var hei = parseInt(getComputedStyle(obox).height);
+            var num = (wid*hei)/100;
+
+            var oSpan = document.getElementsByTagName('span');
+            for(var i = 0; i < num; i++){
+                obox.innerHTML += "<span></span>";
+            }
+            for(var b = 0; b < num; b++){
+                oSpan[b].onmouseenter = function () {
+                    this.style.backgroundColor = "transparent";
+                };
+            }
+        </script>
+    </body>
+</html>

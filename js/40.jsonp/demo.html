@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            [type = "text"]{
+                display: block;
+                margin: 200px auto 0;
+                width:500px;
+                height: 40px;
+                border: 1px solid;
+            }
+            #list li{
+                margin: 0 auto 0;
+                width:502px;
+                height: 40px;
+                background: #e2f3f0;
+                text-align: left;
+                line-height: 40px;
+                cursor:pointer;
+            }
+            #list li:hover{
+                background: #f3a494;
+            }
+            #list .choose{
+                background: #f3a494;
+            }
+        </style>
+    </head>
+    <body>
+        <input type="text" id = "search">
+        <ul id = "list">
+
+        </ul>
+        <script>
+            var oSearch = document.getElementById("search");
+            var oList = document.getElementById("list");
+            var oLi = document.getElementsByTagName("li");
+
+            //联想词
+            oSearch.onkeyup = function (e) {
+                e = e || window.event
+                if(e.keyCode !==40 && e.keyCode !==38 && e.keyCode !==13){
+                    this.index = 0;
+                    var value = this.value;
+                    var oS = document.createElement("script");
+                    oS.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+value+"&cb=tt";
+                    document.body.appendChild(oS);
+                    oS.onload = function () {
+                        document.body.removeChild(this);
+                    }
+                }
+            }
+            //联想词点击跳转
+            oList.onclick = function (ev) {
+                ev = ev || window.event;
+                var target = ev.target;
+                if(/li/i.test(target.nodeName)){
+                    window.open("https://www.baidu.com/s?word="+target.innerHTML+"");
+                }
+            }
+
+            //上下键控制
+            oSearch.index = 0;
+            oSearch.onkeydown = function (ev) {
+                ev = ev || window.event;
+                if(ev.keyCode === 40){//按下↓键
+                    if(this.index === oLi.length){
+                        this.index = 0;
+                        oLi[oLi.length-1] && (oLi[oLi.length-1].className = "");
+                    }
+                    else{
+                        oLi[this.index-1] && (oLi[this.index-1].className = "");
+                    }
+                    oLi[this.index] && (oLi[this.index].className = "choose",oSearch.value = oLi[this.index].innerHTML);
+                    this.index++;
+                }
+
+                if(ev.keyCode === 38){//按下↑键
+                    this.index--;
+                    if(this.index === 0){
+                        this.index = oLi.length;
+                        oLi[0] && (oLi[0].className = "");
+                    }
+                    else if(this.index === -1){
+                        oLi[oLi.length-1] && (oLi[oLi.length-1].className = "choose");
+                        this.index = oLi.length;
+                    }
+                    else{
+                        oLi[this.index] && (oLi[this.index].className = "");
+                    }
+                    oLi[this.index-1] && (oLi[this.index-1].className = "choose",oSearch.value = oLi[this.index-1].innerHTML);
+                }
+
+                if(ev.keyCode === 13){//按下enter跳转
+                    window.open("https://www.baidu.com/s?word="+this.value+"");
+                }
+            }
+
+            function tt(obj){
+                var all = "";
+                for(var i  = 0; i < obj.s.length; i++){
+                    all += "<li>"+obj.s[i]+"</li>";
+                }
+                oList.innerHTML = all;
+            };
+        </script>
+    </body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			body{
+				background:#ddd;
+			}
+			#box{
+				padding:20px;
+				margin:50px auto;
+				background:#fff;
+			}
+			li{
+				list-style:none;
+			}
+			#box li{
+				display:-webkit-flex;
+				display:flex;
+			}
+			#box li:first-child{
+				background:#000;
+				color:#fff;
+			}
+			#box li:nth-child(even){
+				background:#ccc;
+			}
+
+			#box li span{
+				-webkit-flex:1;
+				flex:1;
+				text-align:center;
+				line-height:35px;
+				border:1px solid #ddd;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<script type="text/javascript" src='data.js'></script>
+		<script type="text/javascript">
+			document.body.innerHTML = '<div id="box"><ul id="ul"></ul></div>';
+			/*
+			var str = '';
+			for( var key in data ){
+				//console.log( key );
+				if( key == 0 ){
+					str = '<li><span>ID</span><span>歌名</span><span>歌手</span><span>专辑名称</span><span>金额</span><span>删除</span></li>';
+				}
+				str += '<li><span>'+key+'</span><span>'+data[key].name+'</span><span>'+data[key].singer+'</span><span>'+data[key].album+'</span><span>'+data[key].price+'</span><span>删除</span></li>'
+				
+			}
+			ul.innerHTML = str;
+			*/
+			/*
+			var str = '';
+			for( var i=0;i<data.length;i++ ){
+				if( i==0 )str = '<li><span>ID</span><span>歌名</span><span>歌手</span><span>专辑名称</span><span>金额</span><span>删除</span></li>';
+				str += '<li><span>'+i+'</span><span>'+data[i].name+'</span><span>'+data[i].singer+'</span><span>'+data[i].album+'</span><span>'+data[i].price+'</span><span>删除</span></li>'
+			}
+			ul.innerHTML = str;
+			*/
+			var str = '';
+			for( var i=0;i<data.length;i++ ){
+				if( i==0 )str = '<li><span>ID</span><span>歌名</span><span>歌手</span><span>专辑名称</span><span>金额</span><span>删除</span></li>';
+				str += '<li><span>'+i+'</span>';
+				for ( var key in data[i] ){
+					str += '<span>'+data[i][key]+'</span>';
+				}
+				str += '<span>删除</span></li>';
+			}
+			ul.innerHTML = str;
+		</script>
+	</body>
+</html>
+
+<!-- <span>ID</span><span>歌名</span><span>歌手</span><span>专辑名称</span><span>金额</span><span>删除</span> -->

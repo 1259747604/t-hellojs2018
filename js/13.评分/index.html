@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TZ-追梦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style:none;
+        }
+        #box{
+            width:310px;
+            height:75px;
+            margin:30px auto;
+            line-height: 75px;
+        }
+
+        #box span{
+            float:left;
+            color: red;
+        }
+        #box ul{
+            float: left;
+            width: 100px;
+            height: 20px;
+            margin-top: 27px;
+        }
+        #box ul li{
+            width: 20px;
+            height: 20px;
+            background: url("images/star.png");
+            float: left;
+            cursor: pointer;
+        }
+        #box p{
+            float: right;
+            width:120px;
+            height: 70px;
+            border: 1px solid #ddd;
+            line-height: 20px;
+        }
+        #box ul li.on{
+            background-position: 0 -27px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="box">
+
+        <span>星级评分：</span>
+
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <p>提示：请认真给当前文章打分</p>
+    </div>
+
+    <script>
+        var aLi = document.querySelectorAll('ul li');
+        var oP = document.querySelector('p');
+        var oUl = document.querySelector('ul');
+        //alert( aLi.length )
+        var b = -1;
+        var arr = [
+            '提示：请认真给当前文章打分',
+            '很差',
+            '较差',
+            '还行',
+            '推荐',
+            '力荐'
+        ];
+
+
+        // 事件委托
+        oUl.onmouseleave = function(){
+            change( b );
+        };
+
+        for( var i=0;i<aLi.length;i++ ){
+            aLi[i].index = i;
+            aLi[i].onmouseenter = function () {
+                change(this.index);
+            }
+            aLi[i].onclick = function () {
+                b = this.index;
+                change( b );
+            }
+        }
+        
+        function change( n ) {
+            oP.innerHTML = arr[n+1];
+            for( var i=0;i<aLi.length;i++ ){
+                aLi[i].className = '';
+            }
+            for( var i=0;i<=n;i++ ){
+                aLi[i].className = 'on';
+            }
+        }
+    </script>
+</body>
+</html>
+

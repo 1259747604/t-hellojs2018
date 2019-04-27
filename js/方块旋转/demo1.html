@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            html{
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+            }
+            body{
+                height: 100%;
+                width: 100%;
+                -webkit-perspective: 800px;
+            }
+            #wrap{
+                transform-style:preserve-3d;/*修改为3d环境*/
+                position: absolute;
+                top:0;
+                left:0;
+                right:0;
+                bottom:0;
+                margin: auto;
+                width:900px;
+                height: 500px;
+                transform-origin: 50% 50% -250px;
+            }
+            #wrap div{
+                position: absolute;
+                width:900px;
+                height: 500px;
+                transform-origin: center;
+            }
+            #box{
+                /*background: #f3a494;*/
+                border: 1px solid #f31e36;
+            }
+            #box1{
+                /*background: #c1f3df;*/
+                border: 1px solid #3ca4d8;
+            }
+            #box2{
+                border: 1px solid;
+                transform: translateZ(-300px);
+            }
+        </style>
+    </head>
+    <body>
+    <div id="wrap">
+        <div id="box"></div>
+        <div id="box1"></div>
+        <div id="box2"></div>
+    </div>
+
+        <script>
+            document.ondragstart = ()=>false;
+            function rotate(obj,obj1,tz) {
+                this.obj = obj;
+                this.obj1 = obj1
+                this.tz = tz;
+                this.obj1.style.transform = "translateZ("+this.tz+"px)";
+                this.rotadown();
+                this.rotawheel();
+            };
+            rotate.prototype = {
+                constructor:rotate,
+                rotadown : function () {
+                    var This = this;
+                    document.fx = 0;
+                    document.fy = 0;
+                    document.tz = 0;
+                    //鼠标按下滑动翻转
+                    document.onmousedown = function (ev) {
+                        ev = ev || window.event;
+                        //初始位置
+                        var sx = ev.clientX,
+                            sy = ev.clientY;
+                        This.rotamove(sx,sy);
+                        This.rotaup();
+                    }
+                },
+                rotamove : function (sx,sy) {
+                    var This = this;
+                    document.onmousemove = function (ev1) {
+                        ev1 = ev1 || window.event;
+                        //当前鼠标位置
+                        var nx = ev1.clientX,
+                            ny = ev1.clientY;
+                        //改变的数值
+                        var cx = (nx - sx)/5,
+                            cy = (sy - ny)/7;
+                        sx = nx;
+                        sy = ny;
+                        //最后的结果
+                        this.fx += cx;
+                        this.fy += cy;
+                        This.obj.style.transform = "translateZ("+this.tz+"px) rotateX("+this.fy+"deg) rotateY("+this.fx+"deg)";
+                    }
+                },
+                rotaup : function () {
+                    document.onmouseup = function () {
+                        this.onmousemove = null;
+                    }
+                },
+                rotawheel : function () {
+                    var This = this;
+                    mousewheel(document,function (e,d) {
+                        if(d<0){
+                            this.tz -= 20;
+                        }
+                        else{
+                            this.tz += 20;
+                        }
+                        This.obj.style.transform = "translateZ("+this.tz+"px)rotateX("+this.fy+"deg) rotateY("+this.fx+"deg)";
+                        return false;
+                    });
+                    //兼容
+                    function mousewheel(obj,fn) {
+                        function f(e) {
+                            e = e || window.event;
+                            if(fn.call(this,e,e.wheelDelta/120 || -e.detail/3) === false)e.preventDefault();
+                        }
+                        var eName = document.onmousewheel === null?"mousewheel":"DOMMouseScroll";
+                        document.addEventListener?obj.addEventListener(eName,f,false):obj.attachEvent("onmousewheel",f);
+                    }
+                }
+            };
+
+            ~function () {
+                var owrap = document.getElementById("wrap");
+                var obox = document.getElementById("box");
+            }();
+            ~function () {
+                var owrap = document.getElementById("wrap");
+                var obox1 = document.getElementById("box1");
+                var tz = -500;
+                new rotate(owrap ,obox1,tz)
+            }();
+            ~function () {
+                var owrap = document.getElementById("wrap");
+                var obox2 = document.getElementById("box2");
+                var tz = -500;
+                // new rotate(owrap ,obox2,tz)
+            }();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #box{
+                position: absolute;
+                left:50px;
+                top:50px;
+                width:300px;
+                height:300px;
+                background: #cd293f;
+                border-left:10px solid #b5cdb2 ;
+                border-right:10px solid #b5cdb2 ;
+                border-top:10px solid #5261cd ;
+                border-bottom:10px solid #5261cd ;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            var obox = document.getElementById("box");
+
+
+            obox.onmousemove = a;
+
+            //拖拽
+            obox.onmousedown = function (e){
+                e = e || window.event;//兼容ie
+                var b = a();
+                var stY = e.clientY;
+                var stX = e.clientX;
+                var stheight = obox.offsetHeight -20;//减掉边框20
+                var stwidth = obox.offsetWidth -20;
+
+                var sttop = obox.offsetTop;
+                var stleft = obox.offsetLeft;
+
+                // console.log(obox.style.width);
+                // console.log(obox.style.height);
+                obox.onmousemove = function (ev) {
+                    ev = ev || window.event;//兼容ie
+                    var nX = ev.clientX;
+                    var nY = ev.clientY;
+
+
+                    if(b === "e-resize"){//东拉伸
+                        obox.style.width = stwidth + nX -stX + "px";
+                    }
+                    else if(b === "s-resize"){//南拉伸
+                        obox.style.height = stheight + nY - stY + "px";
+                    }
+                    else if(b === "n-resize"){//北拉伸
+                        var val = stY - nY;
+                        obox.style.top = sttop - val + "px";
+                        obox.style.height = stheight + val + "px";
+                    }
+                    else if(b === "w-resize"){//西拉伸
+                        var val1 = stX - nX;
+                        obox.style.left = stleft - val1 + "px";
+                        obox.style.width = stwidth + val1 + "px";
+                    }
+                    else if(b === "ne-resize"){//东北拉伸
+                        obox.style.width = stwidth + nX -stX + "px";
+                        var val = stY - nY;
+                        obox.style.top = sttop - val + "px";
+                        obox.style.height = stheight + val + "px";
+
+                    }
+                    else if(b === "se-resize"){//东南拉伸
+                        obox.style.width = stwidth + nX -stX + "px";
+                        obox.style.height = stheight + nY - stY + "px";
+                    }
+                    else if(b === "nw-resize"){//西北拉伸
+                        var val = stY - nY;
+                        obox.style.top = sttop - val + "px";
+                        obox.style.height = stheight + val + "px";
+                        var val1 = stX - nX;
+                        obox.style.left = stleft - val1 + "px";
+                        obox.style.width = stwidth + val1 + "px";
+                    }
+                    else if(b === "sw-resize"){//西南拉伸
+                        var val1 = stX - nX;
+                        obox.style.left = stleft - val1 + "px";
+                        obox.style.width = stwidth + val1 + "px";
+                        obox.style.height = stheight + nY - stY + "px";
+                    }
+                }
+            };
+
+            //判断使用何种鼠标样式
+            function a(ev) {
+                ev = ev || window.event;//兼容ie
+
+                var swidth = obox.offsetWidth;//盒子宽
+                var sheight = obox.offsetHeight;//盒子高
+
+                var bl = obox.offsetLeft + swidth -10;//边框左位置
+                var br = obox.offsetLeft + 10; //边框右位置
+                var bt = obox.offsetTop + 10;//边框上位置
+                var bb = obox.offsetTop + sheight - 10;//边框下位置
+
+
+                var bx = ev.clientX;//鼠标X位置
+                var by = ev.clientY;//鼠标Y位置
+
+
+                if(bx >= bl){//东
+                    obox.style.cursor = "e-resize";
+                }
+                else if( bx <= br && bx >= obox.offsetLeft  ){//西
+                    obox.style.cursor = "w-resize";
+                }
+                else if(by >= bb){//南
+                    obox.style.cursor = "s-resize";
+                }
+                else if(by <= bt && by >= obox.offsetTop){//北
+                    obox.style.cursor = "n-resize";
+                }
+                else {
+                    obox.style.cursor = "Default";
+                }
+
+                if(by <= bt && by >= obox.offsetTop && bx >= bl){//东北
+                    obox.style.cursor = "ne-resize";
+                    // console.log(1);
+                }
+                else if(bx >= bl && by >= bb){//东南
+                    obox.style.cursor = "se-resize";
+                }
+                else if(by <= bt && by >= obox.offsetTop && bx <= br && bx >= obox.offsetLeft){//西北
+                    obox.style.cursor = "nw-resize";
+                }
+                else if(by >= bb && bx <= br && bx >= obox.offsetLeft){//西南
+                    obox.style.cursor = "sw-resize";
+                }
+                return obox.style.cursor;
+            }
+
+            //文档松开
+            document.onmouseup = function () {
+                obox.onmousemove = a;
+            };
+        </script>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+        </style>
+    </head>
+    <body>
+        <div id="box" class="aa aa cc dd asd cc"></div>
+        <script>
+            var oBox = document.getElementById("box");
+
+            removeClass(oBox,"aa cc");
+
+            function removeClass(obj,str) {
+                var arr1 = obj.className.split(' ');//对原class进行分割存入数组
+                var arr2 = str.split(' ');//对字符串进行分割存入数组
+
+                for(var i = 0; i < arr2.length; i++){//循环数组
+                    for(var b = 0; b < arr1.length; b++){
+                        if(arr2[i] === arr1[b]){//如果值相等
+                            arr1.splice(b,1);//删除
+                            b--;
+                        }
+                    }
+                }
+                obj.className = arr1.join(' ');//连接字符串
+            }
+        </script>
+    </body>
+</html>

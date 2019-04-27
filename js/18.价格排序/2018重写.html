@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #box{margin:50px auto;width:1200px;}
+            .banner{margin-bottom:15px;}
+            .banner span{display:inline-block;width:70px;height:27px;text-align:center;line-height:27px;background:#50a1cd;color:#fff;cursor:pointer;}
+            li{float: left;margin:0 15px 15px 0;padding:10px;width:220px;height:350px;border:1px solid #50a1cd;}
+            img{width:220px;height:300px;}
+            li p{}
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <div class="banner">
+                <span>从低到高</span>
+                <span>从高到低</span>
+            </div>
+            <ul>
+<!--                <li>
+                    <img src="1.jpg" alt="1">
+                    <p>1商品</p>
+                    <span>1元</span>
+                </li>-->
+            </ul>
+        </div>
+        <script>
+            var obtn = document.querySelectorAll(".banner span");
+            var oul = document.querySelector("ul");
+            var arr = [
+                ["1.jpg","2商品","2元"],
+                ["2.jpg","3商品","3元"],
+                ["3.jpg","4商品","4元"],
+                ["1.jpg","5商品","5元"],
+                ["2.jpg","6商品","6元"],
+                ["3.jpg","7商品","7元"],
+                ["1.jpg","8商品","8元"],
+                ["2.jpg","9商品","9元"],
+                ["3.jpg","10商品","10元"]
+            ];
+            var len = arr.length;
+            var arr1 =[];
+
+
+            for(var i = 0; i < len; i++){
+                var ran = Math.floor(Math.random()*9);
+                oul.innerHTML += "<li><img src="+arr[ran][0]+"><p>"+arr[ran][1]+"</p><span>"+arr[ran][2]+"</span></li>";
+            }
+
+            var oimg = document.querySelectorAll("img");
+            var op = document.querySelectorAll("li p");
+            var ospan = document.querySelectorAll("li span");
+
+            for(var i = 0; i < ospan.length; i++){
+                arr1[i] = [];
+                arr1[i][0] = oimg[i].src;
+                arr1[i][1] = op[i].innerHTML;
+                arr1[i][2] = parseInt(ospan[i].innerHTML);
+            }//数据添加至数组
+
+            obtn[0].onclick = function f() {
+                arr1.sort(function (a,b) {
+                    return a[2] - b[2];
+                });
+                change();
+            };//从低到高排序
+
+            obtn[1].onclick = function f() {
+                arr1.sort(function (a,b) {
+                    return b[2] - a[2];
+                });
+                change();
+            };//从高到低排序
+
+            function change() {
+                oul.innerHTML = "";
+                for(var b = 0; b < len; b++){
+                    oul.innerHTML += "<li><img src="+arr1[b][0]+"><p>"+arr1[b][1]+"</p><span>"+arr1[b][2]+"元</span></li>";
+                }
+            }//重新添加排序后数据
+        </script>
+    </body>
+</html>

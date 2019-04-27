@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;user-select: none;}
+		    ul{list-style:none;}
+			.clearfix:after{content:'';display: block;clear: both;}
+			table{border-collapse:collapse;}
+			table,th,tr,td{padding:0;}
+			#box{
+				width:100%;
+			}
+			table{
+				margin:20px auto;
+			}
+			table tr{
+				text-align: center;
+			}
+			table tr.title {
+				height:50px;
+				background-color: #e57b8e;
+				color:#fff;
+			}
+			table tbody tr td{
+				width:250px;
+			}
+			table tbody tr td img{
+				width:100px;
+				height:100px;
+			}
+			table tbody tr td .down,table tbody tr td .up{
+				display:inline-block;
+				width:30px;
+				height:30px;
+				line-height:30px;
+				background-color: #cacaca;
+				cursor:pointer;
+			}
+			table tbody tr td .down{
+				margin-right:15px;
+			}
+			table tbody tr td .up{
+				margin-left: 15px;
+			}
+			#box .total{
+				margin:10px auto;
+				width:1000px;
+				height:50px;
+				background-color: #e57b8e;
+			}
+			#box .total p{
+				float:right;
+				margin-right:150px;
+				line-height: 50px;
+			}
+			#box .total p span{
+				color:#e5ee89;
+			}
+		</style>
+<body>
+    <div id="box">
+		<table border="1" bordercolor="#e57b8e">
+			<thead></thead>
+			<tbody>
+			<tr class="title">
+				<td>商品</td>
+				<td>单价</td>
+				<td>数量</td>
+				<td>小计</td>
+			</tr>
+			<tr>
+				<td><img src="img/shop1.jpg"></td>
+				<td class="danjia">8</td>
+				<td><span class="down">-</span><span class="num">0</span><span class="up">+</span></td>
+				<td><span class="price">0</span></td>
+			</tr>
+			<tr>
+				<td><img src="img/shop2.jpg"></td>
+				<td class="danjia">10</td>
+				<td><span class="down">-</span><span class="num">0</span><span class="up">+</span></td>
+				<td><span class="price">0</span></td>
+			</tr>
+			<tr>
+				<td><img src="img/shop3.jpg"></td>
+				<td class="danjia">12.5</td>
+				<td><span class="down">-</span><span class="num">0</span><span class="up">+</span></td>
+				<td><span class="price">0</span></td>
+			</tr>
+			<tr>
+				<td><img src="img/shop4.jpg"></td>
+				<td class="danjia">23</td>
+				<td><span class="down">-</span><span class="num">0</span><span class="up">+</span></td>
+				<td><span class="price">0</span></td>
+			</tr>
+			</tbody>
+		</table>
+		<div class="total clearfix">
+			<p class="totalprice">合计价格是:<span>0</span>￥</p>
+			<p class="totalnum">合计总数是:<span>0</span>个</p>
+		</div>
+	</div>
+    <script>
+		var down =document.querySelectorAll(".down"),
+			up = document.querySelectorAll(".up"),
+			anum = document.querySelectorAll(".num"),
+			adanjia = document.querySelectorAll(".danjia"),
+			aprice = document.querySelectorAll(".price"),
+			atotalnum = document.querySelector(".total .totalnum span"),
+            atotalprice = document.querySelector(".total .totalprice span"),
+			length = down.length;
+
+		for(var i =0;i<length;i++){
+		    down[i].index = i;
+		    up[i].index = i;
+		    down[i].onclick = function(){
+                cc(this,true);
+            };
+            up[i].onclick = function(){
+				cc(this,false);
+            };
+		}
+		function change(k,num){
+			aprice[k].innerHTML =adanjia[k].innerHTML*num;
+
+			var totalnum =0;
+			var totalprice =0;
+			for(var i =0;i<length;i++){
+			    totalnum += anum[i].innerHTML*1;
+                totalprice += aprice[i].innerHTML*1;
+			}
+			atotalnum.innerHTML= totalnum;
+			atotalprice.innerHTML =totalprice;
+		}
+		function cc(This,bool) {
+            var num=anum[This.index].innerHTML*1;
+			if(bool)
+			{
+			    num--;
+			    num=Math.max(num,0);
+			}
+			else{
+			    num++;
+			}
+            anum[This.index].innerHTML = num;
+            change(This.index,num);
+        }
+	</script>
+</body>
+</html>

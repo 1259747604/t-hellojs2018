@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            html,body{
+                width:100%;
+                height:100%;
+            }
+            body{
+                overflow: hidden;
+            }
+            #topnav{
+                position: fixed;
+                top:26px;
+                width: 100%;
+                height: 47px;
+                z-index: 2;
+            }
+            #topnav i{
+                float: left;
+                margin-left: 60px;
+                width:226px;
+                height:47px;
+                background: url("img/TTlogo.png") no-repeat center center/contain;
+            }
+            #topnav ul{
+                position: relative;
+                float: right;
+                margin-right: 60px;
+            }
+            #topnav ul li{
+                float: left;
+                margin-left: 40px;
+                padding: 8px;
+            }
+            #topnav ul li a{
+                font-size: 15px;
+                color:rgba(255,255,255,.5);
+                text-decoration: none;
+            }
+            #topnav ul li:hover a{
+                color:rgba(255,255,255,.8);
+            }
+            #topnav ul li.over{
+                position: absolute;
+                top:3px;
+                left:33px;
+                margin: 0;
+                padding: 0;
+                width:58px;
+                height:28px;
+                border: 1px solid #ffffff;
+                border-radius: 15px;
+                z-index: -1;
+            }
+            #content{
+                position: absolute;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+            }
+            #content ul{
+                position: absolute;
+                top:0;
+                left:0;
+                width: 100%;
+                height: 100%;
+            }
+            #content ul li{
+                width: 100%;
+                height: 100%;
+                background: no-repeat center center;
+                background-attachment: fixed;
+            }
+            #content ul li:nth-child(1){
+                background-image: url("img/1.jpg");
+            }
+            #content ul li:nth-child(2){
+                background-image: url("img/2.jpg");
+            }
+            #content ul li:nth-child(3){
+                background-image: url("img/3.jpg");
+            }
+            #content ul li:nth-child(4){
+                background-image: url("img/4.jpg");
+            }
+            #leftnav{
+                position: fixed;
+                top:50%;
+                left:60px;
+                margin-top: -162px;
+                width:100px;
+                height:324px;
+                background: url("img/nav.png") no-repeat;
+            }
+            #leftnav ul{
+                margin-top: 6px;
+            }
+            #leftnav ul li{
+                margin-bottom: 57px;
+                padding-left: 40px;
+                font-size: 15px;
+                color: #ffffff;
+                cursor: pointer;
+            }
+            #leftnav ul li.on{
+                background: url("img/nav_cur.png") no-repeat;
+                color:#05C677;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="topnav">
+            <i></i>
+            <ul>
+                <li><a href="">首页</a></li>
+                <li><a href="">常见问题</a></li>
+                <li><a href="">论坛</a></li>
+                <li><a href="">进入官网 >></a></li>
+                <li class="over"></li>
+            </ul>
+        </div>
+        <div id="content">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div id="leftnav">
+            <ul>
+                <li>左侧切换</li>
+                <li>左侧切换</li>
+                <li>左侧切换</li>
+                <li>左侧切换</li>
+            </ul>
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+        <script>
+            $(function () {
+                var $nav = $("#topnav"),
+                    $nLi = $nav.find("ul li").not(".over"),
+                    $nOver = $nav.find(".over");
+                var sw = $nOver.outerWidth(),
+                    w = sw - $nLi.outerWidth();
+                var sl = $nOver.position().left,
+                    l = sl - $nLi.position().left
+
+
+                var $content = $("#content"),
+                    $pLi = $content.find("ul li"),
+                    $liParent = $pLi.parent(),
+                    Height = $(window).height(),
+                    length = $pLi.length;
+
+                var $lNav = $("#leftnav"),
+                    $lLi = $lNav.find("ul li");
+                var index = 0;
+                var laseTime = 0;
+
+                window.onresize = function () {
+                    Height = $(window).height();
+                    $liParent.css({
+                        top:-index*Height
+                    });
+                }
+
+
+                //初始化
+                $lLi.eq(0).addClass("on");
+                document.onselectstart = function(){
+                    return false;
+                }
+
+                //鼠标移入
+                $nLi.mouseenter(function () {
+                    var width = $(this).outerWidth() + w,
+                        left = $(this).position().left+l;
+
+                    $nOver.stop().animate({
+                        width:width,
+                        left:left
+                    })
+                })
+                $nav.mouseleave(function () {
+                    $nOver.stop().animate({
+                        width:sw,
+                        left:sl
+                    })
+                })
+
+                //鼠标滚动
+                $(document).mousewheel(function (e,d) {
+                    console.log($(document).mousewheel);
+                    if(new Date - laseTime > 800){
+                        var x = index;
+                        if(d<0){
+                            x++;
+                            x %= length;
+                        }
+                        else{
+                            x--;
+                            if(x < 0)x = length-1;
+                        }
+                        change(x);
+                        laseTime = new Date();
+                    }
+                })
+
+                //点击
+                $lLi.click(function () {
+                    var x = $(this).index();
+                    if ( x !== index ){
+                        change(x);
+                    }
+                })
+
+                function change(x) {
+                    $liParent.stop().animate({
+                        top:-x*Height
+                    },500);
+                    index = x;
+                    $lLi.removeClass().eq(index).addClass("on");
+                }
+            })
+        </script>
+    </body>
+</html>

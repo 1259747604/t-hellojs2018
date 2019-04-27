@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			a{text-decoration:none;}
+			body{background: -webkit-linear-gradient(left,#293146,#d8aaa2);}
+			.wrap{width:700px;height:500px;margin:100px auto;}
+			[type="text"]{margin-top:100px;width:200px;height:30px;outline: none;background: none;border:1px solid #d84677;border-top:none;border-radius:20px;color:#7a9c84}
+			[type]:nth-of-type(1){margin-right:50px;}
+			[type="button"]{width:70px;height: 30px;border-radius: 10px;border:1px solid #383b5d;background: none;color: #3ca4d8;outline:none;cursor:pointer;transition:2s linear;}
+			[type]:nth-of-type(3){margin:0 30px 0 20px;}
+			[type="button"]:hover{background: #394e5d;color: #aba782;}
+			p{margin-top: 20px;text-indent:2em;line-height:25px;color: #45b4a1}
+			span{color:#b42465;}
+		</style>
+<body>
+		<div class="wrap">
+			<input type="text" id="texto">
+			<input type="text" id="textt">
+			<input type="button" value="查询" id="btn1">
+			<input type="button" value="替换" id="btn2">
+			<p id="p1">别堆砌怀念让剧情变得狗血深爱了多年又何必毁了经典都已成年不拖不欠浪费时间是我情愿像谢幕的演员眼看着灯光熄灭来不及再轰轰烈烈就保留告别的尊严我爱你不后悔也尊重故事结尾分手应该体面谁都不要说抱歉何来亏欠我敢给就敢心碎镜头前面是从前的我们在喝彩流着泪声嘶力竭离开也很体面才没辜负这些年爱得热烈认真付出的画面别让执念毁掉了昨天我爱过你利落干脆最熟悉的街主角却换了人演我哭到哽咽心再痛就当破茧来不及再轰轰烈烈就保留告别的尊严我爱你不后悔也尊重故事结尾分手应该体面谁都不要说抱歉何来亏欠我敢给就敢心碎镜头前面是从前的我们在喝彩流着泪声嘶力竭离开也很体面才没辜负这些年爱得热烈认真付出的画面别让执念毁掉了昨天我爱过你利落干脆再见不负遇见</p>
+		</div>
+		<script>
+            var textone = document.getElementById("texto");
+            var texttwo = document.getElementById("textt");
+            var btn = document.querySelectorAll("[type=button]");
+            var pp = document.getElementById("p1");
+            var textstr = '';
+            var textstr1 = '';
+
+            for(var i = 0;i<btn.length;i++){
+                btn[i].index = i;
+                btn[i].onclick = function(){
+                    var a;
+//                    this.index?a=this.index:a=this.index;
+                    a = this.index;
+					aaa(a);
+				}
+			}
+            function aaa(a) {
+                var arr;
+                var ppp = pp.innerHTML;                                  //获取文本内容
+                textstr = textone.value;								 //获取输入框1的内容
+                arr = ppp.split(textstr);								 //以textstr为关键字切割文本
+                if(a){													 //如果为替换
+                    textstr1 = texttwo.value;							 //第二个输入框值给到textstr1
+                    pp.innerHTML = arr.join(textstr1);                   //文本内容靠第二个输入框的值连接
+                    var cc = pp.innerHTML;								 //获得当前文本的内容
+                    var textstr2 = '<span>'+textstr1+'</span>';			 //获取值用于切割
+                    arr = cc.split(textstr2);							 //以textstr2切割文本
+                    pp.innerHTML = arr.join(textstr1);					 //以textstr1连接文本
+				}
+				else{
+                    pp.innerHTML = arr.join('<span>'+textstr+'</span>'); //否则为查询，以textstr连接文本
+				}
+            }
+		</script>
+</body>
+</html>

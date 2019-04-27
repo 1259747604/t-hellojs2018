@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #box{margin:50px auto;width:500px;height:500px;}
+            #square{position:relative;margin:50px auto;width:300px;height:300px;border:1px solid #2ccdc9;}
+            #round{position:absolute;left:50%;margin-left:-7.5px;margin-top:-7.5px;width:15px;height:15px;background:#cd4761;border-radius:50%;}
+            i{position:absolute;width:2px;height:2px;border-radius:50%;background:#74cccd;}
+            #wrap{position:relative;width:300px;height:300px;}
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <div id="square">
+                <span id="round"></span>
+                <div id="wrap"></div>
+            </div>
+        </div>
+        <script>
+            var tsquare = document.getElementById("square");
+            var twrap = document.getElementById("wrap");
+            var tround = document.getElementById("round");
+            var deg = 0;
+            var c = 150;
+
+            var time = setInterval(function () {
+                deg += 3;
+                var rad = deg;
+
+                var a = Math.sin(rad*Math.PI/180)*c;
+                var b = Math.cos(rad*Math.PI/180)*c;
+
+                var rangea = c+b;
+                var rangeb = c-a;
+                tround.style = "left:"+rangea+"px;top:"+rangeb+"px";
+                if ( deg <= 360 ){
+                    twrap.innerHTML += "<i style='left:"+rangea+"px;top:"+rangeb+"px'></i>"
+                }
+            },13);
+        </script>
+    </body>
+</html>

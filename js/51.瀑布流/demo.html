@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #box{
+                margin: 50px auto;
+                width:835px;
+                border:1px solid;
+                overflow: hidden;
+            }
+            #box ul{
+                width: 1000%;
+            }
+            #box ul li{
+                float: left;
+                margin-right: 15px;
+                width:267px;
+                border: 1px solid #ddd;
+            }
+            #box ul li > div{
+                margin-bottom: 15px;
+            }
+            #box ul li .cImg img{
+                width: 100%;
+            }
+            #box ul li .cImg a{
+                display: block;
+                padding: 0 10px;
+                text-decoration: none;
+                color:#000000;
+            }
+            #box ul li .cImg a:hover{
+                color: #da3552;
+            }
+            #box ul li .info{
+                width: 100%;
+                height:40px;
+                background: #dddddd;
+            }
+            #box ul li .info span{
+                float: left;
+                width:185px;
+                line-height: 40px;
+                border-right: 1px solid #bbbbbb;
+            }
+            #box ul li .info p{
+                float: left;
+                padding: 8px;
+            }
+            #box ul li .info p a{
+                color: #000000;
+                text-decoration: none;
+            }
+            #box ul li .info p a:hover{
+                color: #da3552;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li>
+<!--                    <div>
+                        <div class="cImg">
+                            <img src="img/1.jpg" alt="">
+                            <a href="" class="content">你们男神都爱的倪妮 就是个大写的美好</a>
+                        </div>
+                        <div class="info">
+                            <span class="shelfTime">2016/3/18/20:00</span>
+                            <p class="ca">
+                                <a href="">阅读全文</a>
+                            </p>
+                        </div>
+                    </div>-->
+                </li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="data.js"></script>
+        <script>
+            let $box = $("#box"),
+                $Li = $box.find("li");
+
+            let[index,maxLength] = [0,imgData.length];
+            fLoad(10);
+
+            $(window).scroll(function () {
+                if(index > maxLength)return;
+                let maxTop = $(document).scrollTop()+$(this).height();
+                if(maxTop > $box.offset().top+$box.height()){
+                    fLoad(10);
+                }
+            });
+
+            function fLoad(num) {
+                let length = num +index;
+                length = Math.min(length , maxLength);
+                add();
+                function add() {
+                    if(index > length - 1)return;
+
+                    let data = imgData[index],
+                        newImg = new Image();
+                        newImg.src = data.src;
+                    newImg.onload = function () {
+                        let odiv = `<div>
+                               <div class=cImg>
+                                   <img src=${data.src} alt>
+                                   <a href class=content>${data.dec}</a>
+                               </div>
+                                <div class=info>
+                                    <span class=shelfTime>${data.time}</span>
+                                    <p class=ca>
+                                        <a href>阅读全文</a>
+                                   </p>
+                               </div>
+                            </div>`;
+                        $(odiv).css("display" , "none");
+                        short().append(odiv);
+                        $(odiv).fadeIn();
+                        index ++;
+                        add();
+                    }
+                }
+            }
+            
+            function short() {
+                let obj;
+                let s = 999999;
+                $Li.each(function () {
+                    if($(this).height() < s){
+                        s = $(this).height();
+                        obj = $(this);
+                    }
+                })
+                return obj;
+            }
+        </script>
+    </body>
+</html>

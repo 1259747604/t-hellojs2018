@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			ul{margin: 20px auto;width: 1000px;}
+			li{width:1000px;height: 40px;line-height: 40px;text-align: center;}
+			li#oneli{background: #936a78;}
+			li:nth-child(odd){background: #e3c7a6;}
+			li:nth-child(even){background:#9cdae3;}
+			li#oneli > span{font-size:25px;}
+			li > span{float:left;width:250px;}
+			li:not(#oneli):hover{opacity: .8;}
+		</style>
+<body>
+    <div>
+		<ul>
+			<li id="oneli"></li>
+		</ul>
+	</div>
+    <script>
+		var fli = document.getElementById('oneli');
+		var oul = document.getElementsByTagName('ul')[0];
+
+		var arr = [
+		    {"name" : "于文文", "song" : "体面", "date" : "不知道", "des" : "体面歌词"},
+		    {"name" : "Jam", "song" : "七月上", "date" : "好久之前", "des" : "七月上歌词"},
+		    {"name" : "不才", "song" : "花枝春野", "date" : "我这么清楚", "des" : "你猜"},
+		    {"name" : "庄心妍", "song" : "再见只是陌生人", "date" : "管他呢", "des" : "也许我错过幸福的时分"},
+		    {"name" : "伍佰", "song" : "突然的自我", "date" : "我估计没出生", "des" : "那就不要留"},
+		    {"name" : "周杰伦", "song" : "双节棍", "date" : "2003年左右", "des" : "快使用双节棍"},
+		    {"name" : "wanna one", "song" : "pick me", "date" : "2017年", "des" : "pick me pick me"},
+		    {"name" : "权娜拉", "song" : "我老婆", "date" : "我老婆", "des" : "我老婆"}
+		 ];
+		var str = "";
+/*		for(var i = 0;i<arr.length;i++){
+            	oul.innerHTML += '<li><span>'+arr[i]["name"]+'</span><span>'+arr[i]["song"]+'</span><span>'+arr[i]["date"]+'</span><span>'+arr[i]["des"]+'</span></li>';
+		}*/
+		fli.innerHTML = "<span>歌手</span><span>歌名</span><span>发布日期</span><span>歌词</span>";
+        for(var i = 0;i<arr.length;i++){
+            str +='<li>';
+            for(var key in arr[i]){
+//                console.log(key);
+				str += '<span>'+arr[i][key]+'</span>';
+			}
+			str += '</li>';
+        }
+        oul.innerHTML += str;
+	</script>
+</body>
+</html>

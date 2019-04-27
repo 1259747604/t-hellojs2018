@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			#wrap{
+				position:relative;
+				margin:100px auto;
+				padding:50px;
+				width:400px;
+				height:400px;
+				border:1px solid red;
+			}
+			.headnav p{
+				display:inline-block;
+				width:100px;
+			    line-height:40px;
+				text-align:center;
+				background:#ccccff;
+			}
+			
+			.headnav .pp{
+				background:#66ffff;
+			}
+			.pic{
+				position:relative;
+				width:400px;
+				height:300px;
+			}
+			img{
+				position:absolute;
+				display:none;
+				width:400px;
+				height:300px;
+				z-index:1;
+			}
+			.on{
+				display: block;
+			}
+			#p1,#p2,#p3,#p4{
+				position:absolute;
+				z-index:2;
+			}
+			#p1{
+				top:0;
+				left:0;
+				width:400px;
+				line-height:30px;
+				background:rgba(0,0,0,.5);
+				color:white;
+				text-align:center;
+			}
+			#p2{
+				top:270px;
+				left:0;
+				width:400px;
+				line-height:30px;
+				background:rgba(0,0,0,.5);
+				color:white;
+				text-align:center;				
+			}
+			#p3{
+				top:50%;
+				left:0;
+				margin-top:-15px;
+				width:70px;
+				line-height:30px;
+				background:rgba(0,0,0,.5);
+				color:white;
+				text-align:center;	
+			}
+			#p3:active{
+				background:rgba(255,0,0,.5);
+			}
+			#p4:active{
+				background:rgba(255,0,0,.5);
+			}
+			#p4{
+				top:50%;
+				right:0;
+				margin-top:-15px;
+				width:70px;
+				line-height:30px;
+				background:rgba(0,0,0,.5);
+				color:white;
+				text-align:center;	
+			}
+		</style>
+	</head>
+<body>
+	<div id='wrap'>
+		<div class='headnav'>
+			<p>循环播放</p>
+			<p>单边播放</p>
+		</div>
+		<div class='pic'>
+			<p id='p1'><span>1</span>/6</p>
+			<img src='images/1.jpg'  class='on'/>
+			<img src='images/2.jpg' />
+			<img src='images/3.jpg' />
+			<img src='images/4.jpg' />
+			<img src='images/5.jpg' />
+			<img src='images/6.jpg' />
+			<p id='p2'>第<span>一</span>张图片</p>
+			<div class="btn">
+				<p id='p3'>上一张</p>
+				<p id='p4'>下一张</p>
+			</div>
+		</div>
+	</div>
+	<script>
+			var clicknav = document.querySelectorAll(".headnav p"),
+				pic = document.querySelector(".pic"),
+				p = pic.querySelectorAll(".pic p"),
+                btn = pic.querySelectorAll(".pic .btn p"),
+				sp = document.querySelectorAll(".pic p span"),
+				Info = pic.querySelectorAll(".pic p span"),
+				img = document.querySelectorAll(".pic img"),
+				xx = 0,
+				length = img.length,
+				flag = true,
+				arr = ["一" , "二" , "三" , "四" , "五" , "六"];
+			
+			clicknav[0].onclick = function(){
+				this.className = "pp";
+				clicknav[1].className = "";
+				flag = true;
+			};
+			clicknav[1].onclick = function(){
+				this.className = "pp";
+				clicknav[0].className = "";
+				flag = false;
+			};
+			btn[1].onclick = function(){
+
+				img[xx].className = "";
+				xx++;
+
+				if(xx > length-1)
+				{
+					if(flag)
+					{
+						xx = 0;
+					}
+					else{
+						alert("已经到头了");
+						xx = length -1;
+					}
+				}
+				img[xx].className = "on";
+				Info[0].innerHTML = xx+1;
+				Info[1].innerHTML = arr[xx];
+
+			};
+			btn[0].onclick = function(){
+				img[xx].className = "";
+				xx--;
+				if(xx < 0)
+				{
+					if(flag)
+					{
+						xx =length -1;
+					}
+					else{
+						xx = 0;
+						alert("已经到头了");
+						
+					}
+				}
+				img[xx].className = "on";
+				Info[0].innerHTML = xx+1;
+				Info[1].innerHTML = arr[xx];
+
+			};
+	</script>
+	
+</body>
+</html>

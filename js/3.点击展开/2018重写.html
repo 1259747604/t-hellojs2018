@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="TT">
+		 <!-- 简介描述 -->
+		<meta name="description" content="TT">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			#box{margin:50px auto;width:250px;height:600px;}
+			li{width:200px;height:50px;overflow:hidden;transition:.5s;}
+			li:nth-last-child(1){width:200px;height:1px;border-top:1px solid #fe2b59;}
+			p{width:200px;height:50px;}
+			ul li p:nth-child(1){background:#fe2b59;}
+		</style>
+<body>
+    <div id="box">
+		<ul>
+			<li>
+				<p>1</p>
+				<p>11</p>
+				<p>111</p>
+			</li>
+			<li>
+				<p>2</p>
+				<p>22</p>
+				<p>222</p>
+			</li>
+			<li>
+				<p>3</p>
+				<p>33</p>
+				<p>333</p>
+			</li>
+			<li></li>
+		</ul>
+	</div>
+    <script>
+		var oLi = document.getElementsByTagName('li'); //获取页面li元素
+		var pd = 0;    //定义全局变量
+
+		for(var i = 0; i < oLi.length; i++){   //循环所有li标签
+            oLi[i].index = i;                   //设置自定义属性
+            oLi[i].p = 1;					    //自定义属性用于判断是否点击了两次
+		    oLi[i].onclick = function () {     //点击li标签
+                oLi[pd].style.height = "50px";  //前一个li标签内容隐藏
+				if(this.p){					    //如果为真代表点击第一次
+                    //this.style.height = "auto";//当前li标签展开,此写法没有transitio效果
+                    this.style.height = "150px";//当前li标签展开
+                    oLi[pd].p = 1;              //上一个li标签给到默认值1
+                    this.p = 0;                //当前值给到0
+				}
+				else{
+                    this.style.height = "50px";//当前li收起来
+                    //oLi[pd].p = 0;
+                    this.p = 1;					//当前值给到1
+				}
+				pd = this.index;               //当前值给到全局变量
+            };
+		}
+	</script>
+</body>
+</html>

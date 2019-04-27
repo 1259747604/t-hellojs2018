@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="TT">
+		 <!-- 简介描述 -->
+		<meta name="description" content="TT">
+		<style>
+		    *{margin:0;padding:0;}
+			body{user-select:none;}
+		    ul{list-style:none;}
+			span{font-size:20px;}
+			[type="text"]{display:none;width:270px;height:40px;border:1px solid #fe753b;}
+			p{display:inline-block;width:50px;height:40px;background:black;line-height:40px;text-align:center;color:white;font-size:20px;cursor:pointer;}
+		</style>
+	</head>
+    <body>
+        <div id="box">
+			<ul>
+				<li>
+					<span>one</span>
+					<input type="text">
+					<p>修改</p>
+				</li>
+				<li>
+					<span>two</span>
+					<input type="text">
+					<p>修改</p>
+				</li>
+				<li>
+					<span>three</span>
+					<input type="text">
+					<p>修改</p>
+				</li>
+			</ul>
+		</div>
+        <script>
+			var oinp = document.getElementsByTagName('input');
+			var ospan = document.getElementsByTagName('span');
+			var op = document.getElementsByTagName('p');
+
+			for(var i = 0; i < op.length; i++){
+			    op[i].flag = true;
+			    op[i].index = i;
+			    op[i].onclick = function () {
+			        // this.flag?this.innerHTML = "确认":this.innerHTML = "修改";
+			        if(this.flag){
+			            this.innerHTML = "确认";
+			            oinp[this.index].style.display = "inline-block";
+					}
+					else{
+			            this.innerHTML = "修改";
+                        oinp[this.index].style.display = "none";
+					}
+					this.flag = !this.flag;
+                }
+			}
+		</script>
+    </body>
+</html>

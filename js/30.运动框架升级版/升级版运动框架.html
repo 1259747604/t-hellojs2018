@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #box{position:absolute;left:0;top:0;width:50px;height:50px;background:#74cccd;opacity:1;}
+        </style>
+    </head>
+    <body>
+    <div id="box"></div>
+   <!-- <script type="text/javascript" src="Tween.js"></script>-->
+
+    <!--Tween参数
+        @    t:  已经过了多长时间
+             b:  初始值
+             c:  总路程
+             d:  总持续时
+    -->
+    <script>
+        var oBox = document.getElementById("box");
+
+        /*使用方法
+            可传参数
+            @obj  变化的元素
+            @json json形式的预期改变样式
+            @endtime 总共花费时间
+            @type 运动曲线1-15  可省略
+            @callback  回调函数 可省略
+        */
+        (function () {
+            var Tween = {
+                linear: function (t, b, c, d){  //匀速
+                    return c*t/d + b;
+                },
+                easeIn: function(t, b, c, d){  //加速曲线
+                    return c*(t/=d)*t + b;
+                },
+                easeOut: function(t, b, c, d){  //减速曲线
+                    return -c *(t/=d)*(t-2) + b;
+                },
+                easeBoth: function(t, b, c, d){  //加速减速曲线
+                    if ((t/=d/2) < 1) {
+                        return c/2*t*t + b;
+                    }
+                    return -c/2 * ((--t)*(t-2) - 1) + b;
+                },
+                easeInStrong: function(t, b, c, d){  //加加速曲线
+                    return c*(t/=d)*t*t*t + b;
+                },
+                easeOutStrong: function(t, b, c, d){  //减减速曲线
+                    return -c * ((t=t/d-1)*t*t*t - 1) + b;
+                },
+                easeBothStrong: function(t, b, c, d){  //加加速减减速曲线
+                    if ((t/=d/2) < 1) {
+                        return c/2*t*t*t*t + b;
+                    }
+                    return -c/2 * ((t-=2)*t*t*t - 2) + b;
+                },
+                elasticIn: function(t, b, c, d, a, p){  //正弦衰减曲线（弹动渐入）
+                    if (t === 0) {
+                        return b;
+                    }
+                    if ( (t /= d) == 1 ) {
+                        return b+c;
+                    }
+                    if (!p) {
+                        p=d*0.3;
+                    }
+                    if (!a || a < Math.abs(c)) {
+                        a = c;
+                        var s = p/4;
+                    } else {
+                        var s = p/(2*Math.PI) * Math.asin (c/a);
+                    }
+                    return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+                },
+                elasticOut: function(t, b, c, d, a, p){    //正弦增强曲线（弹动渐出）
+                    if (t === 0) {
+                        return b;
+                    }
+                    if ( (t /= d) == 1 ) {
+                        return b+c;
+                    }
+                    if (!p) {
+                        p=d*0.3;
+                    }
+                    if (!a || a < Math.abs(c)) {
+                        a = c;
+                        var s = p / 4;
+                    } else {
+                        var s = p/(2*Math.PI) * Math.asin (c/a);
+                    }
+                    return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+                },
+                elasticBoth: function(t, b, c, d, a, p){
+                    if (t === 0) {
+                        return b;
+                    }
+                    if ( (t /= d/2) == 2 ) {
+                        return b+c;
+                    }
+                    if (!p) {
+                        p = d*(0.3*1.5);
+                    }
+                    if ( !a || a < Math.abs(c) ) {
+                        a = c;
+                        var s = p/4;
+                    }
+                    else {
+                        var s = p/(2*Math.PI) * Math.asin (c/a);
+                    }
+                    if (t < 1) {
+                        return - 0.5*(a*Math.pow(2,10*(t-=1)) *
+                            Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+                    }
+                    return a*Math.pow(2,-10*(t-=1)) *
+                        Math.sin( (t*d-s)*(2*Math.PI)/p )*0.5 + c + b;
+                },
+                backIn: function(t, b, c, d, s){     //回退加速（回退渐入）
+                    if (typeof s == 'undefined') {
+                        s = 1.70158;
+                    }
+                    return c*(t/=d)*t*((s+1)*t - s) + b;
+                },
+                backOut: function(t, b, c, d, s){
+                    if (typeof s == 'undefined') {
+                        s = 3.70158;
+                    }
+                    return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+                },
+                backBoth: function(t, b, c, d, s){
+                    if (typeof s == 'undefined') {
+                        s = 1.70158;
+                    }
+                    if ((t /= d/2 ) < 1) {
+                        return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
+                    }
+                    return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
+                },
+                bounceIn: function(t, b, c, d){    //弹球减振（弹球渐出）
+                    return c - Tween['bounceOut'](d-t, 0, c, d) + b;
+                },
+                bounceOut: function(t, b, c, d){
+                    if ((t/=d) < (1/2.75)) {
+                        return c*(7.5625*t*t) + b;
+                    } else if (t < (2/2.75)) {
+                        return c*(7.5625*(t-=(1.5/2.75))*t + 0.75) + b;
+                    } else if (t < (2.5/2.75)) {
+                        return c*(7.5625*(t-=(2.25/2.75))*t + 0.9375) + b;
+                    }
+                    return c*(7.5625*(t-=(2.625/2.75))*t + 0.984375) + b;
+                },
+                bounceBoth: function(t, b, c, d){
+                    if (t < d/2) {
+                        return Tween['bounceIn'](t*2, 0, c, d) * 0.5 + b;
+                    }
+                    return Tween['bounceOut'](t*2-d, 0, c, d) * 0.5 + c*0.5 + b;
+                }
+            };
+            function uniformspeed(obj,json,endTime,type,callback) {
+                window.requestAnimationFrame = window.requestAnimationFrame || function (a) { return setTimeout(a,1000/60) };//兼容低版本IE动画
+                window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;//兼容低版本IE
+                var cleartimer = {} ;//创建json新对象 用于外部清除对应定时器
+                var typename;//运动曲线名称;
+                
+                if(typeof type === "function"){//如果type类型为函数，即type没有传，传入了callback
+                    callback = type; //赋值给callback
+                    typename = "linear";//默认匀速
+                }
+                else{
+                    /*type = type||"linear";    //如果为空默认为匀速*/
+                    switch (type){//数字对应运动曲线
+                        case 1: typename = "linear";
+                                break;
+                        case 2: typename = "easeIn";//加速曲线
+                                break;
+                        case 3: typename = "easeOut";//减速曲线
+                                break;
+                        case 4: typename = "easeBoth";//加速减速曲线
+                                break;
+                        case 5: typename = "easeInStrong";//减减速曲线
+                                break;
+                        case 6: typename = "easeBothStrong";//加加速减减速曲线
+                                break;
+                        case 7: typename = "elasticIn";//正弦衰减曲线（弹动渐入）
+                                break;
+                        case 8: typename = "elasticOut";//正弦增强曲线（弹动渐出）
+                                break;
+                        case 9: typename = "elasticBoth";//正弦衰减增强曲线
+                                break;
+                        case 10: typename = "backIn";//回退加速（回退渐入）
+                                break;
+                        case 11: typename = "backOut";//回退减速
+                                break;
+                        case 12: typename = "backBoth";//回退加速减速
+                                break;
+                        case 13: typename = "bounceIn";//弹球减振（弹球渐出）
+                                break;
+                        case 14: typename = "bounceOut";
+                                break;
+                        case 15: typename = "bounceBoth";
+                                break;
+                        default : typename = "linear";
+                    }
+                }
+
+                var cssjson = obj.currentStyle || window.getComputedStyle(obj) ;//兼容低版本IE的样式获取
+
+                var startPosition = {};//对象初始数值
+                var endPosition = {};//对象结束数值
+
+                for(var key in json){//遍历
+                    startPosition[key] = parseFloat(cssjson[key]);//原数值强制取余后存入json中
+                    endPosition[key] = json[key] - startPosition[key];//需要改变的数值存入json中
+                    if(!endPosition){//如果数值不改变即为0为假
+                        delete startPosition[key];//删除该键值
+                        delete endPosition[key];//删除该键值
+                    }
+                }
+
+                var starttime = new Date(); //获取起始时间
+
+
+                (function change() {
+                    var aftertime = new Date() - starttime;//经过了多长时间
+                    aftertime >= endTime?aftertime = endTime:cleartimer.timer=requestAnimationFrame(change);
+
+                    for(var key in endPosition){
+                        var s = Tween[typename](aftertime,startPosition[key],endPosition[key],endTime);//经过的距离
+                        if(key === "opacity"){//兼容低版本ie透明度
+                            obj.style[key] = s;
+                            obj.style.filter = "alpha(opacity="+s*100+")";
+                        }
+                        else{
+                            obj.style[key] = s+"px";
+                        }
+                    }
+                    if(aftertime === endTime) callback && callback.call(obj);//回调函数
+                })();//先自执行一次函数使得函数可运行
+                return cleartimer;//返回用于外部清除定时器
+            }
+            window.uniformspeed = uniformspeed;//使得函数可以全局使用
+            return uniformspeed;//如果函数名已经被其他函数占用 可使用此方法返回函数使用
+        })();//运动框架封装
+
+       var a =  uniformspeed(oBox,{left:1000,top:500,width:500,height:300,opacity:0.1},5000,15);
+
+        document.onclick = function () { cancelAnimationFrame(a.timer)}//点击网页停止动画
+    </script>
+    </body>
+</html>

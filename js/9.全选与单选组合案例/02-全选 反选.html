@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            ul{
+                overflow: hidden;
+            }
+            li{
+                float: left;
+                margin-right: 20px;
+            }
+            p span{
+                display: inline-block;
+                padding: 5px 10px;
+                background: #f60;
+                color: #fff;
+                font-size: 12px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+
+            <ul>
+                <li><input type="checkbox" id="inp1"><label for="inp1">西瓜</label></li>
+                <li><input type="checkbox" id="inp2"><label for="inp2">苹果</label></li>
+                <li><input type="checkbox" id="inp3"><label for="inp3">梨子</label></li>
+                <li><input type="checkbox" id="inp4"><label for="inp4">葡萄</label></li>
+                <li><input type="checkbox" id="inp5"><label for="inp5">香蕉</label></li>
+                <li><input type="checkbox" id="inp6"><label for="inp6">百香果</label></li>
+                <li><input type="checkbox" id="inp7"><label for="inp7">榴莲</label></li>
+                <li><input type="checkbox" id="inp8"><label for="inp8">芒果</label></li>
+            </ul>
+
+            <p>
+                <span>全选</span>
+                <span>反选</span>
+                <span>清空</span>
+            </p>
+        </div>
+        <script>
+
+            var aInp = document.querySelectorAll("#box ul li input");
+            var aBtn = document.querySelectorAll("#box p span"),
+                length = aInp.length;
+
+            //全选
+            aBtn[0].onclick = function () {
+                for (var i = 0; i < length; i++) {
+                    aInp[i].checked = true;
+                }
+            };
+
+            //反选
+            aBtn[1].onclick = function () {
+                for (var i = 0; i < length; i++) {
+                    aInp[i].checked = !aInp[i].checked;
+                }
+            };
+
+            //清空
+            aBtn[2].onclick = function () {
+                for (var i = 0; i < length; i++) {
+                    aInp[i].checked = false;
+                }
+            };
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

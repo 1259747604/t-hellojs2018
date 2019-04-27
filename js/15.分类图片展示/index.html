@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TZ-追梦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style:none;
+        }
+        #box{
+            width:426px;
+            height: 204px;
+            margin:50px auto;
+        }
+        #left{
+            width:100px;
+            height:100%;
+            float: left;
+        }
+        #left ul li{
+            height: 50px;
+            background: #000000;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            border-bottom: 1px solid #fff;
+        }
+        #left ul li:last-child{
+            border: 0;
+        }
+        #right{
+            width:326px;
+            height: 203px;
+            float: right;
+        }
+        #right ul{
+            height: 100%;
+        }
+        #right ul li{
+            height: 100%;
+            position: relative;
+            display: none;
+        }
+        #right ul li img{
+            width:100%;
+            height: 100%;
+        }
+        #right ul li div{
+            position: absolute;
+            bottom:0;
+            right:0;
+            width:100%;
+            height: 35px;
+            background: rgba(0,0,0,0.5);
+            text-align: right;
+        }
+        #right ul li div span{
+            width:35px;
+            height: 35px;
+            background: #ddd;
+            display: inline-block;
+            margin-left: 2px;
+            text-align: center;
+            line-height: 35px;
+        }
+        #box .hover{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="left">
+            <ul>
+                <li class="hover">极速免税店</li>
+                <li>美妆商城</li>
+                <li>服装运动</li>
+                <li>鞋包配饰</li>
+            </ul>
+        </div>
+
+        <div id="right">
+            <ul>
+                <li style="display: block">
+                    <img src="images/s1.jpg" alt="">
+                    <div>
+
+                    </div>
+                </li>
+                <li>
+                    <img src="images/1.jpg" alt="">
+                    <div>
+
+                    </div>
+                </li>
+                <li>
+                    <img src="images/m1.jpg" alt="">
+                    <div>
+
+                    </div>
+                </li>
+                <li>
+                    <img src="images/1.jpg" alt="">
+                    <div>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        var aLi = document.getElementById('left').getElementsByTagName('li');
+        var aRli = document.getElementById('right').getElementsByTagName('li');
+        var len = aLi.length;
+        var oldLi = aLi[0];  // 上一次的li
+        //alert( aLi.length )
+        var oldRli = aRli[0];
+        for ( var i=0;i<len;i++ ){
+            aLi[i].b = i;  // 自定义属性 通过 索引 去找right里对应的li
+            aLi[i].onmouseenter = function () {
+                oldLi.className = '';
+                this.className = 'hover';
+                oldLi = this;
+
+                //alert( this.b )
+                oldRli.style.display = 'none';
+                aRli[this.b].style.display = 'block';
+                oldRli = aRli[this.b];
+            }
+        }
+
+        // 图片
+        var arrImg = [
+            ['images/1.jpg','images/2.jpg','images/3.jpg','images/4.jpg'],
+            ['images/m1.jpg','images/m2.jpg','images/m3.jpg'],
+            ['images/s1.jpg','images/s2.jpg','images/s3.jpg','images/s4.jpg','images/s5.jpg'],
+            ['images/m1.jpg','images/m2.jpg']
+        ];
+
+        var arrSpan = [];
+        var str = '';
+        for( var i=0;i<arrImg.length;i++ ){  // 执行4次
+            //alert( arrImg[i] )
+            /*arrImg[i]
+            *   ['images/1.jpg','images/2.jpg','images/3.jpg','images/4.jpg'],
+            *   ['images/m1.jpg','images/m2.jpg','images/m3.jpg'],
+            *   ['images/s1.jpg','images/s2.jpg','images/s3.jpg','images/s4.jpg','images/s5.jpg'],
+            *   ['images/m1.jpg','images/m2.jpg']
+            * */
+            for( var j=0;j<arrImg[i].length;j++ ){
+                //console.log(  arrImg[i][j]  );
+                /*
+                *       arrImg[0][3]  ==> 'images/4.jpg'
+                *       arrImg[2][2]  ==> 'images/s3.jpg'
+                *
+                * */
+
+                if( j==0 ){  // 根据2维的个数 动态创建span的个数 第一个span有类名
+                    str = '<span class="hover">'+(j+1)+'</span>';
+                }else{
+                    str += '<span>'+(j+1)+'</span>';
+                }
+            }
+
+            arrSpan.push(str);  // 往arrSpan数组的后面 添加
+        }
+
+        console.log( arrSpan );
+
+
+        for( var i=0;i<aRli.length;i++ ){ // for循环 4次 就调用4次showImg方法
+            showImg( aRli[i], arrSpan[i] ,arrImg[i]);
+        }
+
+        function showImg( obj ,str ,arrImg) {  // 这个技巧 大家总结 多去收集这些技巧
+            var div = obj.getElementsByTagName('div')[0];
+            div.innerHTML = str; // 把arrSpan数组里每一个数组 放到 对应的li里面去
+            var span = div.getElementsByTagName('span');
+            var img = obj.getElementsByTagName('img')[0];
+            var oldSpan = span[0];
+            for( var j=0;j<span.length;j++ ){
+                span[j].a= j;
+                span[j].onmouseenter = function () {
+                    oldSpan.className = '';
+                    this.className = 'hover';
+                    oldSpan = this;
+
+                    img.src = arrImg[this.a];
+                    //console.log( arrImg[this.a][this.a] );
+                    console.log( arrImg[this.a] );
+                }
+            }
+        }
+
+
+/*
+        var arr1 = [];
+        arr1.push([1,2,3]);
+        console.log( arr1 );
+*/
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

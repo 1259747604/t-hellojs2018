@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            body{
+                background: #000000;
+            }
+            #box{
+                margin:50px auto;
+                width: 400px;
+                height: 600px;
+                border:10px solid #ffffff;
+            }
+            #boundary{
+                position: relative;
+                width: 400px;
+                height: 600px;
+            }
+            h3{
+                margin-top: 10px;
+                text-align: center;
+                font-size: 25px;
+                color: #ffffff;
+            }
+            #boundary p {
+                margin: 70px auto 0;
+                width:300px;
+                height:50px;
+                line-height: 50px;
+                text-align: center;
+                font-size: 20px;
+                border: 2px solid #ffffff;
+                color: #ffffff;
+                cursor:pointer;
+            }
+            .crazy{
+                background: #f34269;
+            }
+            .plane{
+                position: absolute;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <!--飞行边界-->
+            <div id="boundary"></div>
+        </div>
+        <script>
+            (function () {
+                var obound = document.getElementById("boundary");
+
+                //加载图片
+                var a = new Image();
+                a.src = "img/bullet.png";
+                a.src = "img/plane.png";+
+
+
+                checkpoint();
+
+                //选择关
+                function checkpoint() {
+                      var arr = ["初级关卡","中级关卡","高级关卡","疯狂乱飞"];
+
+                    obound.innerHTML = "<h3>TT飞机大战</h3>";
+
+                        for(var i = 0; i < 4; i++){
+                            (function (x) {
+                                var op = document.createElement("p");
+                                op.innerHTML = arr[i];
+                                if(i === 3){
+                                    op.className = "crazy";
+                                }
+                                op.onclick = function (ev) {
+                                    start(x,ev);
+                                };
+                                obound.appendChild(op);
+                            })(i);
+                        }
+                }
+                //游戏开始
+                function start(index, e) {
+                    obound.innerHTML = "";//清空文字
+                    var speed = [300,200,100,13];
+                    makeplane(e,speed[index]);//生成驾驶飞机
+                }
+
+                //生成驾驶飞机
+                function makeplane(e,speed) {
+                    var plane = new Image();
+                    plane.src = "img/plane.png";
+                    plane.width = 70;
+                    plane.height = 80;
+                    plane.className = "plane";
+
+                    var offset = getoffset(obound);
+                    var x = offset.left;
+                    var y = offset.top;
+                    //飞机位置
+                    var left = e.pageX - x - plane.width/2,
+                        top = e.pageY - y - plane.height/2;
+
+                    plane.style.left = left + "px";
+                    plane.style.top = top + "px";
+                    obound.appendChild(plane);
+
+                    //飞机边界值
+                    var leftMax = obound.offsetWidth - plane.width/2,
+                        leftMin = - plane.width/2,
+                        topMax = obound.offsetHeight - plane.height/2,
+                        topMin = 0;
+
+                    //飞机移动
+                    document.onmousemove = function (ev) {
+                        var left = ev.pageX - x - plane.width/2,
+                            top = ev.pageY - y - plane.height/2;
+                        left = Math.max(left,leftMin);
+                        left = Math.min(left,leftMax);
+                        top = Math.max(top,topMin);
+                        top = Math.min(top,topMax);
+
+                        plane.style.left = left + "px";
+                        plane.style.top = top + "px";
+                    }
+
+                    //发射子弹
+                    plane.btimer = setInterval(function () {
+                        var bullet = new Image();
+                        bullet.src = "img/bullet.png";
+                        bullet.width = 15;
+                        bullet.height = 30;
+                        bullet.style.position = "absolute";
+                        var left = plane.offsetLeft + plane.width/2 - bullet.width/2,
+                            top = plane.offsetTop - plane.height + 80;
+                        bullet.style.left =left +"px";
+                        bullet.style.top =top +  "px";
+                        obound.appendChild(bullet);
+
+                        //子弹移动
+                        function bulletmove() {
+                            bullet.style.top = bullet.offsetTop - 10 +  "px";
+                            if(bullet.offsetTop <= -bullet.height/2){
+                                obound.removeChild(bullet);
+                            }
+                            else{
+                                bullet.timer = requestAnimationFrame(bulletmove);
+                            }
+                        };
+                        requestAnimationFrame(bulletmove);
+                    },speed)
+
+                }
+
+
+                //元素到文档定位距离
+                function getoffset(obj) {
+                    var json = {
+                        left : 0,
+                        top : 0,
+                    }
+                    while(obj !== document.body){
+                        json.left += obj.offsetLeft;
+                        json.top += obj.offsetTop;
+                        obj = obj.offsetParent;
+                    }
+                    return json;
+                }
+            })();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			span{display: inline-block;width: 100px;height: 40px;line-height: 40px;text-align: center;}
+		</style>
+<body>
+    <div id="box"></div>
+    <script>
+
+ 		var oBox = document.getElementById('box');
+
+ 		setInterval(function a() {
+            var a = 16777215;
+            var b = Math.random()*a;
+            var c = Math.round(b);
+            var d = c.toString(16);
+            var e = '#'+d;
+			oBox.innerHTML +="<span style='background-color:"+e+"' >"+e+"</span>";
+        },70);//比较差的方式
+//		console.log(d);
+	</script>
+</body>
+</html>

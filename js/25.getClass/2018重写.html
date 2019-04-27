@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+        </style>
+    </head>
+    <body>
+        <div id="box" class="one">11111</div>
+        <div class="two on">222222</div>
+        <div class="two">2111112</div>
+        <div class="three">333333</div>
+        <script>
+
+            var otwo = getClass("two");
+
+            console.log(otwo.length);
+            function getClass(obj) {
+                if(document.getElementsByClassName){//如果支持
+                    return document.getElementsByClassName(obj);
+                }
+                else{//如果不支持
+                    var all = document.getElementsByTagName("*");//获取所有元素
+                    var arr =[];//创建数组
+
+                    for(var i = 0; i < all.length; i++){//循环所有元素
+                        var className = all[i].className;//每一个元素的classname赋值给创建的变量
+                        var arrClass = className.split(' ');//将classname以空格方式切开保存成数组形式,防止有多个class名
+                        for(var j =0;j < arrClass .length;j++){//循环数组
+                            if(arrClass[j] === obj){//判断数组每一个是否有等于class的
+                                arr.push(all[i]);//符合要求添加至数组
+                            }
+                        }
+                    }
+                    return arr;
+                }
+            }
+        </script>
+    </body>
+</html>

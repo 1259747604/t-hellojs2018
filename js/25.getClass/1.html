@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+		</style>
+<body>
+    <div class="box">1111111111</div>
+	<div class="box on">222222222222222</div>
+    <script>
+        var oBox = getClass('box'); //接收getClass函数执行完的结果
+
+		oBox[1].style.background = 'pink';
+        //自己封装函数 实现document.getElementByClassName功能 解决IE678不兼容
+        function getClass(obj){
+
+            if(document.getElementsByClassName){
+                return document.getElementsByClassName(obj);
+            }else{
+                var all = document.getElementsByTagName('*');//获取所有元素
+                var arr = [];
+                for(var i=0;i<all.length;i++){
+                    var className = all[i].className;
+                    var arrClass = className.split(' ');
+                    for(var j =0;j<arrClass .length;j++){
+                        if(arrClass[j] == obj){
+                            arr.push(all[i]);
+                        }
+                    }
+                }
+                return arr;
+            }
+        }
+	</script>
+</body>
+</html>

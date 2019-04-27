@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #nav{
+                margin-top: 20px;
+                width: 100%;
+                height: 42px;
+            }
+            #nav i{
+                display: block;
+                width: 300px;
+                height:100%;
+                background: url("img/logo/TTlogo.png") no-repeat center/contain;
+                font-size: 0;
+            }
+            #wrap{
+                position: relative;
+                margin: 50px auto;
+                width:800px;
+                height:800px;
+            }
+            #show{
+                position: relative;
+                width:400px;
+                height: 400px;
+                border: 1px solid #b8bdc5;
+                border-bottom: none ;
+            }
+            #show #pic{
+                position: absolute;
+                top:0;
+                left:0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+            }
+            #show #pic img{
+                width: 100%;
+                height: 100%;
+            }
+            #show #pic #cover{
+                position: absolute;
+                top:0;
+                left:0;
+                width:150px;
+                height:150px;
+                background: url("img/cover/cover.png");
+            }
+            #smallPic{
+                position: absolute;
+                top:400px;
+                left:0;
+                width:400px;
+                height:74px;
+                border: 1px solid #b8bdc5;
+                border-top: none;
+                overflow: hidden;
+            }
+            #smallPic ul{
+                width: 2000px;
+                height: 100%;
+            }
+            #smallPic ul li{
+                position: relative;
+                float: left;
+                width: 40px;
+                height:40px;
+                margin: 15px 0 15px 30px;
+                border: 2px solid transparent;
+                cursor: pointer;
+                overflow: hidden;
+            }
+            #smallPic ul li.on{
+                border: 2px solid #f33d11;
+            }
+            #smallPic ul li img{
+                position: absolute;
+                top:0;
+                left:0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+            }
+            #smallPic #lrBtn span{
+                position: absolute;
+                top:0;
+                height: 100%;
+                width: 20px;
+                /*background: rgba(0,0,0,.3);*/
+                color: rgba(247,87,74,0.8);
+                text-align: center;
+                font-size: 18px;
+                line-height: 74px;
+                cursor: pointer;
+            }
+            #smallPic #lrBtn span:hover{
+                background: rgba(0,0,0,.2);
+            }
+            #smallPic #lrBtn span:nth-child(1){
+                left: 0;
+            }
+            #smallPic #lrBtn span:nth-child(2){
+                left: 100%;
+                margin-left: -20px;
+            }
+            #rightPic{
+                position: absolute;
+                top:0;
+                left:403px;
+                width: 400px;
+                height: 400px;
+                background-repeat: no-repeat;
+            }
+        </style>
+    </head>
+    <body>
+        <!--TT logo-->
+        <div id="nav"><i>TT Logo</i></div>
+        <!--wrap-->
+        <div id="wrap">
+            <div id="show">
+                <div id="pic">
+                    <img src="" alt="">
+                    <span id="cover"></span>
+                </div>
+            </div>
+            <div id="smallPic">
+                <ul>
+                    <li><img src="img/1.jpg" alt=""></li>
+                    <li><img src="img/2.jpg" alt=""></li>
+                    <li><img src="img/3.jpg" alt=""></li>
+                    <li><img src="img/4.jpg" alt=""></li>
+                    <li><img src="img/5.jpg" alt=""></li>
+                    <li><img src="img/6.jpg" alt=""></li>
+                    <li><img src="img/7.jpg" alt=""></li>
+                    <li><img src="img/8.jpg" alt=""></li>
+                    <li><img src="img/9.jpg" alt=""></li>
+                    <li><img src="img/10.jpg" alt=""></li>
+                </ul>
+                <div id="lrBtn">
+                    <span><</span>
+                    <span>></span>
+                </div>
+            </div>
+            <div id="rightPic"></div>
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            (function () {
+                //小图部分元素获取
+                var $smallPic = $("#smallPic"),
+                    $sUl = $smallPic.find("ul"),
+                    $sLi = $smallPic.find("ul li");
+                var pLength = $sLi.length,//tab长度
+                    tabWidth = $sLi.width(),//获取tab宽高
+                    propArr = [];//判断是否加载完成
+
+                //大图元素获取
+                var $show = $("#show"),
+                    $pic = $show.find("#pic"),
+                    $pImg = $pic.find("img"),
+                    sWidth = $show.width(),
+                    sHeight = $show.height(),
+                    $cover = $pic.find("#cover");
+
+                //右侧大图元素
+                var $rPic = $("#rightPic");
+
+                //左右按钮
+                var $span = $smallPic.find("#lrBtn span"),
+                    index = 0;
+
+                //初始化
+                document.onselectstart = function(){
+                    return false;
+                }
+                $sLi.eq(0).addClass("on");//初始class
+                $cover.hide();
+                $rPic.hide();
+
+                //////
+                $sLi.each(function (x) {
+                    var $sImg = $(this).find("img");
+                    //判断加载之前或加载之后
+                    $sImg.width()?imgLoad.call($sImg[0]):($sImg[0].onload = imgLoad);
+                    //图片加载
+                    function imgLoad() {
+                        var width = $(this).width();
+                        var height = $(this).height();
+                        propArr[x] = width/height;
+                        this[width > height?"width":"height"] = tabWidth;
+                        for(var i = 0; i <pLength;i++){
+                            if(!propArr[i])return;
+                        }
+                        afterload();
+                    }
+                });
+                //加载完成之后
+                function afterload() {
+                    //默认显示第一张
+                    enter($sLi[0]);
+                    //鼠标移入
+                    var timer1 = null;
+                    $sLi.hover(function () {
+
+                        clearTimeout(timer1);
+                        timer1 = setTimeout(enter,200,this);
+                    },function () {
+                        clearTimeout(timer1);
+                    })
+
+                    if(pLength > 5){
+                        $span.click(function () {
+                            if($(this).index()){
+                                index++;
+                                index %= pLength;
+                                enter($sLi[index],true);
+                            }
+                            else{
+                                index--;
+                                if(index < 0)index = pLength-1;
+                                enter($sLi[index],true);
+                            }
+                        })
+                    }else{
+                        $span.hide();
+                    }
+
+                    //大图显示函数
+                    function enter(thisa,bool) {
+                        index = $(thisa).index();
+
+                        if(bool){
+                            if(index > 4){
+                                $sUl.stop().animate({
+                                    marginLeft : -(index-4)*74
+                                });
+                            }
+                            else{
+                                $sUl.stop().animate({
+                                    marginLeft :0
+                                });
+                            }
+                        }
+                        $sLi.removeClass("on").eq($(thisa).index()).addClass("on");
+                        var prop = propArr[$(thisa).index()];
+                        $pic.width(prop>1?sWidth:sHeight*prop);
+                        $pic.height(prop>1?sWidth/prop:sHeight);
+                        $pImg.prop("src", $(thisa).find("img").prop("src"));//大图显示内容
+                        return enter;
+                    }
+
+                    //滑块相关
+                    $show.hover(function () {
+                        $cover.show();
+                        $rPic.show();
+
+                        var cWidth = $cover.width(),
+                            cHeight = $cover.height(),
+                            pWidth = $pic.width(),
+                            pHeight = $pic.height(),
+                            top = Math.max(0,pHeight - cHeight),
+                            left = Math.max(0,pWidth - cWidth),
+                            pL = $pic.offset().left,
+                            pH = $pic.offset().top,
+                            src = $pImg.prop("src"),
+                            rW = $rPic.width(),
+                            rH = $rPic.height(),
+                            size = rW*pWidth/cWidth+"px "+rH*pHeight/cHeight+"px";
+
+                        $show.css("cursor","move")
+                        $(this).mousemove(function (e) {
+                            var x = e.pageX - pL -cHeight/2,
+                                y = e.pageY - pH - cWidth/2;
+
+                            x = Math.min(x,left);
+                            x = Math.max(x,0);
+                            y = Math.max(y,0);
+                            y = Math.min(y,top);
+
+                            $cover.css({
+                                left:x,
+                                top:y
+                            });
+                            $rPic.css({
+                                backgroundImage:"url("+src+")",
+                                backgroundSize:size,
+                                backgroundPositionX:-x*rW/cWidth,
+                                backgroundPositionY:-y*rH/cHeight
+                            });
+                        })
+                    },function () {
+                        $(this).off("mousemove");
+                        $cover.hide();
+                        $rPic.hide();
+                    })
+                }
+            })();
+        </script>
+    </body>
+</html>

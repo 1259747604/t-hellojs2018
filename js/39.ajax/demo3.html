@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            span{
+                display: inline-block;
+                margin: 10px 10px 0 0 ;
+                width:200px;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+                background: #f3c8b3;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            var a = {
+                type : "get",
+                url : "test.txt",
+                aysn : true,
+                data:{
+                    user:"阿大声道",
+                    pwd:"31231"
+                },
+                success:function (x) {
+                   var arr = JSON.parse(x);
+                   var obox = document.getElementById("box");
+                   for(var i = 0 ; i < arr.length; i++){
+                       for(var key in arr[i]){
+                           obox.innerHTML += "<span>"+key+"是"+arr[i][key]+"</span>";
+                       }
+                       obox.innerHTML += "<br>";
+                   }
+                },
+                error:function (x) {
+                    alert("错误码为:"+x);
+                }
+            }
+
+            document.onclick = function(){
+                ajax(a);
+            }//测试
+            /*
+            * 1.请求方式type 可缺省 默认get
+            * 2.地址url   不可缺
+            * 3.是否异步aysn 可缺省 默认true
+            * 4.数据data 可缺省
+            * 5.成功回调函数success 可缺省，代表成功的回调函数，该函数第一个形参代表后台返回的数据
+            * 6.失败回调函数error 可缺省，代表失败的回调函数，该函数的第一个形参代表请求的HTTP状态码
+            * */
+            function ajax(json) {
+                var type = json.type || get,
+                    url = json.url,
+                    aysn = json.aysn !== false,
+                    data = json.data,
+                    success = json.success,
+                    error = json.error;
+
+                //处理数据
+                data = data && (function () {
+                    var dataStr = "";
+                    for(var key in data){
+                        dataStr += key+"="+data[key]+"&";
+                    }
+                    return dataStr;
+                })();
+                //如果为get方式
+                if(/get/i.test(type)){
+                    url += "?"+(data || "")+"_="+new Date().getTime();//解决缓存
+                    data = undefined;
+                }
+
+
+                //ajax流程
+                var xhr = new XMLHttpRequest();
+                xhr.open(type,url,aysn);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send(data);
+                xhr.onreadystatechange = function () {
+                    if(this.readyState === 4){
+                        if(this.status <=200 && this.status < 300){
+                            success && success(this.responseText);
+                        }
+                        else{
+                            error && error(this.status);
+                        }
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
