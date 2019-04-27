@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 声明当前页面编码集:utf-8国际编码 -->
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+    <title>please enter your title</title>
+    <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+    <meta name="Keywords" content="TT">
+    <!-- 简介描述 -->
+    <meta name="description" content="TT">
+    <style>
+        *{margin:0;padding:0;}
+        ul{list-style:none;}
+        #box{
+            display: flex;
+        }
+        [type]{
+            width:200px;
+            height: 35px;
+        }
+        [type]:nth-of-type(2){
+            float: right;
+        }
+        a{
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="button" value="上一页">
+    <a href="three.html">点击进入下一页</a>
+    <input type="button" value="下一页">
+</div>
+<script>
+    let oInp = document.getElementsByTagName("input");
+    oInp[0].onclick = function (e) {
+        window.history.back();
+    };
+    oInp[1].onclick = function (e) {
+        window.history.forward();
+    }
+</script>
+</body>
+</html>

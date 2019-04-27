@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <link rel = "shortcut icon" href="./icon/ttico.ico">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            canvas{
+                display: block;
+                margin: 200px auto;
+                border: 1px solid #ddd;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas width="500" height="500"></canvas>
+        <img src="1.jpg" alt="">
+        <p id="btn">点击下载</p>
+        <script>
+            const cxt = document.getElementsByTagName("canvas")[0].getContext("2d");
+            const oimg = document.querySelector("img");
+
+            oimg.onload = function(){
+                cxt.drawImage(this,180,0,850,650,0,0,500,500);
+            };
+            btn.onclick = function () {
+                const url = document.getElementsByTagName("canvas")[0].toDataURL("image/jpeg");
+                let a = document.createElement("a");
+                a.href = url;
+                a.download = "11.jpg";
+                a.click();
+            }
+        </script>
+    </body>
+</html>

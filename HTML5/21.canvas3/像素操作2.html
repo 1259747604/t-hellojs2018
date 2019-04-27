@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 声明当前页面编码集:utf-8国际编码 -->
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+    <title>please enter your title</title>
+    <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+    <meta name="Keywords" content="TT">
+    <!-- 简介描述 -->
+    <meta name="description" content="TT">
+    <link rel = "shortcut icon" href="./icon/ttico.ico">
+    <style>
+        *{margin:0;padding:0;}
+        ul{list-style:none;}
+        canvas{
+            display: block;
+            margin: 200px auto;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<canvas width="800" height="700"></canvas>
+<script>
+    const cxt = document.getElementsByTagName("canvas")[0].getContext("2d");
+
+    let oImg = new Image();
+    oImg.src = "1.jpg";
+    oImg.onload = function () {
+        cxt.drawImage(this,0,0,300,300);
+        let a= cxt.getImageData(0,0,300,300);
+        for(let i = 0; i < a.data.length; i += 4){
+            a.data[i*6] = Math.floor(Math.random()*256);
+            a.data[(i+1)*6] = Math.floor(Math.random()*256);
+            a.data[(i+2)*6] = Math.floor(Math.random()*256);
+            a.data[(i+3)*6] = Math.floor(Math.random()*256);
+        }
+
+        cxt.putImageData(a,0,0);
+    };
+
+</script>
+</body>
+</html>

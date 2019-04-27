@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            html{
+                overflow: hidden;
+            }
+            html,body{
+                width:100%;
+                height: 100%;
+            }
+            body{
+                background: url("img/hextech-magic.png") no-repeat center/cover;
+            }
+            #box{
+                width:800px;
+                margin: 100px auto;
+            }
+            #box ul{
+                display: flex;
+                padding: 15px 15px 0 15px;
+                width: 800px;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                border: 1px solid #ffffff;
+            }
+            #box ul li{
+                position: relative;
+                float: left;
+                margin-bottom: 30px;
+                width:360px;
+                height:200px;
+                border: 1px solid #ffffff;
+                overflow: hidden;
+            }
+            img{
+                position: absolute;
+                width: 100%;
+                height:100%;
+            }
+            #box ul li img:nth-child(2){
+                opacity: 0;
+            }
+            #box ul li:hover img:nth-child(2){
+                animation:play .5s cubic-bezier(.28,-0.39,.7,1.24);
+            }
+            @keyframes play {
+                0%{
+                    opacity: 0;
+                }
+                80%{
+                    opacity: 0.3;
+                    transform: scale(1.8);
+                }
+                100%{
+                    opacity: 0;
+                    transform: scale(1);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li><img src="img/01.jpg"><img src="img/01.jpg"></li>
+                <li><img src="img/02.jpg"><img src="img/02.jpg"></li>
+                <li><img src="img/03.jpg"><img src="img/03.jpg"></li>
+                <li><img src="img/04.jpg"><img src="img/04.jpg"></li>
+                <li><img src="img/05.jpg"><img src="img/05.jpg"></li>
+                <li><img src="img/06.jpg"><img src="img/06.jpg"></li>
+            </ul>
+        </div>
+        <script></script>
+    </body>
+</html>

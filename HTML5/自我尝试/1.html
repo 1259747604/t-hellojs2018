@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #box{
+                /*margin: 200px;*/
+                display: flex;
+                /*flex-direction: column;*/
+                /*flex-direction: column-reverse;*/
+                flex-direction: row;
+                /*flex-direction: row-reverse;*/
+                flex-wrap: wrap;
+                /*flex-wrap: wrap-reverse;*/
+
+                /*justify-content: flex-start;*/
+                /*justify-content: flex-end;*/
+                /*justify-content: center;*/
+                /*justify-content: space-between;*/
+                /*justify-content: space-around;*/
+                /*align-items: flex-start;*/
+/*                align-items: flex-end;
+                align-items: center;
+                align-items: baseline;
+                align-items: stretch;*/
+
+                align-content: flex-start;
+                align-content: flex-end;
+                align-content: center;
+                align-content: space-between;
+                align-content: space-around;
+                align-content: stretch;
+                width: 800px;
+                height: 800px;
+                border: 1px solid;
+            }
+            #box > div{
+                padding: 20px;
+                width:100px;
+                /*height: 200px;*/
+            }
+            #box > div:nth-child(1){
+                order:8;
+                flex-grow: 2;
+                /*flex-shrink: 1;//缩小同上差不多*/
+            }
+            #box > div:nth-child(2){
+                order:7;
+                flex-grow: 1;
+            }
+            #box1{
+                margin: 200px 500px;
+                width: 200px;
+                height: 200px;
+                background: yellow;
+                /*border: 1px solid;*/
+            }
+            p{  width:500px;
+                height:800px;
+                text-align: justify;
+                /*text-align: left;*/
+                background: #3ca4d8;
+                max-width: 600px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <div style="background: pink">1</div>
+            <div style="background: green">2</div>
+            <div style="background: gray">3</div>
+            <div style="background: yellow">4</div>
+            <div style="background: red">5</div>
+            <div style="background: #7bafda">6</div>
+            <div style="background: #c38fda">7</div>
+            <div style="background: #4058da">8</div>
+        </div>
+        <script></script>
+    </body>
+</html>

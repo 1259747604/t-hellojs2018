@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <link rel = "shortcut icon" href="./icon/ttico.ico">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            html,body{
+                width: 100%;
+                height: 100%;
+            }
+            canvas{
+                display: block;
+                margin: 50px auto;
+                background: #f3a494;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas></canvas>
+        <script src="js/numData.js"></script>
+        <script>
+            let c = document.getElementsByTagName("canvas")[0],
+                cxt = c.getContext("2d");
+
+            c.width = 667;
+            c.height = 300;
+
+            /*时间*/
+            getTime();
+            function getTime() {
+                cxt.clearRect(0,0,c.width,c.height);
+
+                let date = new Date(),
+                    hh = `${date.getHours()}`.padStart(2,"00"),
+                    mm = `${date.getMinutes()}`.padStart(2,"00"),
+                    ss = `${date.getSeconds()}`.padStart(2,"00");
+
+                    drawH(hh);
+                    drawM(mm);
+                    drawS(ss);
+                    dot();
+                    requestAnimationFrame(getTime);
+            }
+
+            /*小时*/
+            function drawH(num) {
+                let x = Array.from(num);
+
+                genNum(x[0],10);
+                genNum(x[1],110);
+            }
+
+            /*分钟*/
+            function drawM(num) {
+                let x = Array.from(num);
+
+                genNum(x[0],240);
+                genNum(x[1],340);
+            }
+
+            /*秒钟*/
+            function drawS(num) {
+                let x = Array.from(num);
+
+                genNum(x[0],480);
+                genNum(x[1],580);
+            }
+
+            /*两个点*/
+            function dot() {
+                genNum("10",200);
+                genNum("10",430);
+            }
+
+            /*绘制数字*/
+            /*num绘制的数字
+            * dis在X轴哪开始绘制
+            * */
+            function genNum(num,dis) {
+                let firstArr = data[num];
+
+                for(let i = 0; i < firstArr.length; i++){
+                    let numArr = firstArr[i];
+                    for(let y = 0; y < numArr.length; y++){
+                        if(numArr[y]){
+                            cxt.beginPath();
+                            cxt.fillStyle = "skyblue";
+                            cxt.arc(y*13+dis,i*13+20,5,0,2*Math.PI);
+                            cxt.fill();
+                        }else{
+                            cxt.beginPath();
+                            cxt.fillStyle = "transparent";
+                            cxt.arc(y*13+dis,i*13+20,5,0,2*Math.PI);
+                            cxt.fill();
+                        }
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

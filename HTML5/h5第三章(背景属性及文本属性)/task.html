@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			.clearfix:after{content: '';display: block;clear: both;}
+			body{
+				height: 100%;
+				background: url("images/bg_head.jpg") no-repeat center/cover,url("images/bg_tile.jpg") no-repeat center/cover;
+			}
+			#box{
+				margin:50px auto;
+				width:500px;
+				height: 100px;
+			}
+			ul li {
+				float: left;
+				width: 100px;
+				height: 40px;
+				border: 1px solid red;
+				text-align: center;
+				line-height: 40px;
+				cursor: pointer;
+				transition: 2s;
+			}
+			ul li:not(.out){border-right: none;}
+			ul li:hover{
+				background: -webkit-radial-gradient(#f9f9f9,#d0d0d0);
+			}
+		</style>
+<body>
+    <div id="box">
+		<ul class="clearfix">
+			<li>资讯</li>
+			<li>关于我们</li>
+			<li>服务信息</li>
+			<li class="out">联系我们</li>
+		</ul>
+	</div>
+</body>
+</html>

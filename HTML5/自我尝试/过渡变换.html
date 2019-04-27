@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			.wrap > p{
+				width:500px;
+				height:400px;
+				margin:50px auto;
+				background:orange;
+				border:10px solid cornflowerblue;
+				transition-property: border;
+				transition-duration:3s;
+				/*transition-delay:2s;*/
+				cursor:pointer;
+			}
+			.wrap p:nth-of-type(1):hover{border-color: pink;}
+			.wrap p:nth-of-type(2){
+				width:500px;
+				height:500px;
+				margin:30px auto;
+				padding: 20px;
+				background:hotpink;
+				background-clip: content-box;
+				transform-origin:center;
+				transform:rotateZ(0deg);
+				animation:tt 1s linear infinite;
+			}
+			@keyframes tt{
+				from{
+					transform:rotateZ(0deg);
+				}
+				to {
+					transform:rotateZ(360deg);
+				}
+			}
+		</style>
+<body>
+	<div class="wrap">
+		<p></p>
+		<p></p>
+	</div>
+</body>
+</html>

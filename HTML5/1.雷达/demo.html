@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            body{
+                background: #2b2b2b;
+            }
+            #box{
+                position: relative;
+                display: flex;
+                margin: 50px auto;
+                width:500px;
+                height:500px;
+                border-radius: 50%;
+                border:3px solid #a4a4a4;
+            }
+            #box > div{
+                display: flex;
+                margin: auto;
+                width:400px;
+                height:400px;
+                border-radius: 50%;
+                border:3px solid #a4a4a4;
+            }
+            #box > div >div{
+                display: flex;
+                margin: auto;
+                width:300px;
+                height:300px;
+                border-radius: 50%;
+                border:3px solid #a4a4a4;
+            }
+            #box > div >div>div{
+                display: flex;
+                margin: auto;
+                width:200px;
+                height:200px;
+                border-radius: 50%;
+                border:3px solid #a4a4a4;
+            }
+            #box > div >div>div>div{
+                display: flex;
+                margin: auto;
+                width:100px;
+                height:100px;
+                border-radius: 50%;
+                border:3px solid #a4a4a4;
+            }
+            p{
+                margin: auto;
+                width:0;
+                height:0;
+                border: 3px solid #ffffff;
+            }
+            span{
+                position: absolute;
+                left:0;
+                top:0;
+                width:500px;
+                height:250px;
+                /*border:1px solid #a4170d;*/
+                border-radius:50% 50% 0 0/100% 100% 0 0;
+                background: -webkit-linear-gradient(116deg,rgba(0,0,0,.1) 25%,#a4a39c 24%,transparent);
+                transform-origin: center bottom;
+                animation: play 2s linear infinite;
+            }
+            @keyframes play {
+                from{transform: rotateZ(0deg)}
+                to{transform: rotateZ(360deg)}
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <p></p>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script></script>
+    </body>
+</html>

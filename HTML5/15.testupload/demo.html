@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <input type="file" id="file" multiple>
+            <input type="button" id="btn" value="上传">
+        </div>
+        <script>
+            const oF = document.getElementById("file"),
+                oBtn = document.getElementById("btn");
+
+            oBtn.onclick = function () {
+                let file = oF.files;
+                if(oF.value){
+                    for(let i = 0; i < file.length; i++){
+                        (function (k) {
+                            const xhr = new XMLHttpRequest();
+                            xhr.open("post","./php/up.php",true);
+                            xhr.setRequestHeader('X-Request-With','XMLHttpRequest');
+                            let oformData = new FormData();//需要一个对象来携带数据
+                            oformData.append("a",file[k]);
+                            xhr.upload.onprogress = function (e) {
+                                console.log(e.loaded+"/"+e.total);
+                            };
+                            xhr.send(oformData);
+                        })(i);
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

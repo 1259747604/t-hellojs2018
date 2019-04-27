@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <link rel = "shortcut icon" href="./icon/ttico.ico">
+        <style id="css">
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            html,body{
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+            body{
+                background: #229cc5;
+                perspective: 800px;
+            }
+            #box{
+                position: relative;
+                margin: 100px auto;
+                width: 800px;
+                height:400px;
+            }
+            #lol,#lol ul{
+                width: 100%;
+                height: 100%;
+            }
+            #lol ul li{
+                position: relative;
+                float: left;
+                height: 100%;
+                transform-origin:center center -200px;
+                transform-style: preserve-3d;
+            }
+            #lol ul li div{
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                background-size:800px 400px;
+                background-repeat: no-repeat;
+            }
+            #lol ul li div:nth-child(1){
+                background-image: url("img/1.jpg");
+                transform: translateZ(0);
+            }
+            #lol ul li div:nth-child(2){
+                top: -400px;
+                background-image: url("img/2.jpg");
+                transform-origin: bottom;
+                transform: rotateX(90deg);
+            }
+            #lol ul li div:nth-child(3){
+                top:-400px;
+                background-image: url("img/3.jpg");
+                transform-origin: bottom;
+                transform: translateZ(-400px) rotateX(-180deg);
+            }
+            #lol ul li div:nth-child(4){
+                top:400px;
+                background-image: url("img/4.jpg");
+                transform-origin: top;
+                transform: rotateX(-90deg);
+            }
+            #btn ul{
+                position: absolute;
+                right:0;
+                bottom: 20px;
+            }
+            #btn ul li{
+                float: left;
+                margin-left: 10px;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: #282c34;
+                color: #ffffff;
+                font-style: italic;
+                text-align: center;
+                box-shadow: -2px 2px 5px #ffffff;
+                cursor:pointer;
+            }
+            #btn ul li.on{
+                color: #282c34;
+                background: yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <div id="lol">
+                <ul id="ulimg"></ul>
+            </div>
+            <div id="btn">
+                <ul id="uBtn">
+                    <li class="on">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            {
+                document.onselectstart = ()=>false;
+
+                let oBox = document.getElementById("box");
+                let oUl = document.getElementById("ulimg"),
+                    oLii = oUl.getElementsByTagName("li");
+
+                let oBUl = document.getElementById("uBtn"),
+                    oBtn = oBUl.getElementsByTagName("li");
+
+                // let oCss = document.getElementById("css");
+                let timer;
+                let[n,last] = [0,0];
+
+                for(let i = 0,length = oBtn.length; i < length; i++){
+                    oBtn[i].index = i;
+                    oBtn[i].onclick = function () {
+                        change(this.index);
+                    };
+                }
+
+                oBox.onmouseenter = function () {
+                  clearInterval(timer);
+                };
+                oBox.onmouseleave = function () {
+                    auto();
+                };
+                auto();
+                function auto(){
+                    timer = setInterval(function () {
+                        n++;
+                        n = n%4;
+                        change(n);
+                    },2000);
+                }
+
+                function change(i){
+                    if(i === last)return;
+                    oBtn[last].className = "";
+                    oBtn[i].className = "on";
+                    last = i;
+                    n = i;
+                    let arrLi = [...oLii];
+                    arrLi.forEach(function (item) {
+                        item.style.transform = `rotateX(-${90*i}deg)`;
+                    });
+                }
+
+                f(100,auto);
+                //创建图
+                function f(num,callback) {
+                    let width = 800/num;
+                    let z = 0;
+                    for(let i = 0; i < num; i++){
+                        let oLi = document.createElement("li");
+                        if( i>= num/2 ){
+                            z--;
+                            oLi.style.cssText = `z-index:${z};`;
+                        }
+                        oLi.style.cssText += `width:${width}px;transition:0.5s ${0.5*i/num}s`;
+                        oLi.innerHTML = "<div></div><div></div><div></div><div></div>";
+                        let length = oLi.children.length;
+                        for(let j = 0; j < length; j++){
+                            let str = `background-position-x:${-width*i}px;`;
+                            oLi.children[j].style = str;
+                        }
+                        oUl.appendChild(oLi);
+                    }
+                }
+            }
+
+        </script>
+    </body>
+</html>

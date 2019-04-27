@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <link rel = "shortcut icon" href="http://www.ttistt.com//icon/ttico.ico">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            body{
+                text-align: center;
+            }
+            #panner{
+                width: 300px;
+                height: 300px;
+                margin: 100px auto;
+                box-shadow: 0 0 35px white;
+                background: url("img/1.png");
+                background-size: 100% 95%;
+                background-position: center 70%;
+                background-repeat: no-repeat;
+                position: relative;
+            }
+
+            #dot{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin: -8px 0 0 -8px;
+                width: 16px;
+                height: 16px;
+                background: red;
+                border-radius: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="panner">
+            <div id="dot"></div>
+        </div>
+        <script>
+
+            let  actx = new AudioContext();
+
+            let xhr = new XMLHttpRequest();
+            xhr.responseType = "arraybuffer";
+            xhr.open("post","2.mp3",true);
+            xhr.send();
+            xhr.onload = function () {
+                if(xhr.status === 200 && xhr.readyState === 4){
+                    actx.decodeAudioData(xhr.response,function (buffer) {
+                        player(buffer);
+                    });
+
+                }
+            };
+
+            function player(buffer) {
+                let sourceNode = actx.createBufferSource();
+                sourceNode.buffer = buffer;
+                sourceNode.loop = true;
+
+                let gainNode = actx.createGain();
+                gainNode.gain.value = 0.1;
+
+                let x,y,z;
+                let Sound = 0.3;
+                let rad = 0;
+                let pannerNode = actx.createPanner();
+
+                function setP(a,b,c){
+                    x = a;
+                    y = b;
+                    z = c;
+                    pannerNode.setPosition(x*Sound,y*Sound,z*Sound);
+                }
+
+                rotate();
+                function rotate() {
+                    rad++;
+                    if( rad>360 ){
+                        rad -= 360;
+                    }
+                    setP( Math.sin(rad*Math.PI/180),Math.cos(rad*Math.PI/180),Math.cos(rad*Math.PI/180) );
+                    requestAnimationFrame(rotate);
+                }
+
+                sourceNode.connect(pannerNode);
+                pannerNode.connect(gainNode);
+                gainNode.connect(actx.destination);
+                sourceNode.start();
+            }
+        </script>
+    </body>
+</html>

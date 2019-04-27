@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			.wrap{position:relative;margin:100px auto;width:500px;height:400px;}
+			li{float:left;}
+			label{
+				float: left;
+				position: relative;
+				width: 80px;
+				height: 50px;
+				background: green;
+				text-align: center;
+				line-height: 50px;
+				color:#fff;
+				cursor:pointer;
+			}
+			input:enabled{
+				display: none;
+			}
+			input:checked ~ label{
+				top:3px;
+				padding-top:3px ;
+				background: #4be0ee;
+			}
+			div:not(.wrap){
+				display: none;
+				position: absolute;
+				top:50px;
+				left:0;
+				width:300px;
+				height:200px;
+				background:#9fc6c1;
+			}
+			input:checked ~ label ~ div{
+				display: block;
+			}
+		</style>
+<body>
+	<div class="wrap">
+		<ul>
+			<li>
+				<input type="radio" id="tx" name="aa" checked>
+				<label for="tx">头条</label>
+				<div>
+					<p>[1]111</p>
+					<p>[2]222</p>
+					<p>[3]333</p>
+					<p>[4]444</p>
+				</div>
+			</li>
+			<li>
+				<input type="radio" id="gg" name="aa">
+				<label for="gg">公告</label>
+				<div>
+					<p>[5]555</p>
+					<p>[6]666</p>
+					<p>[7]777</p>
+					<p>[8]888</p>
+				</div>
+			</li>
+			<li>
+				<input type="radio" id="zq" name="aa">
+				<label for="zq">足球</label>
+				<div>
+					<p>[9]999</p>
+					<p>[a]aaa</p>
+					<p>[b]bbb</p>
+					<p>[c]ccc</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

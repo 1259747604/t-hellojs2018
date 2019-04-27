@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <link rel = "shortcut icon" href="./icon/ttico.ico">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            .clearfix{
+                position: relative;
+            }
+            .clearfix:after{
+                content: '';
+                display: block;
+                clear: both;
+            }
+            #box{
+                position: relative;
+                margin: 50px auto;
+                width: 700px;
+                height: 580px;
+            }
+            #con,#closeCon,#printscreen,#downL,#filter{
+                float: left;
+                margin-right: 10px;
+                width: 100px;
+                height: 30px;
+                border: 1px solid;
+                line-height: 30px;
+                text-align: center;
+                cursor: pointer;
+            }
+            .V{
+                width: 700px;
+                height: 500px;
+            }
+            video{
+                display: block;
+                margin-top: 10px;
+                width: 100%;
+                height: 100%;
+                border: 1px solid;
+            }
+            canvas{
+                position: absolute;
+                top:40px;
+                left:100%;
+            }
+        </style>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div id="box">
+            <div class="btn clearfix">
+                <div id="con">点击连接视频</div>
+                <div id="closeCon">点击关闭</div>
+                <div id="printscreen">截图</div>
+                <div id="downL">下载</div>
+                <div id="filter">滤镜</div>
+            </div>
+            <div class="V">
+                <video autoplay id="video"></video>
+            </div>
+        </div>
+        <script>
+            let oBox = document.getElementById("box");
+            let con = document.getElementById("con");
+            let closeCon = document.getElementById("closeCon");
+            let oVideo = document.getElementById("video");
+            let printscreen = document.getElementById("printscreen");
+            let down = document.getElementById("downL");
+            let filter = document.getElementById("filter");
+
+            let buffer;
+
+            window.navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+            window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+
+            con.addEventListener("click",function () {
+                if(window.navigator.getUserMedia){
+                    window.navigator.getUserMedia({
+                        video:true,
+                        audio:false
+                    },success,fail);
+                }
+                else{
+                    alert("你可以升级浏览器了！！！！！")
+                }
+            });
+
+            closeCon.addEventListener("click",function () {
+                buffer.getTracks()[0].stop();
+                oVideo.src = "";
+            });
+
+            printscreen.addEventListener("click",function () {
+                let lastC = document.querySelector("canvas");
+                if(lastC){
+                    oBox.removeChild(lastC);
+                }
+
+                let canva = document.createElement("canvas");
+                canva.width = 500;
+                canva.height = 350;
+                let cxt = canva.getContext("2d");
+
+                cxt.drawImage(oVideo,0,0,canva.width,canva.height);
+
+                oBox.appendChild(canva);
+            });
+
+
+
+            let filters = [
+                'grayscale',
+                'sepia',
+                'blur',
+                'brightness',
+                'contrast',
+                'hue-rotate',
+                'hue-rotate2',
+                'hue-rotate3',
+                'saturate',
+                'invert',
+                'none'
+            ];
+
+            down.addEventListener("click",function () {
+                let c= document.querySelector("canvas");
+                let oA = document.createElement("a");
+                oA.href = c.toDataURL();
+                oA.download = '1';
+                oA.click();
+            });
+
+            let n = 0;
+            filter.addEventListener("click",function () {
+                n++;
+                n %= filters.length;
+                oVideo.className = `${filters[n]}`;
+            });
+
+            function success(data) {
+                buffer = data;
+                if(oVideo.mozSrcObject !== undefined){
+                    oVideo.mozSrcObject = buffer;
+                }
+                else{
+                    oVideo.src = window.URL && window.URL.createObjectURL(buffer) || buffer;
+                }
+                // console.log(data);
+            }
+            function fail() {
+                alert("没找到摄像头");
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,9 @@
+CACHE MANIFEST
+# 2018-09-30 1.0.2
+
+CACHE:
+    img/1.jpg
+    img/2.jpg
+
+NETWORK:
+    *

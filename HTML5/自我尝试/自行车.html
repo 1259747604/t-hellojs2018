@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			body{background:navajowhite;}
+			.wrap{position:relative;width:1000px;height:600px;animation:wrap 5s linear infinite alternate;}
+			@keyframes wrap {
+				0%{transform: translateX(0px)}
+				100%{transform: translateX(1000px)}
+			}
+			.chair{position:absolute;top:60px;left:437px;width: 80px;height: 20px;background: #57504e;border-radius:50%;z-index: 999;}
+			.chair:before{content: "";position:absolute;top:3px;width:25px;height:25px;background:#57504e;border-radius:50px;z-index: 999;}
+			.chair:after{content: "";position: absolute;left: 16px;border: 26px solid transparent;border-top-color: #57504e;border-radius: 17px;z-index: 999;}
+			.chair a{position: absolute;  top: 6px;  left: 3px;  width: 60px;  border: 9px solid transparent;  border-bottom-color: #57504e;border-radius: 10px;transform: rotateZ(-9deg);z-index: 999;}
+			.ganzi div:nth-child(1){position: absolute;top:177px;left:403px;height:12px;width:250px;background:#5e999b;transform: rotateZ(63deg);}
+			.ganzi div:nth-child(2){position: absolute;top:123px;left:510px;height:12px;width:250px;background:#5e999b;transform: rotateZ(-6deg);}
+			.ganzi div:nth-child(3){position: absolute;top:210px;left:560px;height:12px;width:232px;background:#5e999b;transform: rotateZ(-38deg);}
+			.ganzi div:nth-child(4){position: absolute;top:284px;left:368px;height:12px;width:210px;background:#5e999b;transform: rotateZ(0deg);}
+			.ganzi div:nth-child(5){position: absolute;top:210px;left:333px;height:12px;width:210px;background:#5e999b;transform: rotateZ(-47deg);}
+			.ganzi div:nth-child(6){position: absolute;top:177px;left:671px;height:12px;width:225px;background:#5e999b;transform: rotateZ(73deg);;}
+			.ganzi div:nth-child(7){position: absolute;top:74px;left:747px;height:12px;width:90px;background:#5e999b;border-top-left-radius:20px;transform: rotateZ(0deg);z-index: 5;}
+			.ganzi div:nth-child(8){position: absolute;top:74px;left:798px;width:60px;height:60px;border:12px solid #57504e;border-radius:50%;border-left-color: transparent;border-top-left-radius:13px;}
+			.gulu div:nth-child(1){position:absolute;top:156px;left:232px;width:250px;height: 250px;border:7px solid #bbc0c0; border-radius:50%;transform-origin:center;animation:gulu 3s linear infinite;}
+			.gulu div:nth-child(1):before{content:"";position:absolute;top:6px;left:6px;width:225px;height: 225px;border:7px solid #ef9058; border-radius:50%;transform-origin: center;}
+			.gulu div:nth-child(2){position:absolute;top:156px;left:686px;width:250px;height: 250px;border:7px solid #bbc0c0; border-radius:50%;transform-origin:center;animation:gulu 3s linear infinite;}
+			.gulu div:nth-child(2):before{content:"";position:absolute;top:6px;left:6px;width:225px;height: 225px;border:7px solid #ef9058;transform-origin:center; border-radius:50%;}
+			.qgulu p:nth-child(1){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;}
+			.qgulu p:nth-child(2){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;transform: rotateZ(90deg);}
+			.qgulu p:nth-child(3){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;transform: rotateZ(45deg);}
+			.qgulu p:nth-child(4){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;transform: rotateZ(135deg);}
+			.qgulu p:nth-child(5){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;transform: rotateZ(22.5deg);}
+			.qgulu p:nth-child(6){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;transform: rotateZ(67.5deg);}
+			.qgulu p:nth-child(7){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;transform: rotateZ(112.5deg);}
+			.qgulu p:nth-child(8){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;transform: rotateZ(157.5deg);}
+			.hgulu p:nth-child(1){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;}
+			.hgulu p:nth-child(2){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;transform: rotateZ(90deg);}
+			.hgulu p:nth-child(3){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;transform: rotateZ(45deg);}
+			.hgulu p:nth-child(4){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;transform: rotateZ(135deg);}
+			.hgulu p:nth-child(5){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;transform: rotateZ(22.5deg);}
+			.hgulu p:nth-child(6){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;transform: rotateZ(67.5deg);}
+			.hgulu p:nth-child(7){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;transform: rotateZ(112.5deg);}
+			.hgulu p:nth-child(8){position: absolute;top:124px;left:11px;width:228px;height:2px;transform-origin:center;background: #000;transform: rotateZ(157.5deg);}
+			@keyframes gulu {
+				from{transform:rotateZ(0deg);}
+				to{transform:rotateZ(360deg);}
+			}
+			.wrap > p{
+				position: absolute;
+				top: 453px;
+				width: 1197px;
+				background: url("3.jpg")  0 10px;
+				-webkit-background-clip: text;
+				font-size: 70px;
+				font-weight: 800;
+				color: transparent;
+				animation:tt 3s linear infinite alternate;
+			}
+			@keyframes tt {
+				to{background-position:-180px 10px;}
+			}
+		</style>
+<body>
+	<div class="wrap">
+		<div class="chair"><a></a></div>
+		<div class="ganzi">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div class="gulu">
+			<div class="hgulu">
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+			</div>
+			<div class="qgulu">
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+			</div>
+		</div>
+		<p>大晚上没事干写个没脚踏的自行车</p>
+	</div>
+</body>
+</html>

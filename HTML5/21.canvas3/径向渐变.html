@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 声明当前页面编码集:utf-8国际编码 -->
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+    <title>please enter your title</title>
+    <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+    <meta name="Keywords" content="TT">
+    <!-- 简介描述 -->
+    <meta name="description" content="TT">
+    <link rel = "shortcut icon" href="./icon/ttico.ico">
+    <style>
+        *{margin:0;padding:0;}
+        ul{list-style:none;}
+        canvas{
+            display: block;
+            margin: 200px auto;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<canvas width="800" height="700"></canvas>
+<script>
+    const cxt = document.getElementsByTagName("canvas")[0].getContext("2d");
+
+    let radial = cxt.createRadialGradient(400,350,50,400,350,200);
+    radial.addColorStop(0,"yellow");
+    radial.addColorStop(0.2,"blue");
+    radial.addColorStop(0.5,"green");
+    radial.addColorStop(0.8,"pink");
+    radial.addColorStop(1,"orange");
+    cxt.fillStyle = radial;
+    cxt.fillRect(0,0,800,700);
+</script>
+</body>
+</html>

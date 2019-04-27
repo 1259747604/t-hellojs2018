@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <link rel = "shortcut icon" href="http://www.ttistt.com//icon/ttico.ico">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #box{
+                width: 500px;
+                margin: 50px auto;
+            }
+            input{
+                width: 300px;
+                height: 30px;
+                border: 1px solid;
+                outline: none;
+                vertical-align: top;
+            }
+            button{
+                width: 100px;
+                height: 32px;
+                background: none;
+                border: 1px solid;
+                outline: none;
+                vertical-align: top;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <input type="text" placeholder="输入内容">
+            <!--<span id="text">巴拉巴拉巴拉巴拉巴拉巴拉 啊啊啊啊啊啊</span>-->
+            <button id="btn">点击播放</button>
+        </div>
+        <script>
+            let t = document.getElementById("text");
+            let inp = document.querySelector("input");
+            btn.addEventListener("click",function () {
+                // let text = t.innerText;
+                let text = inp.value;
+                let s = new SpeechSynthesisUtterance( text );
+                window.speechSynthesis.speak(s);
+            })
+        </script>
+    </body>
+</html>

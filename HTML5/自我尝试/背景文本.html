@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			body{height:6000px;}
+			p:only-of-type{
+				width:1000px;
+				height:400px;
+				margin:50px auto;
+				/*background: url("1.jpg");*/
+				/*background-size:100px 50px;背景图大小*/
+				/*background-size:cover;占满盒子 不保证看清全图*/
+				/*background-size: contain;!*不占满盒子 看清全图*!*/
+				background: url(1.jpg) no-repeat left/contain,url(2.jpg) no-repeat right/contain;
+				border:3px solid orange;
+			}
+			.wrap p:nth-child(1){
+				width:1000px;
+				height:400px;
+				margin:50px auto;
+				padding:20px;
+				background: url(1.jpg) no-repeat left/contain;
+				border:10px solid rgba(0,0,0,.2);
+				/*背景起始区域*/
+				/*background-origin:border-box;*/
+				/*background-origin:padding-box;*/
+				/*background-origin:content-box;*/
+				/*背景剪裁*/
+				background-clip:border-box;
+				background-clip:padding-box;
+				background-clip:content-box;
+				-webkit-background-clip: text;
+				color:transparent;
+				font-size: 50px;
+			}
+			.wrap p:nth-child(2){
+				width:200px;
+				height:100px;
+				margin:50px auto;
+				border: 10px solid;
+				/*色调*/
+				/*background: hsla(50,30%,50%,.3);*/
+				background: -webkit-linear-gradient(0deg,pink 60px,paleturquoise);
+			}
+			.wrap p:nth-child(3){
+				width:200px;
+				height:100px;
+				margin:50px auto;
+				border: 10px solid;
+				background: -webkit-radial-gradient(pink 30px,paleturquoise);
+			}
+			.wrap p:nth-child(4){
+				width:300px;
+				height:200px;
+				margin:20px auto;
+				background: url("1.jpg") no-repeat center/cover;
+				-webkit-box-reflect:below 20px linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1));
+			}
+			.wrap p:nth-child(5){
+				width:300px;
+				height: 200px;
+				background:url("2.jpg") no-repeat center/cover;
+				-webkit-mask-image:linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1));
+			}
+			/*@font-face {*/
+				/*font-family: "自定义名字";*/
+				/*src:url("路径");*/
+			/*}*/
+			.wrap p:nth-child(6){
+				width: 200px;
+				height: 60px;
+				-webkit-box-orient:vertical;
+				-webkit-line-clamp:3;
+				display: -webkit-box;
+				overflow: hidden;
+			}
+		</style>
+<body>
+	<div>
+		<p></p>
+		<span>1111</span>
+	</div>
+	<div class="wrap">
+		<p>1111111</p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+	</div>
+</body>
+</html>

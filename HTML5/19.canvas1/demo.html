@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <link rel = "shortcut icon" href="./icon/ttico.ico">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            canvas{
+                display: block;
+                margin: 200px auto;
+                background: #39a2f4;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas width="500" height="500"></canvas>
+        <script>
+            let oc = document.getElementsByTagName("canvas")[0];
+
+            let con = oc.getContext("2d");
+
+            // con.stroke();
+            con.strokeRect(100,100,100,50);
+
+            con.fillStyle = "red";
+            con.fillRect(100,200,100,50);
+
+
+            con.lineWidth = 10;
+            con.lineCap = "round";//端点样式圆角
+            con.lineCap = "square";//直角
+            con.lineCap = "butt";//默认
+            con.beginPath();
+            con.moveTo(100,300);
+            con.lineTo(300,300);
+            con.stroke();
+
+            con.strokeStyle = "yellow";
+            con.lineJoin  = "round";//连接点样式圆角
+            con.lineJoin  = "bevel";//斜角
+            con.lineJoin  = "miter";//默认
+            con.beginPath();
+            con.lineTo(100,400);
+            con.lineTo(300,400);
+            con.lineTo(100,350);
+            con.stroke();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	     <!-- 声明当前页面编码集:utf-8国际编码 -->
+		<meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+		<title>please enter your title</title>
+		 <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+		<meta name="Keywords" content="差不多小孩">
+		 <!-- 简介描述 -->
+		<meta name="description" content="差不多小孩">
+		<style>
+		    *{margin:0;padding:0;}
+		    ul{list-style:none;}
+			a ~ span{background:red;color: white;}
+			[src^='1']{width:500px;height:400px;}
+			[src$='pg']{border:5px solid pink;transition:2s;}
+			[src*='jp']:hover{border: 10px solid deepskyblue;}
+			p:first-of-type{background: #c1dd8d;}
+			p:last-of-type{background:#dd7485;}
+			p:only-of-type{border:3px solid green;}
+			span:only-child{color: orange;}
+			div ul li:nth-child(1){background: #dd329d;}
+			div ul li:nth-child(2){background:#b6dd37;}
+			div ul li:nth-child(3){background:#39dd4c;}
+			div ul li:nth-child(4){background:#4cd6dd;}
+			div ul li:nth-child(5){background:#3966dd;}
+			div ul li:nth-last-child(2):hover{background: #9655dd;}
+			.wrap1 p:nth-of-type(2){background: orange;}
+			.wrap1 p:nth-last-of-type(2){background: red;}
+			.wrap1 p:empty{width:30px;height: 30px;border:3px solid;}
+			.bjh{display: none;}
+			.bjh:target{display: block;background: deeppink;}
+			.wrap1 p:not(.oo){border: 3px solid;}
+		</style>
+<body>
+	<div>
+		<a>1111</a>
+		<span>22222</span>
+		<span>33333</span>
+		<p>333</p>
+		<span>22222</span><br>
+		<img src="1.jpg"/>
+	</div>
+	<div class="wrap">
+		<p>111p</p>
+		<p>222p</p>
+	</div>
+	<div>
+		<span>唯一子元素</span>
+	</div>
+	<div>
+		<ul>
+			<li>11</li>
+			<li>22</li>
+			<li>33</li>
+			<li>44</li>
+			<li>55</li>
+		</ul>
+	</div>
+	<div class="wrap1">
+		<p>11</p>
+		<img/>
+		<p>22</p>
+		<a href="#bjh">aaa</a>
+		<span>ssss</span>
+		<p class="oo">33</p>
+		<p></p>
+		<span id="bjh" class="bjh">被激活</span>
+
+	</div>
+</body>
+</html>

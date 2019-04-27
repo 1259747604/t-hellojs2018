@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <link rel = "shortcut icon" href="./icon/ttico.ico">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            canvas{
+                display: block;
+                margin: 200px auto;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas width = 500 height= 500></canvas>
+        <script>
+            const cxt = document.getElementsByTagName("canvas")[0].getContext("2d");
+
+            draw();
+            function draw(){
+                cxt.clearRect(0,0,500,500);
+
+                let date = new Date();
+                let S = date.getSeconds();
+                let M = date.getMinutes() + S/60;
+                let H = date.getHours() + M/60;
+
+                let h = (-90+H*30)*Math.PI/180;
+                let m = (-90+M*6)*Math.PI/180;
+                let s = (-90+S*6)*Math.PI/180;
+
+                //分刻度
+                cxt.beginPath();
+                for(let i = 0; i < 60; i++){
+                    cxt.moveTo(250,250);
+                    cxt.arc(250,250,150,i*6*Math.PI/180,(i+1)*6*Math.PI/180);
+                }
+                cxt.closePath();
+                cxt.stroke();
+
+                //背景1
+                cxt.beginPath();
+                cxt.fillStyle = "#ffffff";
+                cxt.arc(250,250,140,0,2*Math.PI);
+                cxt.closePath();
+                cxt.fill();
+
+                //时刻度
+                cxt.beginPath();
+                cxt.lineWidth = 2;
+                for(let i = 0; i < 12; i++){
+                    cxt.moveTo(250,250);
+                    cxt.arc(250,250,150,i*30*Math.PI/180,(i+1)*30*Math.PI/180);
+                }
+                cxt.stroke();
+
+                //背景2
+                cxt.beginPath();
+                cxt.fillStyle = "#ffffff";
+                cxt.arc(250,250,135,0,2*Math.PI);
+                cxt.fill();
+
+                //时针
+                cxt.beginPath();
+                cxt.lineWidth = 6;
+                cxt.moveTo(250,250);
+                cxt.arc(250,250,90,h,h);
+                cxt.closePath();
+                cxt.stroke();
+
+                //分针
+                cxt.beginPath();
+                cxt.lineWidth = 3;
+                cxt.moveTo(250,250);
+                cxt.arc(250,250,110,m,m);
+                cxt.closePath();
+                cxt.stroke();
+
+                //秒针
+                cxt.beginPath();
+                cxt.lineWidth = 1;
+                cxt.moveTo(250,250);
+                cxt.arc(250,250,130,s,s);
+                cxt.closePath();
+                cxt.stroke();
+
+
+                //数字
+                cxt.save();
+                cxt.beginPath();
+                cxt.fillStyle = "#000000";
+                cxt.font = "20px 微软雅黑";
+                cxt.textAlign = "center";
+                cxt.textBaseline = "middle";
+                cxt.translate(250,250);
+                for(let i = 0; i < 12; i++){
+                    let l = Math.sin((i+1)*30*Math.PI/180)*120;
+                    let t = -Math.cos((i+1)*30*Math.PI/180)*120;
+                    cxt.fillText(i+1,l,t);
+                }
+                cxt.closePath();
+                cxt.restore();
+
+                requestAnimationFrame(draw);
+            }
+        </script>
+    </body>
+</html>

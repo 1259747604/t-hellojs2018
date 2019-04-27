@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <link rel = "shortcut icon" href="./icon/ttico.ico">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            canvas{
+                display: block;
+                margin: 100px auto;
+                border: 1px solid #dddddd;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas width=800 height=600></canvas>
+        <script>
+            const cxt = document.getElementsByTagName("canvas")[0].getContext("2d");
+
+
+            let x1 = 200;
+            let y1 = 200;
+            let x2 = 400;
+            let y2 = 400;
+
+            cxt.fillStyle = "orange";
+
+            play();
+            function play() {
+                cxt.clearRect(0,0,800,600);
+
+                y1++;
+                y2--;
+                cxt.beginPath();
+                cxt.moveTo(0,300);
+                cxt.bezierCurveTo(x1,y1,x2,y2,800,300);
+                cxt.lineTo(800,600);
+                cxt.lineTo(0,600);
+                cxt.lineTo(0,300);
+                cxt.fill();
+                if(y1 < 500){
+                    requestAnimationFrame(play);
+                }
+                else{
+                    two();
+                    function two(){
+                        cxt.clearRect(0,0,800,600);
+
+                        y1--;
+                        y2++;
+                        cxt.beginPath();
+                        cxt.moveTo(0,300);
+                        cxt.bezierCurveTo(x1,y1,x2,y2,800,300);
+                        cxt.lineTo(800,600);
+                        cxt.lineTo(0,600);
+                        cxt.lineTo(0,300);
+                        cxt.fill();
+                        if(y1 < 100){
+                            requestAnimationFrame(play);
+                        }
+                        else{
+                            requestAnimationFrame(two);
+                        }
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

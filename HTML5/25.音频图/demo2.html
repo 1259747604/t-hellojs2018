@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 声明当前页面编码集:utf-8国际编码 -->
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+    <title>TT</title>
+    <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+    <meta name="Keywords" content="TT">
+    <!-- 简介描述 -->
+    <meta name="description" content="TT">
+    <link rel = "shortcut icon" href="http://www.ttistt.com//icon/ttico.ico">
+    <style>
+        *{margin:0;padding:0;}
+        ul{list-style:none;}
+        canvas{
+            display: block;
+            background: #c6d2c9;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <!--<audio src="http://www.ttistt.com/music/2.mp3"></audio>-->
+    <audio src="2.mp3"></audio>
+</div>
+<canvas></canvas>
+<script>
+    let audio = document.querySelector("audio");
+
+    let actx = new AudioContext();
+
+    let ayser = actx.createAnalyser();
+
+    let aSrc = actx.createMediaElementSource(audio);
+
+    aSrc.connect(ayser);
+    aSrc.connect(actx.destination);
+
+
+    let c = document.querySelector("canvas");
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+    window.onresize = function () {
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+    };
+    let cxt = c.getContext("2d");
+    let color = cxt.createLinearGradient(c.width/2,c.height/2-100,c.width/2,c.height/2+100);
+    color.addColorStop(0,'#D24D29');
+    color.addColorStop(0.5,'#D2D107');
+    color.addColorStop(1,'#4AA9D2');
+
+
+
+    let voiceH = new Uint8Array(ayser.frequencyBinCount);
+    let count = 200;
+    function draw() {
+        cxt.clearRect(0,0,c.width,c.height);
+        ayser.getByteFrequencyData(voiceH);
+
+        let step =  Math.round(voiceH.length/count);
+        // console.log(step);
+        for(let i = 0; i < count; i++){
+            let j = voiceH[i*step];
+            // console.log(j);
+            cxt.fillStyle = color;
+            cxt.fillRect(c.width/2+i*10,c.height/2,5,j);
+            cxt.fillRect(c.width/2-i*10,c.height/2,5,j);
+            cxt.fillRect(c.width/2+i*10,c.height/2,5,-j);
+            cxt.fillRect(c.width/2-i*10,c.height/2,5,-j);
+        }
+
+        cxt.strokeStyle = "#4AA9D2";
+        cxt.beginPath();
+        for(let i = 0; i < count; i++){
+            let j = voiceH[i*step];
+
+            cxt.lineTo(i*15,c.height/3-j);
+            cxt.stroke();
+        }
+
+        // console.log(voiceH);
+        requestAnimationFrame(draw);
+    };
+
+    audio.volume = 1;
+    let off = false;
+    document.addEventListener("click",function () {
+        off?audio.pause():audio.play();
+        audio.loop = "loop";
+        off = !off;
+        draw();
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #box{
+                width:500px;
+                height:500px;
+                background: red;
+            }
+            .a{
+                background: yellow;
+            }
+            .b{
+                border-radius: 50%;
+            }
+            .c{
+                border: 5px solid;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box" class="a"></div>
+        <script>
+            let oBox = document.getElementById("box");
+            console.log(oBox.classList);
+            oBox.classList.add("b");//添加
+            console.log(oBox.classList);
+            oBox.classList.remove("b");//移除
+            oBox.classList.toggle("c");//有则删除，没有则添加
+            console.log(oBox.classList.length);//长度
+            console.log(oBox.classList.contains("b"));//判断是否存在
+        </script>
+    </body>
+</html>

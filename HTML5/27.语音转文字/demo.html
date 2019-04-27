@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <link rel = "shortcut icon" href="http://www.ttistt.com//icon/ttico.ico">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <button id="start">开始说话吧</button>
+            <button id="stop">停止</button>
+            <span id="text"></span>
+        </div>
+        <script>
+            let start = document.getElementById("start");
+            let stop = document.getElementById("stop");
+            let text = document.getElementById("text");
+
+            let newRecognition = new webkitSpeechRecognition();
+            newRecognition.continuous = true;
+            newRecognition.interimResults = true;
+            
+            start.addEventListener("click",function () {
+                newRecognition.start( );
+            });
+
+            stop.addEventListener("click",function () {
+                newRecognition.stop( );
+            });
+            newRecognition.onresult = function(e){ //分析语音结果
+                let str = "";
+                for (let i = e.resultIndex; i < e.results.length; ++i) {
+                    str += e.results[i][0].transcript
+                }
+                text.innerHTML = str;
+            }
+        </script>
+    </body>
+</html>

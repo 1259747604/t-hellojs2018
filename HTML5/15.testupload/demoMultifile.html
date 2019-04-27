@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>这是一个多文件的上传功能</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            html,body{
+                width: 100%;
+                height: 100%;
+                background: #7bafda;
+            }
+            #container{
+                position: relative;
+                margin: 100px auto;
+                width:800px;
+                height:600px;
+                background: #ebf4eb;
+            }
+            [type="file"]{
+                position: absolute;
+                left:0;
+                top:0;
+                opacity: 0;
+            }
+            [type="button"]{
+                position: absolute;
+                left:0;
+                top:50px;
+                width:120px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                background: #95f498;
+                border: none;
+                color:#ffffff;
+                outline: none;
+                cursor:pointer;
+            }
+            label{
+                position: absolute;
+                left:0;
+                top:0;
+                width:120px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                background: #95f498;
+                color:#ffffff;
+                cursor:pointer;
+            }
+            #chPic{
+                display: none;
+                position: absolute;
+                top:20px;
+                left:130px;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                width:513px;
+                height: 550px;
+                background: #95e1f4;
+                border-top-right-radius: 20px;
+                overflow-y: auto;
+            }
+/*            #chPic:before{
+                content: "";
+                position: absolute;
+                left:-20px;
+                width: 0;
+                height: 0;
+                border: 10px solid transparent;
+                border-right: 10px solid #95e1f4;
+            }*/
+            #chPic > #cha{
+                position: absolute;
+                right: 1px;
+                top:2px;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                border: 1px solid #ddf4e4;
+                border-radius: 50%;
+                color: #ffffff;
+                cursor: pointer;
+            }
+            #chPic > #cha:hover{
+                border: 1px solid #f45f70;
+                color: #f45f70;
+            }
+            .oImg{
+                position: relative;
+                float: left;
+                margin: 10px 0 0 10px;
+                width:150px;
+                height:150px;
+                border:1px solid #dbb9f4;
+                overflow: hidden;
+            }
+            .oImg > p{
+                position: absolute;
+                top: -30px;
+                width: 100%;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+                background: rgba(0,0,0,.3);
+                transition: 0.5s;
+            }
+            .oImg > p >span{
+                cursor: pointer;
+                color: #f996a5;
+            }
+            .oImg:hover p{
+                top: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <input type= "file" id = file multiple accept="image/png, image/jpeg, image/gif, image/jpg">
+            <label for="file">选择文件</label>
+            <input type= "button" id="btn" value="上传文件">
+            <div id="chPic">
+                <span id="cha" class="cha">x</span>
+            </div>
+        </div>
+        <script>
+            {
+                //点击选择文件
+                const ola = document.getElementsByTagName("label")[0],
+                    oChPic = document.getElementById("chPic"),
+                    oCha = document.getElementsByClassName("cha")[0 ],
+                    oFile = document.getElementById("file"),
+                    oPCha = document.getElementsByClassName("pCha"),
+                    obtn = document.getElementById("btn");
+
+                let imgArr = [];
+
+                ola.onclick = function () {
+                    oChPic.style.display = "block";
+                };
+                //点击叉号隐藏
+                function hide(){
+                    oChPic.style.display = "none";
+                }
+
+                //按钮选择文件
+                oFile.onchange = function () {
+                    let files = Array.from(this.files);
+                    imgArr.push(...files);
+
+                    genPic();
+                };
+
+                //拖拽图片
+                document.ondragover = function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                };
+                oChPic.ondrop = function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    let files = Array.from(e.dataTransfer.files);
+                    imgArr.push(...files);
+
+                    genPic();
+                };
+
+                //生成图片
+                function genPic() {
+                    oChPic.innerHTML ="<span id = cha class='cha' onclick= hide()>x</span>";
+
+                    for(let i = 0; i < imgArr.length; i++){
+                        const blob = new Blob([imgArr[i]]);
+                        const url = window.URL.createObjectURL(blob);
+
+                        let oImg = document.createElement("div");
+                        oImg.className = "oImg";
+                        oImg.style.cssText = `background:url(${url}) no-repeat center/contain`;
+                        oImg.innerHTML = "<p><span class='pCha'>X</span></p>";
+                        oChPic.appendChild(oImg);
+
+                        (function (i) {
+                            oPCha[i].onclick = function () {
+                                oChPic.removeChild(this.parentNode.parentNode);
+                                imgArr.splice(i,1);
+                            }
+                        })(i);
+                    }
+                }
+
+                //图片上传
+                obtn.onclick = function () {
+                    if(imgArr.length !== 0){
+                        for(let i = 0; i < imgArr.length; i++){
+                            (function (k) {
+                                const xhr =new XMLHttpRequest();
+                                xhr.open("post","./php/up.php",true);
+                                let oFormDate = new FormData();
+                                oFormDate.append("a",imgArr[k]);
+                                xhr.send(oFormDate);
+                            })(i);
+                        }
+                    }
+                    imgArr = [];
+                    oChPic.innerHTML ="<span id = cha class='cha' onclick= hide()>x</span>";
+                };
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            #box{
+                position: relative;
+                display: flex;
+                margin: 100px auto;
+                width:400px;
+                height:400px;
+                background: -webkit-linear-gradient(top left,#277072,#bbbbbb);
+                border-radius: 50%;
+            }
+            #out{
+                margin: auto;
+                width:360px;
+                height: 360px;
+                border: 15px solid #745f65;
+                border-radius: 50%;
+                box-shadow: 2px 2px 3px 3px rgba(0,0,0,.5) inset;
+            }
+            #bigRound{
+                display: flex;
+                position: absolute;
+                left:0;
+                right:0;
+                top:0;
+                bottom:0;
+                margin: auto;
+                width:30px;
+                height:30px;
+                border-radius: 50%;
+                background: rgba(255,255,255,.5);
+            }
+            #bigRound #smallRound{
+                margin: auto;
+                width:15px;
+                height:15px;
+                border-radius: 50%;
+                background: rgba(255,255,255,.8);
+            }
+            #needle #clockwise{
+                position: absolute;
+                top: 91px;
+                left: 196px;
+                width: 10px;
+                height: 110px;
+                background: #fffc89;
+                transform-origin:center bottom;
+                transform: rotateZ(0deg);
+            }
+            #needle #minuteHand{
+                position: absolute;
+                top: 67px;
+                left: 198px;
+                width: 6px;
+                height: 133px;
+                background: #745f65;
+                transform-origin: center bottom;
+                transform: rotateZ(629deg);
+            }
+            #needle #minuteHand:before{
+                content: '';
+                position: absolute;
+                top: -8px;
+                left: 0;
+                display: block;
+                border: 3px solid transparent;
+                border-bottom: 5px solid #282c34
+            }
+            #needle #secondHand{
+                position: absolute;
+                top: 34px;
+                left: 199px;
+                width: 4px;
+                height: 166px;
+                background: #282c34;
+                transform-origin: center bottom;
+                transform: rotateZ(90deg);
+            }
+            #num{
+                display: flex;
+                position: absolute;
+                left:0;
+                right:0;
+                top:0;
+                bottom:0;
+                margin: auto;
+                width:30px;
+                height: 6px;
+            }
+            #num div{
+                position: absolute;
+                width:100%;
+                height: 100%;
+                background: #282c34;
+                z-index: 2;
+            }
+            #num span{
+                position: absolute;
+                left: 7.5px;
+                top:2px;
+                width: 15px;
+                height: 2px;
+                background: #ecffe2;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <div id="out"></div>
+            <div id="center">
+                <div id="bigRound">
+                    <div id="smallRound"></div>
+                </div>
+                <div id="needle">
+                    <div id="clockwise"></div>
+                    <div id="minuteHand"></div>
+                    <div id="secondHand"></div>
+                </div>
+            </div>
+            <div id="num"></div>
+        </div>
+        <script>
+            {
+                let oNum = document.getElementById("num");
+
+                let clockwise = document.getElementById("clockwise"),
+                    minuteHand = document.getElementById("minuteHand"),
+                    secondHand = document.getElementById("secondHand");
+
+                for(let i = 0; i < 12; i++){
+                    let od = document.createElement("div");
+                    od.style.transform = `rotateZ(${360/12*i}deg) translateX(164px)`;
+                    oNum.appendChild(od);
+                }
+                for(let i = 0; i < 60; i++){
+                    let od = document.createElement("span");
+                    od.style.transform = `rotateZ(${360/60*i}deg) translateX(170px)`;
+                    oNum.appendChild(od);
+                }
+                //初始化
+                time();
+                //执行
+                let timer = setInterval(time,1000);
+                function time() {
+                    let now = new Date();
+                    let hour = now.getHours(),
+                        minute = now.getMinutes(),
+                        second = now.getSeconds();
+
+                    clockwise.style.transform = `rotateZ(${360/12*hour+(30/60*minute)}deg)`;
+                    minuteHand.style.transform = `rotateZ(${360/60*minute+(6/60*second)}deg)`;
+                    secondHand.style.transform = `rotateZ(${360/60*second}deg)`;
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 声明当前页面编码集:utf-8国际编码 -->
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+    <title>please enter your title</title>
+    <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+    <meta name="Keywords" content="TT">
+    <!-- 简介描述 -->
+    <meta name="description" content="TT">
+    <link rel = "shortcut icon" href="./icon/ttico.ico">
+    <style>
+        *{margin:0;padding:0;}
+        ul{list-style:none;}
+        canvas{
+            display: block;
+            margin: 200px auto;
+            border: 1px solid #ddd;
+        }
+        video{
+            /*display: none;*/
+        }
+    </style>
+</head>
+<body>
+<canvas width="700" height="500"></canvas>
+<video autoplay = "autoplay" loop controls src="http://221.228.219.152/vcloud1049.tc.qq.com/1049_M0125900004YOgnc1QsM7H1001585013.f40.mp4?vkey=56F63C80538B898C1AAE2BA0E1A8A0142613D648E1F84F7DAAE6AE1D0499586009202A418849A0F70C5614061802288FE8EDEA19B10E44C054BA8D47FFD8C03A7D1BB640B584A5B66AF043114F50B8CCDF69613D2D48C593"></video>
+<script>
+    const cxt = document.getElementsByTagName("canvas")[0].getContext("2d");
+    const ov = document.querySelector("video");
+
+    play();
+    function play() {
+        cxt.drawImage(ov,0,0,700,500);
+        requestAnimationFrame(play);
+    }
+</script>
+</body>
+</html>

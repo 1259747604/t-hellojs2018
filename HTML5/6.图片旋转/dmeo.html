@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            html,body{
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+            body{
+                perspective: 800px;
+                background: #282c34;
+            }
+            #box{
+                position: absolute;
+                left:0;
+                right:0;
+                top:0;
+                bottom:0;
+                margin:auto;
+                width:300px;
+                height:250px;
+            }
+            ul{
+                width:100%;;
+                height: 100%;
+                transform-style: preserve-3d;
+                transform-origin: center center;
+                transform: translateZ(-300px);
+            }
+            li{
+                position: absolute;
+                left:0;
+                top:0;
+                width:100%;
+                height: 100%;
+                transform-origin: center center;
+            }
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li><img src="img/1.jpg" alt=""></li>
+                <li><img src="img/2.jpg" alt=""></li>
+                <li><img src="img/3.jpg" alt=""></li>
+                <li><img src="img/4.jpg" alt=""></li>
+                <li><img src="img/5.jpg" alt=""></li>
+                <li><img src="img/6.jpg" alt=""></li>
+                <li><img src="img/7.jpg" alt=""></li>
+                <li><img src="img/8.jpg" alt=""></li>
+                <li><img src="img/9.jpg" alt=""></li>
+            </ul>
+        </div>
+        <script>
+            {
+                let oUl = document.getElementsByTagName("ul")[0],
+                    oLi = oUl.getElementsByTagName("li");
+
+                //旋转角度
+                {
+                    let arrLi = [...oLi];
+                    let length = arrLi.length;
+                    arrLi.forEach((item,i)=>{item.style.transition = `1s ${(length-i)*0.1}s ease-in`;});
+                    setTimeout(roD,500);
+                    function roD() {
+                        arrLi.forEach((item,i)=>{item.style.transform = `rotateY(${360/length*i}deg) translateZ(500px)`;});
+                    }
+                }
+
+                //鼠标移动
+                {
+                    //初始化
+                    document.onselectstart = ()=>false;
+                    document.ondragstart = ()=>false;
+                    //鼠标移动
+                    let [roX,roY,tZ] = [0,0,-300];
+                    let timer;
+                    document.onmousedown = function (e) {
+                        let [sX,sY] = [e.clientX,e.clientY];
+                        let [disX,disY] = [0,0];
+                        let [nX,nY] = [0,0];
+                        this.onmousemove = function (ev) {
+                            nX = ev.clientX;
+                            nY = ev.clientY;
+
+                            disX = nX - sX;
+                            disY = nY - sY;
+                            roX += disY*0.1;
+                            roY += disX*0.1;
+                            sX = nX;
+                            sY = nY;
+                            oUl.style.transform = `translateZ(${tZ}px) rotateX(${-roX}deg) rotateY(${roY}deg)`;
+                        };
+                        this.onmouseup = function () {
+                            this.onmousemove = null;
+                            //惯性运动
+                            function move() {
+                                disX = disX*0.9;
+                                disY = disY*0.9;
+                                if(Math.abs(disX) < 0.1 && Math.abs(disY) < 0.1)return;
+                                roX += disY*0.1;
+                                roY += disX*0.1;
+                                oUl.style.transform = `translateZ(${tZ}px) rotateX(${-roX}deg) rotateY(${roY}deg)`;
+                                timer = requestAnimationFrame(move);
+                            }
+                            timer = requestAnimationFrame(move);
+                        };
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

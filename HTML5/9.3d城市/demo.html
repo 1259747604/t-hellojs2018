@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            html,body{
+                height: 100%;
+                perspective: 800px;
+            }
+            #dipi,div,b,i{position: absolute;transform-style: preserve-3d}
+            #dipi{
+                left: 50%;
+                top: 50%;
+/*                margin-left: -300px;
+                margin-top: -300px;
+                width:600px;
+                height:600px;*/
+                background: rgba(255,122,0,.5);
+                transform: rotateX(60deg) rotateZ(-120deg);
+                animation: play 50s linear infinite;
+            }
+            @keyframes play {
+                from{
+                    transform: rotateX(60deg) rotateZ(-120deg);
+                }
+                to{
+                    transform: rotateX(60deg) rotateZ(-240deg);
+                }
+            }
+            #dipi > div > b{
+                transform-origin: top;
+                height: 100%;
+                background: #dddddd;
+                transform: rotateX(90deg);
+            }
+            #dipi > div > b > b{
+                height: 100%;
+                transform-origin: left;
+                background: #dddddd;
+                transform: rotateY(90deg);
+            }
+            #dipi > div > b > b > b{
+                right:0;
+                height: 100%;
+                transform-origin: right;
+                background: #dddddd;
+                transform: rotateY(90deg);
+            }
+            #dipi > div > b > b > b > b{
+                height: 100%;
+                transform-origin: left;
+                background: #dddddd;
+                transform: rotateY(90deg);
+            }
+            #dipi > div > b > b > b > b > i{
+                bottom: 1px;
+                transform-origin: bottom;
+                background: -webkit-linear-gradient(top,#dddddd,#ffffff);
+                transform: rotateX(-90deg);
+            }
+            #dipi > div.a b{
+                background-image: url("img/1.png");
+            }
+            #dipi > div.b b{
+                background-image: url("img/2.png");
+            }
+            #dipi > div.c b{
+                background-image: url("img/3.png");
+            }
+            #dipi > div.d b{
+                background-image: url("img/4.png");
+            }
+            #dipi > div.e b{
+                background-image: url("img/5.png");
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            //买地皮盖房子
+            function dipi(base) {
+/*                this.max = 70;
+                this.base = base;*/
+                Object.assign(this,{max:70,base});
+            }
+            //开始建造
+            dipi.prototype.build = function(){
+                this.buildArea();
+
+                for(let i  = 0; i < this.base; i++){
+                    for(let j = 0; j < this.base; j++){
+                        this.house(i*this.max,j*this.max);
+                    }
+                }
+            };
+            //建造地皮
+            dipi.prototype.buildArea = function () {
+                let land = document.createElement("div");
+                let len = this.base*this.max;
+                land.id="dipi";
+                land.style.cssText = `width:${len}px;height:${len}px;margin-left:${-len/2}px;margin-top:${-len/2}px;`;
+                document.body.insertBefore(land,document.body.children[0]);
+            };
+
+            //造房子
+            dipi.prototype.house = function (l,t) {
+                let [x,y,z] = [this.setW(),this.setH(),this.setW()];
+
+                let building = document.createElement("div");
+                building.className = this.style[this.setStyle()];
+                building.innerHTML = "<b><b><b><b><i></i></b></b></b></b>";
+                building.style.cssText = `top:${t}px;left:${l}px;height:${y}px`;
+                building.children[0].style.cssText = `width:${x}px`;
+                building.children[0].children[0].style.cssText = `width:${z}px`;
+                building.children[0].children[0].children[0].style.cssText = `width:${x}px`;
+                building.children[0].children[0].children[0].children[0].style.cssText = `width:${z}px`;
+                building.children[0].children[0].children[0].children[0].children[0].style.cssText = `width:${z}px;height:${x}px;`;
+                document.getElementById("dipi").appendChild(building);
+            };
+
+            //设置房子宽高
+            dipi.prototype.setW = function () {
+                return Math.floor(Math.random()*20)+21;
+            };
+            dipi.prototype.setH = function () {
+                return Math.floor(Math.random()*130)+21;
+            };
+
+            //设置玻璃
+            dipi.prototype.style = ['a','b','c','d','e'];
+            dipi.prototype.setStyle = function () {
+                return Math.floor(Math.random()*5);
+            };
+
+
+            new dipi(10).build();
+        </script>
+    </body>
+</html>
