@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 声明当前页面编码集:utf-8国际编码 -->
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+    <title>please enter your title</title>
+    <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+    <meta name="Keywords" content="TT">
+    <!-- 简介描述 -->
+    <meta name="description" content="TT">
+    <link rel = "shortcut icon" href="http://www.ttistt.com//icon/ttico.ico">
+    <style>
+        *{margin:0;padding:0;}
+        ul{list-style:none;}
+        .search{
+            margin-top: 20px;
+        }
+        button{
+            width: 200px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background: none;
+            border: 1px solid #2bd2d2;
+            border-radius: 20px;
+            outline: none;
+            cursor:pointer;
+        }
+        input{
+            width: 300px;
+            height: 30px;
+            outline: none;
+            line-height: 30px;
+            background: none;
+            border: 1px solid #2bd2d2;
+        }
+    </style>
+</head>
+<body>
+<div class="search">
+    <button>点击获取</button>
+    <input type="text">
+</div>
+<div id="box"></div>
+<script>
+    /*示例url:movie.douban.com*/
+    const btn = document.getElementsByTagName("button")[0];
+    const oInp = document.getElementsByTagName("input")[0];
+    btn.onclick = function () {
+        let oBox = document.getElementById("box");
+        let url = proStr(oInp.value);
+        console.log(url);
+        oBox.innerHTML = "";
+        fetch(`http://localhost:3000?search=${url}`,{
+            method:"get"
+        })
+            .then(function (res) {
+                // return res.text();
+                return res.json();
+            })
+            .then(data=>{
+                console.log(data);
+                let arr = data;
+                arr.forEach((item)=>{
+                    let oImg = new Image();
+                    oImg.src = item;
+                    oBox.appendChild(oImg);
+                })
+            })
+    };
+    function proStr(str) {
+        let reg = /(https:\/\/|http:\/\/|https:\/|http:\/)/g;
+        if(reg.test(str)){
+            let arr = str.match(reg);
+            str = str.slice(arr[0].length);
+        }
+        return str;
+    }
+</script>
+</body>
+</html>

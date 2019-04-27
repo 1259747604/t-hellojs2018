@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 声明当前页面编码集:utf-8国际编码 -->
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+    <title>please enter your title</title>
+    <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+    <meta name="Keywords" content="TT">
+    <!-- 简介描述 -->
+    <meta name="description" content="TT">
+    <link rel = "shortcut icon" href="http://www.ttistt.com//icon/ttico.ico">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <style>
+        *{margin:0;padding:0;}
+        ul{list-style:none;}
+        body{
+            background: #F2F2F2;
+        }
+        #footer{
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            margin-left: -570px;
+        }
+        #footer p {
+            text-align: center;
+            border-top: 1px solid;
+            font-size: 20px;
+            color: #ced2c6;
+        }
+        .loginreg{
+            /*height: inherit;*/
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+        }
+        .artList li{
+            position: relative;
+            margin-bottom: 10px;
+            padding: 10px;
+            height: 50px;
+            line-height: 50px;
+        }
+        .artList li img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: red;
+        }
+        .artList li span.tips{
+            display: inline-block;
+            margin-top: 8px;
+            vertical-align: top;
+        }
+        .artList li p{
+            display: inline-block;
+            margin-top: 8px;
+            height: 18px;
+            line-height: 18px;
+            vertical-align: top;
+        }
+        .artList li span.author{
+            position: absolute;
+            left: 65px;
+            top: 40px;
+            line-height: 20px;
+        }
+        .time{
+            position: absolute;
+            right: 10px;
+            color: #c0d2cf;
+        }
+        .numPer{
+            position: absolute;
+            right: 10px;
+            top:43px;
+            height: 20px;
+            line-height: 20px;
+        }
+        #pageCon{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="nav">
+    <div class="layui-row">
+        <div class="layui-col-md9">
+            <ul class="layui-nav" lay-filter="">
+                <li class="layui-nav-item"><a href="">html</a></li>
+                <li class="layui-nav-item layui-this"><a href="">js</a></li>
+                <li class="layui-nav-item"><a href="">css</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">node</a>
+                    <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                        <dd><a href="">模块</a></dd>
+                        <dd><a href="">框架</a></dd>
+                        <dd><a href="">其他</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">vue</a></li>
+            </ul>
+        </div>
+        <div class="layui-col-md3 layui-bg-black loginreg">
+            <!--登录注册-->
+            <!--<a href="/user/login" class="layui-btn">登录</a>
+            <a href="/user/reg" class="layui-btn">注册</a>-->
+            <!--个人中心-->
+            <ul class="layui-nav">
+                <li class="layui-nav-item">
+                    <!--<a href="">个人中心<span class="layui-badge-dot"></span></a>-->
+                    <a href="">个人中心</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">修改信息</a></dd>
+                        <dd><a href="javascript:;">退出</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="secondnav">
+    <div class="layui-row" style="margin-top: 20px">
+        <div class="layui-col-md9" style="margin-top: 10px">
+            <hr class="layui-bg-blue">
+        </div>
+        <div class="layui-col-md3">
+            <a href="http://www.layui.com" 	class="layui-btn layui-btn-lg layui-btn-normal" style="margin-left: 150px">发表文章</a>
+        </div>
+    </div>
+</div>
+<div id="list">
+    <div class="layui-main" style="background: #ffffff">
+        <ul class="artList">
+            <li>
+                <img src="" alt="">
+                <span class="layui-badge layui-bg-cyan tips">Vue</span>
+                <p>aaaaaaaaaaaaa</p>
+                <span class="author">作者:TT</span>
+                <span class="time">2018-11-29 11:18</span>
+                <div class="numPer">
+                    <i class="layui-icon layui-icon-log"></i>
+                    <span>20</span>
+                </div>
+            </li>
+            <li>
+                <img src="" alt="">
+                <span class="layui-badge layui-bg-cyan tips">Vue</span>
+                <p>aaaaaaaaaaaaa</p>
+                <span class="author">作者:TT</span>
+                <span class="time">2018-11-29 11:18</span>
+                <div class="numPer">
+                    <i class="layui-icon layui-icon-log"></i>
+                    <span>20</span>
+                </div>
+            </li>
+            <li>
+                <img src="" alt="">
+                <span class="layui-badge layui-bg-cyan tips">Vue</span>
+                <p>aaaaaaaaaaaaa</p>
+                <span class="author">作者:TT</span>
+                <span class="time">2018-11-29 11:18</span>
+                <div class="numPer">
+                    <i class="layui-icon layui-icon-log"></i>
+                    <span>20</span>
+                </div>
+            </li>
+            <li>
+                <img src="" alt="">
+                <span class="layui-badge layui-bg-cyan tips">Vue</span>
+                <p>aaaaaaaaaaaaa</p>
+                <span class="author">作者:TT</span>
+                <span class="time">2018-11-29 11:18</span>
+                <div class="numPer">
+                    <i class="layui-icon layui-icon-log"></i>
+                    <span>20</span>
+                </div>
+            </li>
+            <li>
+                <img src="" alt="">
+                <span class="layui-badge layui-bg-cyan tips">Vue</span>
+                <p>aaaaaaaaaaaaa</p>
+                <span class="author">作者:TT</span>
+                <span class="time">2018-11-29 11:18</span>
+                <div class="numPer">
+                    <i class="layui-icon layui-icon-log"></i>
+                    <span>20</span>
+                </div>
+            </li>
+            <li>
+                <img src="" alt="">
+                <span class="layui-badge layui-bg-cyan tips">Vue</span>
+                <p>aaaaaaaaaaaaa</p>
+                <span class="author">作者:TT</span>
+                <span class="time">2018-11-29 11:18</span>
+                <div class="numPer">
+                    <i class="layui-icon layui-icon-log"></i>
+                    <span>20</span>
+                </div>
+            </li>
+            <li>
+                <img src="" alt="">
+                <span class="layui-badge layui-bg-cyan tips">Vue</span>
+                <p>aaaaaaaaaaaaa</p>
+                <span class="author">作者:TT</span>
+                <span class="time">2018-11-29 11:18</span>
+                <div class="numPer">
+                    <i class="layui-icon layui-icon-log"></i>
+                    <span>20</span>
+                </div>
+            </li>
+            <li>
+                <img src="" alt="">
+                <span class="layui-badge layui-bg-cyan tips">Vue</span>
+                <p>aaaaaaaaaaaaa</p>
+                <span class="author">作者:TT</span>
+                <span class="time">2018-11-29 11:18</span>
+                <div class="numPer">
+                    <i class="layui-icon layui-icon-log"></i>
+                    <span>20</span>
+                </div>
+            </li>
+            <li>
+                <img src="" alt="">
+                <span class="layui-badge layui-bg-cyan tips">Vue</span>
+                <p>aaaaaaaaaaaaa</p>
+                <span class="author">作者:TT</span>
+                <span class="time">2018-11-29 11:18</span>
+                <div class="numPer">
+                    <i class="layui-icon layui-icon-log"></i>
+                    <span>20</span>
+                </div>
+            </li>
+        </ul>
+        <div id="pageCon"></div>
+    </div>
+</div>
+<div id="footer" class="layui-main">
+    <p>tt-blog-2018</p>
+</div>
+<script src="layui/layui.js"></script>
+<script>
+    layui.use(['element',"laypage"], function(){
+        const laypage = layui.laypage;
+        laypage.render({
+            elem: 'pageCon',
+            count:0,
+            limit:5,
+            groups:5,
+            jump:function () {
+                
+            }
+        });
+    });
+</script>
+</body>
+</html>

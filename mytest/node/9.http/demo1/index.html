@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <link rel = "shortcut icon" href="http://www.ttistt.com//icon/ttico.ico">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            p{
+                width: 200px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                border-radius: 20px;
+                border: 1px solid;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <p>点击跳转第一个页面</p>
+            <p>点击跳转第二个页面</p>
+        </div>
+        <script>
+            const oP = document.getElementsByTagName("p");
+
+            for(let i = 0; i < oP.length; i++){
+                oP[i].index = i;
+                oP[i].onclick = function () {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("get",`http://localhost:3000/${this.index+1}`,true);
+                    xhr.send();
+                    let _this = this;
+                    xhr.onload = function () {
+                        if(xhr.readyState === 4 || xhr.status === 200){
+                            window.open(`http://localhost:3000/${_this.index+1}`);
+                        }
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

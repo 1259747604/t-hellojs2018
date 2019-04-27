@@ -1,0 +1,81 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        title 测试
+    body
+        a(href='baidu.com') 百度
+        |
+        |
+        a(class='button' href='baidu.com') 百度
+        |
+        |
+        a(class='button', href='baidu.com') 百度
+        - let flag = true
+        p(class=flag ? 'one' : 'two')
+        p(class=flag1 ? 'one' : 'two')
+        input(
+        type='checkbox'
+        name='agreement'
+        checked
+        )
+        input(data-json=`
+            {
+            "非常": "长的",
+            "数据": true
+            }
+        `)
+        a(style={color: 'red', background: 'green'}) test
+        - let classes = ['foo', 'bar', 'baz']
+        a.bang(class=classes class=['bing'])
+        #content
+        - var friends = 10
+        case friends
+            when 0
+                p 您没有朋友
+            when 1
+                p 您有一个朋友
+            default
+                p 您有 #{friends} 个朋友
+        - var friends = 1
+        case friends
+            when 0: p 您没有朋友
+            when 1: p 您有一个朋友
+            default: p 您有 #{friends} 个朋友
+        ul
+            - for (var x = 0; x < 3; x++)
+                li item
+        ul
+            - var list = ["Uno", "Dos", "Tres","Cuatro", "Cinco", "Seis"]
+            each item in list
+                li= item
+        p= '这个代码被 <转义> 了！'
+        p!= '这段文字' + ' <strong>没有</strong> 被转义！'
+        //- 这行不会出现在结果里
+        // 一些内容
+        - var user = { description: 'foo bar baz' }
+        - var authorised = false
+        #user
+            if user.description
+                h2.green 描述
+                p.description= user.description
+            else if authorised
+                h2.blue 描述
+                p.description.
+                    用户没有添加描述。
+                    不写点什么吗……
+            else
+                h2.red 描述
+                p.description 用户没有描述
+        ul
+            each val in [1, 2, 3, 4, 5]
+                li= val
+        ul
+            each val, index in ['〇', '一', '二']
+                li= index + ': ' + val
+        mixin pet(name)
+            li.pet= name
+        ul
+            +pet('猫')
+            +pet('狗')
+            +pet('猪')

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 声明当前页面编码集:utf-8国际编码 -->
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+    <title>please enter your title</title>
+    <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+    <meta name="Keywords" content="TT">
+    <!-- 简介描述 -->
+    <meta name="description" content="TT">
+    <link rel = "shortcut icon" href="http://www.ttistt.com//icon/ttico.ico">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <style>
+        *{margin:0;padding:0;}
+        ul{list-style:none;}
+        #footer{
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            margin-left: -570px;
+        }
+        #footer p {
+            text-align: center;
+            border-top: 1px solid;
+            font-size: 20px;
+            color: #ced2c6;
+        }
+        .loginreg{
+            /*height: inherit;*/
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+        }
+        .articleModule{
+            margin: auto;
+            width: 80%;
+        }
+        .btnAtr{
+            margin-top: 20px;
+            width: 130px;
+            height: 40px;
+        }
+        .btnAtr i{
+            display: inline-block;
+            margin-right: 10px!important;
+        }
+    </style>
+</head>
+<body>
+<div id="nav">
+    <div class="layui-row">
+        <div class="layui-col-md9">
+            <ul class="layui-nav" lay-filter="">
+                <li class="layui-nav-item"><a href="">html</a></li>
+                <li class="layui-nav-item layui-this"><a href="">js</a></li>
+                <li class="layui-nav-item"><a href="">css</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">node</a>
+                    <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                        <dd><a href="">模块</a></dd>
+                        <dd><a href="">框架</a></dd>
+                        <dd><a href="">其他</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">vue</a></li>
+            </ul>
+        </div>
+        <div class="layui-col-md3 layui-bg-black loginreg">
+            <!--登录注册-->
+            <!--<a href="/user/login" class="layui-btn">登录</a>
+            <a href="/user/reg" class="layui-btn">注册</a>-->
+            <!--个人中心-->
+            <ul class="layui-nav">
+                <li class="layui-nav-item">
+                    <!--<a href="">个人中心<span class="layui-badge-dot"></span></a>-->
+                    <a href="">个人中心</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">修改信息</a></dd>
+                        <dd><a href="javascript:;">退出</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="layui-tab layui-tab-brief articleModule" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this">文章发表</li>
+    </ul>
+    <div class="layui-tab-content">
+        <form class="layui-form layui-form-pane" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">类别</label>
+                <div class="layui-input-block">
+                    <select name="tips" lay-verify="required">
+                        <option>html</option>
+                        <option>css</option>
+                        <option>js</option>
+                        <option>nodejs</option>
+                        <option>vue</option>
+                        <option>react</option>
+                        <option>jquery</option>
+                        <option>angular</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">标题</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <textarea id="content" name="content" style="display: none;"></textarea>
+            <button class="layui-btn btnAtr"><i class="layui-icon layui-icon-release"></i>发表</button>
+        </form>
+    </div>
+</div>
+<div id="footer" class="layui-main">
+    <p>tt-blog-2018</p>
+</div>
+<script src="layui/layui.js"></script>
+<script>
+    layui.use(['form','layedit','element'], function(){
+        const element = layui.element;
+        const form = layui.form;
+        const layedit = layui.layedit;
+        layedit.build('content',{
+            height:500
+        });
+    });
+</script>
+</body>
+</html>

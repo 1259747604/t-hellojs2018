@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <link rel = "shortcut icon" href="http://www.ttistt.com//icon/ttico.ico">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            html,body{
+                width: 100%;
+                height:100%;
+            }
+            #box{
+                display: flex;
+                flex-direction: column;
+                width:50%;
+                height:50%;
+            }
+            .one{
+                height: 200px;
+                background: orange;
+            }
+            .two{
+                flex: 1;
+                background: #00a1d6;
+            }
+            li{
+                padding:50px 0;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+    <!--flex子元素里的子元素 会向外撑开 可用overflow:hidden-->
+        <div id="box">
+            <div class="one">1</div>
+            <div class="two">
+                <ul>
+                    <li>111</li>
+                    <li>2222</li>
+                    <li>333</li>
+                    <li>444444</li>
+                    <li>55555</li>
+                </ul>
+            </div>
+        </div>
+        <script></script>
+    </body>
+</html>

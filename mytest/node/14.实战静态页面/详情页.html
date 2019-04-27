@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 声明当前页面编码集:utf-8国际编码 -->
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+    <title>please enter your title</title>
+    <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+    <meta name="Keywords" content="TT">
+    <!-- 简介描述 -->
+    <meta name="description" content="TT">
+    <link rel = "shortcut icon" href="http://www.ttistt.com//icon/ttico.ico">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <style>
+        *{margin:0;padding:0;}
+        ul{list-style:none;}
+        body{
+            background: #f2f2f2;
+        }
+        #footer{
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            margin-left: -570px;
+        }
+        #footer p {
+            text-align: center;
+            border-top: 1px solid;
+            font-size: 20px;
+            color: #ced2c6;
+        }
+        .loginreg{
+            /*height: inherit;*/
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+        }
+        #detail{
+            margin-top: 20px;
+        }
+        #detail > div:nth-child(1){
+            padding: 15px;
+            background: #ffffff;
+        }
+        #detail > div:nth-child(1) >h1{
+            text-align: center;
+            font-weight: bolder;
+        }
+        #detail > div:nth-child(1) >p.author{
+            margin-top: 10px;
+            text-align: center;
+        }
+        #detail > div:nth-child(1) >p.time{
+            margin-top: 10px;
+            text-align: center;
+        }
+        .content{
+            margin-top: 30px;
+        }
+        /*评论部分*/
+        #detail > div:nth-child(2){
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffffff;
+
+        }
+        .layui-unselect.layui-layedit-tool{
+            display: none;
+        }
+        .combtn{
+            margin-top: 15px;
+            width: 150px;
+        }
+        .showcom{
+            margin-top: 20px;
+        }
+        .showcom ul li{
+            position: relative;
+        }
+        .showcom ul li div{
+            display: inline-block;
+        }
+        .showcom ul li div img{
+            vertical-align: middle;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .showcom ul li div:nth-child(1){
+            position: absolute;
+            top:0;
+        }
+        .showcom ul li div:nth-child(2) p{
+            margin-left: 50px;
+            height: 100px;
+            width: 1000px;
+        }
+        .username{
+            display: inline-block;
+            margin-left: 50px;
+            color: #d2915b;
+        }
+    </style>
+</head>
+<body>
+<div id="nav">
+    <div class="layui-row">
+        <div class="layui-col-md9">
+            <ul class="layui-nav" lay-filter="">
+                <li class="layui-nav-item"><a href="">html</a></li>
+                <li class="layui-nav-item layui-this"><a href="">js</a></li>
+                <li class="layui-nav-item"><a href="">css</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">node</a>
+                    <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                        <dd><a href="">模块</a></dd>
+                        <dd><a href="">框架</a></dd>
+                        <dd><a href="">其他</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">vue</a></li>
+            </ul>
+        </div>
+        <div class="layui-col-md3 layui-bg-black loginreg">
+            <!--登录注册-->
+            <!--<a href="/user/login" class="layui-btn">登录</a>
+            <a href="/user/reg" class="layui-btn">注册</a>-->
+            <!--个人中心-->
+            <ul class="layui-nav">
+                <li class="layui-nav-item">
+                    <!--<a href="">个人中心<span class="layui-badge-dot"></span></a>-->
+                    <a href="">个人中心</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">修改信息</a></dd>
+                        <dd><a href="javascript:;">退出</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="detail">
+    <div class="layui-main">
+        <h1>文章标题</h1>
+        <p class="author">作者:TT</p>
+        <p class="time">2018-11-30 19:28</p>
+        <div class="content">
+            这是文章内容
+            <pre>
+                //代码区域
+                var a = 'hello layui';
+            </pre>
+        </div>
+    </div>
+    <div class="layui-main">
+        <div class="comcontainer">
+            <textarea id="comment" style="display: none;"></textarea>
+            <button class="layui-btn combtn">评论</button>
+            <hr class="layui-bg-red">
+        </div>
+        <div class="showcom">
+            <ul>
+                <li>
+                    <div><img src="1.jpg" alt=""></div>
+                    <div>
+                        <span class="username">用户名</span>
+                        <p>这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容</p></div>
+                </li>
+                <li>
+                    <div><img src="1.jpg" alt=""></div>
+                    <div><p>这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容</p></div>
+                </li>
+                <li>
+                    <div><img src="1.jpg" alt=""></div>
+                    <div><p>这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容这是评论的内容</p></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="footer" class="layui-main">
+    <p>tt-blog-2018</p>
+</div>
+<script src="layui/layui.js"></script>
+<script>
+    layui.use(['layedit','element','code'], function(){
+        layui.code({
+            elem: 'pre',
+            about:false
+        });
+        const layedit = layui.layedit;
+        layedit.build('comment',{
+            tool:[],
+            hideTool:[],
+            height:100
+        }); //建立编辑器
+    });
+</script>
+</body>
+</html>
