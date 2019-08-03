@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <script src="http://g.alicdn.com/sj/lib/jquery.min.js"></script>
+        <script src="js/magnifier.min.js"></script>
+        <link rel="stylesheet" href="css/magnifier.css">
+    </head>
+    <body>
+        <div id="box">
+            <div id="preview">
+                <div id="big_img"></div>
+                <div id="img_preview">
+                    <div class="img_cover"><img src="" alt=""></div>
+                </div>
+                <div id="img_list">
+                    <div class="item_list">
+                        <ul>
+                            <li><img src="img/8.jpg" alt="" data-preview="img/9.jpg" data-big="img/10.jpg"></li>
+                            <li><img src="img/1.jpg" alt=""></li>
+                            <li><img src="img/2.jpg" alt=""></li>
+                            <li><img src="img/3.jpg" alt=""></li>
+                            <li><img src="img/4.jpg" alt=""></li>
+                            <li><img src="img/5.jpg" alt=""></li>
+                            <li><img src="img/6.jpg" alt=""></li>
+                            <li><img src="img/7.jpg" alt=""></li>
+                        </ul>
+                    </div>
+                    <div class="btn">
+                        <span id="pre_btn" class="hoverBtn"></span>
+                        <span id="next_btn" class="hoverBtn"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $('#preview').preview();
+        </script>
+    </body>
+</html>
