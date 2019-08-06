@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 声明当前页面编码集:utf-8国际编码 -->
+        <meta http-equiv='Content-type' content='text/html; charset=utf-8'/>
+        <title>please enter your title</title>
+        <!-- 关键词字数限制在31字，用英文逗号隔开 -->
+        <meta name="Keywords" content="TT">
+        <!-- 简介描述 -->
+        <meta name="description" content="TT">
+        <link rel = "shortcut icon" href="http://www.ttistt.com//icon/ttico.ico">
+        <style>
+            *{margin:0;padding:0;}
+            ul{list-style:none;}
+            body{
+                padding: 100px;
+            }
+            #box{
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                border:40px solid #d5ff82;
+                border-left: 40px solid transparent;
+                box-sizing: content-box;
+                width: 100px;
+                height:0;
+            }
+            #box:before{
+                content: "";
+                position: absolute;
+                left: -66px;
+                width: 50px;
+                height: 50px;
+                border: 2px solid;
+                transform: rotateZ(45deg);
+            }
+            #box1{
+                position: relative;
+                width:600px;
+                height: 100px;
+                background:
+                linear-gradient(45deg, transparent 70px, #b4a078 13px) bottom left no-repeat,
+                linear-gradient(135deg, transparent 70px, #b4a078 13px) bottom left no-repeat,
+                linear-gradient(-135deg, transparent 12px, #b4a078 13px) top right no-repeat;
+                background-size: 50% 100%;
+            }
+            #box1:before{
+                content: "";
+                position: absolute;
+                left: -32px;
+                top: 17px;
+                width: 63px;
+                height: 63px;
+                border: 2px solid;
+                transform: rotateZ(45deg);
+            }
+        </style>
+    </head>
+    <body>
+<!--        <div id="box">111</div>-->
+        <div id="box1">111</div>
+        <script></script>
+    </body>
+</html>
