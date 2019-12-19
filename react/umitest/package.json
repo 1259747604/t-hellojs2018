@@ -1,0 +1,20 @@
+{
+  "name": "umitest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "umi dev",
+    "build": "umi build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "antd": "^3.26.3"
+  },
+  "devDependencies": {
+    "umi-plugin-react": "^1.14.9"
+  }
+}
